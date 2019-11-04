@@ -20,12 +20,12 @@ class Register extends React.Component {
 	render() {
 		return (
 			<div className="container">
-				<p className="h2 p-3">Register</p>
+				<p className="h2 text-center p-3">Register</p>
 				<form>
 
-				<div className="row align-items-center">
-					<div className="col-4">Business Name</div>
-					<div className="col-12">
+				<div className="row d-flex justify-content-center">
+					<div className="col-sm-3 text-right">Business Name</div>
+					<div className="col-md-6">
 						<input
 							onChange={this.handleChange}
 							value={this.state.business}
@@ -35,9 +35,9 @@ class Register extends React.Component {
 					</div>
 				</div>
 
-				<div className="row align-items-center">
-					<div className="col-4">Email</div>
-					<div className="col-12">
+				<div className="row d-flex justify-content-center">
+					<div className="col-sm-3 text-right">Email</div>
+					<div className="col-md-6">
 						<input
 							onChange={this.handleChange}
 							value={this.state.email}
@@ -47,9 +47,9 @@ class Register extends React.Component {
 					</div>
 				</div>
 
-				<div className="row align-items-center">
-					<div className="col-4">Password</div>
-					<div className="col-12">
+				<div className="row d-flex justify-content-center">
+					<div className="col-sm-3 text-right">Password</div>
+					<div className="col-md-6">
 						<input
 							onChange={this.handleChange}
 							value={this.state.password}
@@ -58,9 +58,9 @@ class Register extends React.Component {
 						/>
 					</div>
 				</div>
-				<div className="row align-items-center">
-					<div className="col-4">Confirm Password</div>
-					<div className="col-12">
+				<div className="row d-flex justify-content-center">
+					<div className="col-sm-3 text-right">Confirm Password</div>
+					<div className="col-md-6">
 						<input
 							onChange={this.handleChange}
 							value={this.state.confirmpassword}
@@ -70,7 +70,7 @@ class Register extends React.Component {
 					</div>
 				</div>
 
-				<div className="row p-3">
+				<div className="row d-flex justify-content-center p-3">
 					<button
 						type="submit"
 						className="btn btn-success">

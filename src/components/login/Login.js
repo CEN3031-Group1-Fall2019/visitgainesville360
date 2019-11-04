@@ -18,11 +18,10 @@ class Login extends React.Component {
 	render() {
 		return (
 			<div className="container">
-				<p className="h2 p-3">Login</p>
-				<form>
-				<div className="row align-items-center">
-					<div className="col-4">Email</div>
-					<div className="col-12">
+				<form className="p-5">
+				<div className="row d-flex justify-content-center">
+					<div className="col-sm-3 text-right">Email</div>
+					<div className="col-md-6">
 						<input
 							onChange={this.handleChange}
 							value={this.state.email}
@@ -31,9 +30,9 @@ class Login extends React.Component {
 						/>
 					</div>
 				</div>
-				<div className="row align-items-center">
-					<div className="col-4">Password</div>
-					<div className="col-12">
+				<div className="row d-flex justify-content-center">
+					<div className="col-sm-3 text-right">Password</div>
+					<div className="col-md-6">
 						<input
 							onChange={this.handleChange}
 							value={this.state.password}
@@ -43,7 +42,7 @@ class Login extends React.Component {
 					</div>
 				</div>
 
-				<div className="row p-3">
+				<div className="row d-flex justify-content-center p-3">
 					<button
 						type="submit"
 						className="btn btn-success">
