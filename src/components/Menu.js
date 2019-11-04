@@ -6,15 +6,20 @@ import Register from "./login/Register";
 class Menu extends React.Component {
 	render() {
 		return (
+			<div className="menu">
 			<Router>
-				<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-					<Link className="nav-link" to="/">Home</Link>
-					<Link to="/register">
+				<nav className="navbar navbar-dark bg-dark">
+					<div className="menu-row">
+						<Link className="menu-link" to="/">Home</Link>
+					</div>
+					<div className="menu-login">
+						<Link className="p-1" to="/register">
 							<button type="button" class="btn btn-success">Register</button>
-					</Link>
-					<Link className="nav-link" to="/login">
-					<button type="button" class="btn btn-primary">Login</button>
-					</Link>
+						</Link>
+						<Link className="p-1" to="/login">
+							<button type="button" class="btn btn-primary">Login</button>
+						</Link>
+					</div>
 				</nav>
 	
 				<Switch>
@@ -29,6 +34,7 @@ class Menu extends React.Component {
 				</Route>
 				</Switch>
 			</Router>
+			</div>
 		);
 	}
 }
