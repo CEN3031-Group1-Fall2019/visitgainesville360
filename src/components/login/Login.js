@@ -43,7 +43,7 @@ class Login extends React.Component {
 					</div>
 				</div>
 
-				<div className="row-12 p-3">
+				<div className="row p-3">
 					<button
 						type="submit"
 						className="btn btn-success">

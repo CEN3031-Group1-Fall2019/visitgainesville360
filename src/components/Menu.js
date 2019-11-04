@@ -11,6 +11,8 @@ class Menu extends React.Component {
 				<nav className="navbar navbar-dark bg-dark">
 					<div className="menu-row">
 						<Link className="menu-link" to="/">Home</Link>
+						<Link className="menu-link" to="/page1">Page1</Link>
+						<Link className="menu-link" to="/page2">Page2</Link>
 					</div>
 					<div className="menu-login">
 						<Link className="p-1" to="/register">
