@@ -43,5 +43,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "### How To Run",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CEN3031-Group1-Fall2019/visitgainesville360.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CEN3031-Group1-Fall2019/visitgainesville360/issues"
+  },
+  "homepage": "https://github.com/CEN3031-Group1-Fall2019/visitgainesville360#readme"
 }
