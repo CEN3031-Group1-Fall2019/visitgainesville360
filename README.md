@@ -1,5 +1,7 @@
 # Visit Gainesville 360
 
-### How to run
+### How To Run
 
-`npm start`
+* **Frontend and backend** `npm run dev`
+* **Frontend** `npm run client`
+* **Backend** `npm run server`
