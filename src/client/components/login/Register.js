@@ -6,15 +6,24 @@ class Register extends React.Component {
 		this.state = {
 			email: '',
 			password: '',
-			confirmpassword: '',
+			password2: '',
 		};
 	}
 
-	handleChange = state =>{
+	handleChange = e => {
 		this.setState({ 
-			[state.target.id]: state.target.value 
+			[e.target.id]: e.target.value 
 		});
 	};
+
+	onSubmit = e => {
+		e.preventDefault();
+		const newUser = {
+			email: this.state.email,
+			password: this.state.password,
+			password2: this.state.password2
+		};
+	}
 
 	render() {
 		return (
@@ -48,11 +57,11 @@ class Register extends React.Component {
 
 				<div className="row d-flex justify-content-center p-3">
 					<div className="column column-40">
-					<label for="confirmpassword">Confirm Password</label>
+					<label for="password2">Confirm Password</label>
 						<input
 							onChange={this.handleChange}
-							value={this.state.confirmpassword}
-							id="confirmpassword"
+							value={this.state.password2}
+							id="password2"
 							type="password"
 						/>
 					</div>
