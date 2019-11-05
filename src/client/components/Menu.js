@@ -10,16 +10,16 @@ class Menu extends React.Component {
 			<Router>
 				<nav className="navbar navbar-dark bg-dark">
 					<div className="menu-row">
-						<Link className="menu-link" to="/">Home</Link>
-						<Link className="menu-link" to="/page1">Page1</Link>
-						<Link className="menu-link" to="/page2">Page2</Link>
+						<Link className="menu-link h3" to="/">Home</Link>
+						<Link className="menu-link h3" to="/page1">Page1</Link>
+						<Link className="menu-link h3" to="/page2">Page2</Link>
 					</div>
 					<div className="menu-login">
 						<Link className="p-1" to="/register">
-							<button type="button" class="btn btn-success">Register</button>
+							<a className="button">Register</a>
 						</Link>
 						<Link className="p-1" to="/login">
-							<button type="button" class="btn btn-primary">Login</button>
+							<button type="button" class="button button-outline">Login</button>
 						</Link>
 					</div>
 				</nav>

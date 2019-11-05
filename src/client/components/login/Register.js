@@ -4,18 +4,26 @@ class Register extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			business: '',
 			email: '',
 			password: '',
-			confirmpassword: '',
+			password2: '',
 		};
 	}
 
-	handleChange = state =>{
+	handleChange = e => {
 		this.setState({ 
-			[state.target.id]: state.target.value 
+			[e.target.id]: e.target.value 
 		});
 	};
+
+	onSubmit = e => {
+		e.preventDefault();
+		const newUser = {
+			email: this.state.email,
+			password: this.state.password,
+			password2: this.state.password2
+		};
+	}
 
 	render() {
 		return (
@@ -23,21 +31,9 @@ class Register extends React.Component {
 				<p className="h2 text-center p-3">Register</p>
 				<form>
 
-				<div className="row d-flex justify-content-center">
-					<div className="col-sm-3 text-right">Business Name</div>
-					<div className="col-md-6">
-						<input
-							onChange={this.handleChange}
-							value={this.state.business}
-							id="business"
-							type="text"
-						/>
-					</div>
-				</div>
-
-				<div className="row d-flex justify-content-center">
-					<div className="col-sm-3 text-right">Email</div>
-					<div className="col-md-6">
+				<div className="row d-flex justify-content-center p-3">
+					<div className="column column-40">
+					<label for="email">Email</label>
 						<input
 							onChange={this.handleChange}
 							value={this.state.email}
@@ -47,9 +43,9 @@ class Register extends React.Component {
 					</div>
 				</div>
 
-				<div className="row d-flex justify-content-center">
-					<div className="col-sm-3 text-right">Password</div>
-					<div className="col-md-6">
+				<div className="row d-flex justify-content-center p-3">
+					<div className="column column-40">
+					<label for="password">Password</label>
 						<input
 							onChange={this.handleChange}
 							value={this.state.password}
@@ -58,13 +54,14 @@ class Register extends React.Component {
 						/>
 					</div>
 				</div>
-				<div className="row d-flex justify-content-center">
-					<div className="col-sm-3 text-right">Confirm Password</div>
-					<div className="col-md-6">
+
+				<div className="row d-flex justify-content-center p-3">
+					<div className="column column-40">
+					<label for="password2">Confirm Password</label>
 						<input
 							onChange={this.handleChange}
-							value={this.state.confirmpassword}
-							id="confirmpassword"
+							value={this.state.password2}
+							id="password2"
 							type="password"
 						/>
 					</div>
@@ -73,7 +70,7 @@ class Register extends React.Component {
 				<div className="row d-flex justify-content-center p-3">
 					<button
 						type="submit"
-						className="btn btn-success">
+						className="button button-outline">
 						Register
 					</button>
 				</div>
