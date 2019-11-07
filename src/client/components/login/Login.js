@@ -6,52 +6,60 @@ class Login extends React.Component {
 		this.state = {
 			email: '',
 			password: '',
+			errors: {}
 		};
 	}
 
-	handleChange = state =>{
+	handleChange = e => {
 		this.setState({ 
-			[state.target.id]: state.target.value 
+			[e.target.id]: e.target.value 
 		});
 	};
+
+	onSubmit = e => {
+		e.preventDefault();
+		const userData = {
+			email: this.state.email,
+			password: this.state.password
+		};
+		console.log(userData);
+	}
 
 	render() {
 		return (
 			<div className="container">
-				<form className="p-5">
-
-				<div className="row d-flex justify-content-center p-3">
-					<div className="column column-40">
-					<label for="email">Email</label>
-						<input
-							onChange={this.handleChange}
-							value={this.state.email}
-							id="email"
-							type="email"
-						/>
+				<form className="p-5" onSubmit={this.onSubmit}>
+					<div className="row d-flex justify-content-center p-3">
+						<div className="column column-40">
+						<label htmlFor="email">Email</label>
+							<input
+								onChange={this.handleChange}
+								value={this.state.email}
+								id="email"
+								type="email"
+							/>
+						</div>
 					</div>
-				</div>
 
-				<div className="row d-flex justify-content-center p-3">
-					<div className="column column-40">
-					<label for="password">Password</label>
-						<input
-							onChange={this.handleChange}
-							value={this.state.password}
-							id="password"
-							type="password"
-						/>
+					<div className="row d-flex justify-content-center p-3">
+						<div className="column column-40">
+						<label htmlFor="password">Password</label>
+							<input
+								onChange={this.handleChange}
+								value={this.state.password}
+								id="password"
+								type="password"
+							/>
+						</div>
 					</div>
-				</div>
 
-				<div className="row d-flex justify-content-center p-3">
-					<button
-						type="submit"
-						className="button button-outline">
-						Login
-					</button>
-				</div>
-
+					<div className="row d-flex justify-content-center p-3">
+						<button
+							type="submit"
+							className="button button-outline">
+							Login
+						</button>
+					</div>
 				</form>
 			</div>
 		);

@@ -16,10 +16,10 @@ class Menu extends React.Component {
 					</div>
 					<div className="menu-login">
 						<Link className="p-1" to="/register">
-							<a className="button">Register</a>
+							<button className="button">Register</button>
 						</Link>
 						<Link className="p-1" to="/login">
-							<button type="button" class="button button-outline">Login</button>
+							<button type="button" className="button button-outline">Login</button>
 						</Link>
 					</div>
 				</nav>
