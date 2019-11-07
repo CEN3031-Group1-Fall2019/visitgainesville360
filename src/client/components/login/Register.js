@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 class Register extends React.Component {
 	constructor() {
@@ -32,7 +33,7 @@ class Register extends React.Component {
 	render() {
 		return (
 			<div className="container">
-				<p className="h1 text-center p-5 m-5">Register</p>
+				<p className="h1 text-center" style={{paddingTop:"5rem"}}>Register</p>
 				<form onSubmit={this.onSubmit}>
 					<div className="row d-flex justify-content-center p-3">
 						<div className="column column-40">
@@ -90,6 +91,11 @@ class Register extends React.Component {
 						</button>
 					</div>
 				</form>
+			<p className="row d-flex justify-content-center">Already have an account?&nbsp;
+			<Link to="/login">
+				Click here to login.
+			</Link>
+			</p>
 			</div>
 		);
 	}

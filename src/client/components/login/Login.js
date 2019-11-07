@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 class Login extends React.Component {
 	constructor() {
@@ -22,13 +23,14 @@ class Login extends React.Component {
 			email: this.state.email,
 			password: this.state.password
 		};
-		console.log(userData);
+		console.log("logging in", userData);
 	}
 
 	render() {
 		return (
 			<div className="container">
-				<form className="p-5" onSubmit={this.onSubmit}>
+			<p className="h1 text-center" style={{paddingTop:"5rem"}}>Login</p>
+				<form className="" onSubmit={this.onSubmit}>
 					<div className="row d-flex justify-content-center p-3">
 						<div className="column column-40">
 						<label htmlFor="email">Email</label>
@@ -61,6 +63,11 @@ class Login extends React.Component {
 						</button>
 					</div>
 				</form>
+			<p className="row d-flex justify-content-center">Don't have an account?&nbsp;
+			<Link to="/register">
+				Click here to register.
+			</Link>
+			</p>
 			</div>
 		);
 	}
