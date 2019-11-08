@@ -13,19 +13,10 @@ import store from "./store";
 import './App.css';
 
 if (localStorage.jwtToken) {
-	// Set auth token header auth
 	const token = localStorage.jwtToken;
 	setLoginToken(token);
-	// Decode token and get user info and exp
 	const decoded = jwt_decode(token);
-	// Set user and isAuthenticated
 	store.dispatch(setUser(decoded));
-	// Check for expired token
-	const currentTime = Date.now() / 1000; // to get in milliseconds
-	if (decoded.exp < currentTime) {
-	  // Redirect to login
-	  window.location.href = "./login";
-	}
   }
 class App extends React.Component {
 	render() {

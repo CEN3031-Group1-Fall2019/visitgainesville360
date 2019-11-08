@@ -15,6 +15,11 @@
 	border-color: darkcyan;
 	color: white;
 }
+.button-outline-gray {
+	border-color: darkgray;
+	background-color: transparent;
+	color: darkgray;
+}
 .page-header {
 	padding-top: 5rem;
 	color: darkslategray;
@@ -48,9 +53,7 @@
 	text-decoration: none;
 }
 .menu-button {
-	border-color: darkgray;
-	background-color: transparent;
-	color: darkgray;
+	margin-right: 2rem;
 }
 
 textarea:focus,

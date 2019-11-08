@@ -40,13 +40,12 @@ class Register extends React.Component {
 			password2: this.state.password2
 		};
 
-		console.log("Register New User", newUser);
-
+		console.log("Register new user: ", newUser.name, newUser.email);
 		this.props.registerUser(newUser, this.props.history); 
 	}
 
 	render() {
-		const { errors } = this.state;
+		const {errors} = this.state;
 		return (
 			<div className="container">
 				<p className="page-header">Register</p>
@@ -145,5 +144,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ registerUser }
+	{registerUser}
 )(withRouter(Register));

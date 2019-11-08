@@ -1,11 +1,7 @@
 import Axios from "axios";
 
 const setLoginToken = token => {
-	if (token) {
-	  	Axios.defaults.headers.common["Authorization"] = token;
-	} else {
-	  	delete Axios.defaults.headers.common["Authorization"];
-	}
+	if (token) Axios.defaults.headers.common["Authorization"] = token;
+	else delete Axios.defaults.headers.common["Authorization"];
 };
-
 export default setLoginToken;

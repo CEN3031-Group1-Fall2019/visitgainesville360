@@ -36,8 +36,8 @@ class Login extends React.Component {
 			email: this.state.email,
 			password: this.state.password
 		};
-		console.log("logging in", userData);
-
+		
+		console.log("Logging in for user email", this.state.email);
 		this.props.loginUser(userData);
 	}
 
@@ -117,5 +117,5 @@ const mapStateToProps = state => ({
   
 export default connect(
 	mapStateToProps,
-	{ loginUser }
+	{loginUser}
 )(Login);

@@ -13,10 +13,10 @@ class Menu extends React.Component {
 					</div>
 					<div className="menu-login">
 						<Link className="p-1" to="/register">
-							<button className="button button-background">Register</button>
+							<button className="button menu-button button-background">Register</button>
 						</Link>
 						<Link className="p-1" to="/login">
-							<button type="button" className="button menu-button">Login</button>
+							<button type="button" className="button menu-button button-outline-gray">Login</button>
 						</Link>
 					</div>
 				</nav>

@@ -7,26 +7,24 @@ var config = require('./config'),
 
 module.exports.start = function() {
 	const app = express();
-	app.use(
-	  bodyParser.urlencoded({
-		  extended: true
-	  })
-  );
 
-  app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({extended: false}));
+  	app.use(bodyParser.json());
 
-  mongoose
+  	mongoose
 	  .connect(config.db.uri, { 
 		  useNewUrlParser: true,
-		  useUnifiedTopology: true })
+		  useUnifiedTopology: true})
 	  .then(() => console.log("MongoDB successfully connected"))
 	  .catch(err => console.log(err));
   
-  app.use(passport.initialize());
-  require('./passport')(passport);
+  	app.use(passport.initialize());
+  	require('./passport')(passport);
 
-  app.use("/users", users);
+	// Configures router
+	app.use("/users", users);
+	  
   	app.listen(config.port, function() {
-    	console.log('App.js file is listening on port', config.port);
+    	console.log('Server is listening on port', config.port);
   	});
 };

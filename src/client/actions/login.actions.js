@@ -1,4 +1,4 @@
-import axios from "axios";
+import Axios from "axios";
 import setLoginToken from "../utils/setLoginToken";
 import jwt_decode from "jwt-decode";
 import {
@@ -8,19 +8,19 @@ import {
 } from "./types";
 
 export const registerUser = (userData, history) => dispatch => {
-	axios
+	Axios
 		.post("/users/register", userData)
 		.then(res => history.push("/login"))
 		.catch(err => dispatch({
         	type: GET_ERROR,
-        	payload: err.response.data })
+			payload: JSON.stringify(err.response.data)
+		})
     );
 };
 
 export const loginUser = userData => dispatch => {
-	console.log("axios", userData);
-	axios
-    	.post("/api/users/login", userData)
+	Axios
+    	.post("/users/login", userData)
     	.then(res => {
       		const { token } = res.data;
       		localStorage.setItem("jwtToken", token);
@@ -35,7 +35,6 @@ export const loginUser = userData => dispatch => {
 }
 
 export const setUser = decoded => {
-	console.log("Setting user");
 	return {
 	  	type: SET_USER,
 	  	payload: decoded
