@@ -37,3 +37,15 @@ Use `npm install`
 * **Frontend and backend** `npm run dev`
 * **Frontend** `npm run client`
 * **Backend** `npm run server`
+
+#### Include your config file
+
+Within `src/server/config` include the following:
+
+```module.exports = {
+	db: {
+	  	uri: "{YOUR_URI_HERE}"
+	},
+	port: {YOUR_PORT_HERE},
+	keys: "{YOUR_KEYS_HERE}"
+};```
