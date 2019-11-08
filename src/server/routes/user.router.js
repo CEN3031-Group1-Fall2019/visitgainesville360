@@ -6,11 +6,17 @@ var express = require("express"),
 	config = require('../config/config');
 
 router.post("/register", function(req, res) {
+	console.log("Routing to register user");
+
 	login.userExists(req, function(err, userExists) {
 		if (err) throw err;
+
 		if (userExists) {
-			return res.status(400).json({email: "Email already exists"})};
-		login.createNewUser(req, function(err) {
+			return res.status(400).json({email: "Email already exists"})
+		};
+
+		console.log("User doesn't exist. Adding user to database.");
+		login.createNewUser(req, function(err, user) {
 			if (err) throw err;
 		})
 	});
