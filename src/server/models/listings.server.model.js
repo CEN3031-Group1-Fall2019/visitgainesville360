@@ -6,21 +6,13 @@ var listingSchema = new Schema({
 
 	email: { type: String, required: true, unique: true },
 	name: { type: String, required: true },
-// Commenting out coordinates for now, will put back in later.
-/*
-	coordinates: {
-		latitude: Number,
-		longitude: Number
-	},
-*/
 	address: String,
 	phone: Number,
 	description: String,
 	created_at: Date,
 	updated_at: Date
-},
-	{ collection: 'listings' }
-); // end of schema
+	},{ collection: 'listings' }
+);
       
       
 // Saves update/creation date/time to database listing

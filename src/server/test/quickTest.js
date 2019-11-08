@@ -8,11 +8,129 @@
 var mongoose = require('mongoose'), 
     Schema = mongoose.Schema, 
     Listing = require('../models/listings.server.model.js'),
-    listFunction = require('../controllers/listings.server.controller.js'),
     User = require('../models/user.server.model.js'),
+    listFunction = require('../controllers/listings.server.controller.js'),
+    userFunction = require('../controllers/register.server.controller.js'),
     config = require('../config/config');
 
 	mongoose.connect(config.db.uri, { useNewUrlParser: true });
+
+
+
+// exports.changeListingEmail = function (req, updates, cb) {
+
+
+
+var changeAccountListingEmail = function() {
+	var findEmail = { email: "new_user1email@domain.com" };
+	var updateEmail = { email: "correct_email888@domain.com" }; 
+
+	listFunction.findListing(findEmail, function(found) {
+		listFunction.changeListingEmail(found, updateEmail, function(result) {
+			console.log('The listing was updated to: ');
+			console.log(result);
+		});		
+	});
+	userFunction.findUser(findEmail, function(found) {
+		userFunction.updateUser(found, updateEmail, function(result) {
+			console.log('The listing was updated to: ');
+			console.log(result);
+		});		
+	});
+}
+
+
+
+
+var changeListingEmailProp = function() {
+	var findEmail = { email: "a@bx7.com" };
+	var updateProp = { email: "new_user1email@domain.com" }; 
+
+	listFunction.findListing(findEmail, function(found) {
+		listFunction.changeListingEmail(found, updateProp, function(result) {
+			console.log('The listing was updated to: ');
+			console.log(result);
+		});		
+	});
+}
+
+
+
+
+var findUserProp = function() {
+	var findEmail = { email: "user1@domain.com" };
+	userFunction.findUser(findEmail, function(found) {
+		console.log(found);
+	});
+};
+
+
+var updateUserProp = function() {
+	var findEmail = { email: "user1@domain.com" };
+	var updateProp = { 
+		name: "NEW USER 1 NAME",
+		email: "new_user1email@domain.com",
+		password: "NEW_USER_1_PASS" };
+
+	userFunction.findUser(findEmail, function(found) {
+		userFunction.updateUser(found, updateProp, function(result) {
+			console.log('The listing was updated to: ');
+			console.log(result);
+		});		
+	});
+}
+
+
+
+
+
+var addUserDB = function() {
+	var exampleUser = {
+		email: "user1@domain.com",
+		name: "User 1 Name",
+		password: "user1pass"
+	};
+
+	userFunction.createUser(exampleUser, function(found) {
+		console.log('this was returned to test function: ');
+		console.log(found);
+	});
+
+
+	var exampleUser = {
+		email: "user2@domain.com",
+		name: "User 2 Name",
+		password: "user2pass"
+	};
+
+	userFunction.createUser(exampleUser, function(found) {
+		console.log('this was returned to test function: ');
+		console.log(found);
+	});
+
+	var exampleUser = {
+		email: "user3@domain.com",
+		name: "User 3 Name",
+		password: "user3pass"
+	};
+
+	userFunction.createUser(exampleUser, function(found) {
+		console.log('this was returned to test function: ');
+		console.log(found);
+	});
+
+
+
+};	
+
+
+var delUser = function() {
+	var findEmail = { email: 'user1@domain.com' };
+	userFunction.deleteUser(findEmail, function(found) {
+		console.log('In original test function: ');
+		console.log(found);
+	});
+}
 
 
 
@@ -34,25 +152,26 @@ var hasPropertyTest = function() {
 
 // exports.updateListing = function(req, updates, cb) {
 
+// exports.changeListingEmail = function (req, updates, cb) {
+
+
 
 var updateListingProp = function() {
-	var findEmail = { email: "oldemail@domain.com" };
+	var findEmail = { email: "correct_email888@domain.com" };
 	var updateProp = { 
-		name: "New Name of Biz",
-		address: "NEW ADDRESS, CITY, STATE, USA",
-		description: "Shiney new description, yes yes yes.",
-		phone: 1000000000 }; // Octal literals are not allowed in strict mode = uh... ?? wot?
+		name: "SEVEN",
+		address: "7777, CITY, STATE, USA",
+		description: "Hola, yes yes yes.",
+		phone: 7771231234 }; 
+
 
 	listFunction.findListing(findEmail, function(found) {
 		listFunction.updateListing(found, updateProp, function(result) {
-			listFunction.findListing(findEmail, function(found) {
-				console.log('The listing was updated to: ');
-				console.log(found);
-			});
+			console.log('The listing was updated to: ');
+			console.log(result);
 		});		
 	});
 }
-
 
 var findABC = function() {
 	var findEmail = { email: 'a@bx.com' };
@@ -230,7 +349,15 @@ var populateDB = function() {
 	});
 };
 
-updateListingProp();
+//changeAccountListingEmail();
+//changeListingEmailProp();
+
+//addUserDB();
+//delUser();
+//findUserProp();
+//updateUserProp();
+
+//updateListingProp();
 //addProperFunct();
 //populateDB();
 //hasPropertyTest();
