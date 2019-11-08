@@ -11,17 +11,17 @@ exports.findUser = function(req, cb) {
 }
 
 exports.userExists = function(req, cb) {
-	console.log("Checking if userExists");
 	var email = req.body.email;
+	console.log("Checking if userExists", email);
 
 	User.exists({email}, function(err, exists) {
-		if (err) throw err;
-		console.log("Result: ", userExists);
+		if (err) return cb(err);
+		console.log("Result: ", exists);
 		return cb(exists);
 	});
 }
 
-exports.createNewUser = function(req) {
+exports.createNewUser = function(req, cb) {
 	console.log("Creating user", req.body.name, req.body.email);
 
 	var newUser = new User({
@@ -31,7 +31,8 @@ exports.createNewUser = function(req) {
 	});
 
 	newUser.save(function(err) {
-		if (err) throw err;
+		if (err) return cb(err);
 		console.log("Saved litsing: ", newUser);
+		return cb(err);
 	});
 }
