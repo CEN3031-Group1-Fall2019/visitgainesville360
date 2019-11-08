@@ -1,5 +1,9 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import {connect} from "react-redux";
+import {Link, withRouter} from "react-router-dom";
+import {registerUser} from "../../actions/login.actions"
 
 class Register extends React.Component {
 	constructor() {
@@ -13,13 +17,21 @@ class Register extends React.Component {
 		};
 	}
 
-	handleChange = e => {
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.errors) {
+		  	this.setState({
+				errors: nextProps.errors
+		  	});
+		}
+	}
+
+	handleChange(e) {
 		this.setState({ 
 			[e.target.id]: e.target.value 
 		});
 	};
 
-	onSubmit = e => {
+	onSubmit(e) {
 		e.preventDefault();
 		const newUser = {
 			name: this.state.name,
@@ -27,23 +39,31 @@ class Register extends React.Component {
 			password: this.state.password,
 			password2: this.state.password2
 		};
-		console.log(newUser);
+
+		console.log("Register New User", newUser);
+
+		this.props.registerUser(newUser, this.props.history); 
 	}
 
 	render() {
+		const { errors } = this.state;
 		return (
 			<div className="container">
-				<p className="h1 text-center" style={{paddingTop:"5rem"}}>Register</p>
-				<form onSubmit={this.onSubmit}>
+				<p className="page-header">Register</p>
+				<form noValidate onSubmit={this.onSubmit.bind(this)}>
 					<div className="row d-flex justify-content-center p-3">
 						<div className="column column-40">
 						<label htmlFor="name">Business Name</label>
 							<input
-								onChange={this.handleChange}
+								onChange={this.handleChange.bind(this)}
 								value={this.state.name}
 								id="name"
 								type="text"
+								className={classnames("", {
+									invalid: errors.name
+								})}
 							/>
+						<span className="red-text">{errors.name}</span>
 						</div>
 					</div>
 
@@ -51,11 +71,15 @@ class Register extends React.Component {
 						<div className="column column-40">
 						<label htmlFor="email">Email</label>
 							<input
-								onChange={this.handleChange}
+								onChange={this.handleChange.bind(this)}
 								value={this.state.email}
 								id="email"
 								type="email"
+								className={classnames("", {
+									invalid: errors.email
+								})}
 							/>
+						<span className="red-text">{errors.email}</span>
 						</div>
 					</div>
 
@@ -63,11 +87,15 @@ class Register extends React.Component {
 						<div className="column column-40">
 						<label htmlFor="password">Password</label>
 							<input
-								onChange={this.handleChange}
+								onChange={this.handleChange.bind(this)}
 								value={this.state.password}
 								id="password"
 								type="password"
+								className={classnames("", {
+									invalid: errors.password
+								})}
 							/>
+							<span className="red-text">{errors.password}</span>
 						</div>
 					</div>
 
@@ -75,24 +103,28 @@ class Register extends React.Component {
 						<div className="column column-40">
 						<label htmlFor="password2">Confirm Password</label>
 							<input
-								onChange={this.handleChange}
+								onChange={this.handleChange.bind(this)}
 								value={this.state.password2}
 								id="password2"
 								type="password"
+								className={classnames("", {
+									invalid: errors.password2
+								})}
 							/>
+						<span className="red-text">{errors.password2}</span>
 						</div>
 					</div>
 
 					<div className="row d-flex justify-content-center p-3">
 						<button
 							type="submit"
-							className="button button-outline">
+							className="button button-background">
 							Register
 						</button>
 					</div>
 				</form>
 			<p className="row d-flex justify-content-center">Already have an account?&nbsp;
-			<Link to="/login">
+			<Link className="link" to="/login">
 				Click here to login.
 			</Link>
 			</p>
@@ -100,4 +132,18 @@ class Register extends React.Component {
 		);
 	}
 }
-export default Register;
+
+Register.propTypes = {
+	registerUser: PropTypes.func.isRequired,
+	errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+	login: state.login,
+	errors: state.errors
+});
+
+export default connect(
+	mapStateToProps,
+	{ registerUser }
+)(withRouter(Register));

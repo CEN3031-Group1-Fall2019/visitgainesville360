@@ -1,24 +1,26 @@
-.App {
-  text-align: center;
+/*** GENERAL ***/
+.link {
+	color: darkcyan
 }
-
-.App-logo {
-  height: 40vmin;
+.link:hover {
+	color: darkslategray;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.button {
+	width: 125px;
+	border-radius: 3px;
+	margin-top: 1rem;
 }
-
-.App-link {
-  color: #09d3ac;
+.button-background {
+	background-color: darkcyan;
+	border-color: darkcyan;
+	color: white;
+}
+.page-header {
+	padding-top: 5rem;
+	color: darkslategray;
+	text-align: center;
+	font-size: 3rem;
+	font-weight: normal bold; 
 }
 
 /*** MENU ***/
@@ -35,12 +37,25 @@
 }
 .menu-link {
 	font-weight: bold;
+	margin-left: 3rem;
 	padding: 0.5rem;
-	color: #e7e7e7;
+	color: azure;
 	border-bottom: .2rem solid transparent;
 }
 .menu-link:hover {
-	color: #e7e7e7;
-	border-bottom-color: #e7e7e7;
+	color: azure;
+	border-bottom-color: azure;
 	text-decoration: none;
+}
+.menu-button {
+	border-color: darkgray;
+	background-color: transparent;
+	color: darkgray;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus { 
+	border-color: darkcyan;
 }
