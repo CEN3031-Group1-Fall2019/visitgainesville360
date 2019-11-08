@@ -4,7 +4,23 @@ var mongoose = require('mongoose'),
 
 const SALT_WORK_FACTOR = 10;
 
-var UserSchema = new Schema({
+
+var UserSchema = new Schema(
+	{
+	name: {type: String, required: true},
+	email: {type: String, required: true, unique: true},
+	password: {type: String, required: true},
+	loginAttempts: {type: Number, required: true, default: 0},
+	lockUntil: {type: Number},
+	created_at: Date,
+	updated_at: Date
+	},
+	{ collection: 'users'}
+);
+
+/*
+var UserSchema = new Schema(
+{
 	name: { 
 		type: String,
 		required: true},
@@ -21,7 +37,12 @@ var UserSchema = new Schema({
 		default: 0},
 	lockUntil: {
 		type: Number }
-});
+	},{ collection: 'users'}
+}
+);
+*/
+
+
 
 UserSchema.pre('save', function(next) {
     var user = this;

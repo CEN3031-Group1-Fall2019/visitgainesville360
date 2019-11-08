@@ -3,13 +3,15 @@ var mongoose = require("mongoose");
 
 // TK note: Added a specific DB collection
 // TK note: had to add unique to these because it was allowing duplicates
-var userSchema = new Schema({
+var userSchema = new Schema(
+	{
 	name: {type: String, required: true},
 	email: {type: String, required: true, unique: true},
 	password: {type: String, required: true},
 	created_at: Date,
 	updated_at: Date
-	},{ collection: 'users'}
+	},
+	{ collection: 'users2'}
 );
 
 

@@ -8,6 +8,9 @@
 
 Use `npm install`
 
+If broken try `npm install -g nodemon`
+Or try deleting package-lock.json
+
 * `axios` - Fetch resources and make HTTP requests
 * `bcryptjs`- Allows for password hashing
 * `body-parser`- Middleware allowing to extract the body of an incoming request
