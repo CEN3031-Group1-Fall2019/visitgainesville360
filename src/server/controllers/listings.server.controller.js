@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 // ---------------------------------------------------------------- //
 
 exports.findListing = function(req, cb) {
-	Listing.find(req, function(err, found) {
+	Listing.findOne(req, function(err, found) {
 		if (err)
 			throw err;
 		else
@@ -33,7 +33,8 @@ exports.createListing = function(req, cb) {
 exports.deleteListing = function(req, cb) {	
 
 	this.findListing(req, function(found) {
-		var id = found[0]._id;
+//		var id = found[0]._id;
+		var id = found._id;
 		var param = { _id: id };	
 		
 		Listing.findByIdAndDelete(param, function (err) {
@@ -53,6 +54,28 @@ exports.deleteListing = function(req, cb) {
 
 // ---------------------------------------------------------------- //
 
+exports.changeListingEmail = function (req, updates, cb) {
+	var newList = req;
+	var nowDate = new Date();
+//	newList[0].updated_at = nowDate;
+	newList.updated_at = nowDate;
+	
+	if (updates.hasOwnProperty('email'))
+		newList.email = updates.email;
+	
+	newList.save(function(err) {
+		if (err)
+			console.log(err);
+		else
+			console.log('Update success.');
+	});
+
+	cb(newList);
+};
+
+// ---------------------------------------------------------------- //
+
+// Updates listing from an already found listing
 exports.updateListing = function(req, updates, cb) {
 	// paramaters: 
 	// req - the listing to change
@@ -63,18 +86,19 @@ exports.updateListing = function(req, updates, cb) {
 		
 	var newList = req;
 	var nowDate = new Date();
-	newList[0].updated_at = nowDate;
+//	newList[0].updated_at = nowDate;
+	newList.updated_at = nowDate;
 	
 	if (updates.hasOwnProperty('name'))
-		newList[0].name = updates.name;
+		newList.name = updates.name;
 	if (updates.hasOwnProperty('address'))
-		newList[0].address = updates.address;
+		newList.address = updates.address;
 	if (updates.hasOwnProperty('phone'))
-		newList[0].phone = updates.phone;
+		newList.phone = updates.phone;
 	if (updates.hasOwnProperty('description'))
-		newList[0].description = updates.description;
+		newList.description = updates.description;
 	
-	newList[0].save(function(err) {
+	newList.save(function(err) {
 		if (err)
 			console.log(err);
 		else
