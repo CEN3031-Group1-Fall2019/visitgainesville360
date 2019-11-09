@@ -1,10 +1,23 @@
 var mongoose = require('mongoose'), 
-    Listing = require('../models/listings.server.model.js');
+    Biz = require('../models/biz.model.js');
+
+/*
+exports.userExists = function(req, cb) {
+	var email = req.email;
+	console.log("Checking if userExists", email);
+
+	User.exists({email}, function(err, exists) {
+		if (err) return cb(err);
+		console.log("Result: ", exists);
+		return cb(exists);
+	});
+}
+*/
 
 // ---------------------------------------------------------------- //
 
-exports.findListing = function(req, cb) {
-	Listing.findOne(req, function(err, found) {
+exports.findBiz = function(req, cb) {
+	Biz.findOne(req, function(err, found) {
 		if (err)
 			throw err;
 		else
@@ -14,8 +27,8 @@ exports.findListing = function(req, cb) {
 
 // ---------------------------------------------------------------- //
 
-exports.createListing = function(req, cb) {
-	var list = new Listing(req);
+exports.createBiz = function(req, cb) {
+	var list = new Biz(req);
 
 	list.save(function(err) {
 		if(err)
@@ -30,14 +43,14 @@ exports.createListing = function(req, cb) {
 
 // ---------------------------------------------------------------- //
 
-exports.deleteListing = function(req, cb) {	
+exports.deleteBiz = function(req, cb) {	
 
 	this.findListing(req, function(found) {
 //		var id = found[0]._id;
 		var id = found._id;
 		var param = { _id: id };	
 		
-		Listing.findByIdAndDelete(param, function (err) {
+		Biz.findByIdAndDelete(param, function (err) {
 			if (err)
 			{
 				throw err;
@@ -54,64 +67,53 @@ exports.deleteListing = function(req, cb) {
 
 // ---------------------------------------------------------------- //
 
-exports.changeListingEmail = function (req, updates, cb) {
-	var newList = req;
+exports.changeBizEmail = function (req, updates, cb) {
+	var newBiz = req;
 	var nowDate = new Date();
-//	newList[0].updated_at = nowDate;
-	newList.updated_at = nowDate;
+	newBiz.updated_at = nowDate;
 	
 	if (updates.hasOwnProperty('email'))
-		newList.email = updates.email;
+		newBiz.email = updates.email;
 	
-	newList.save(function(err) {
+	newBiz.save(function(err) {
 		if (err)
 			console.log(err);
 		else
 			console.log('Update success.');
 	});
 
-	cb(newList);
+	cb(newBiz);
 };
 
 // ---------------------------------------------------------------- //
 
 // Updates listing from an already found listing
-exports.updateListing = function(req, updates, cb) {
-	// paramaters: 
-	// req - the listing to change
-	// updates - the things to change
+exports.updateBiz = function(req, updates, cb) {
+	// req - the found listing to change
 	// for changing the listings you cannot change email 
-	// name, address, phone, description, can be changed
-	// updated_at is auto changed
 		
-	var newList = req;
+	var newBiz = req;
 	var nowDate = new Date();
-//	newList[0].updated_at = nowDate;
-	newList.updated_at = nowDate;
+	newBiz.updated_at = nowDate;
 	
 	if (updates.hasOwnProperty('name'))
-		newList.name = updates.name;
+		newBiz.name = updates.name;
 	if (updates.hasOwnProperty('address'))
-		newList.address = updates.address;
+		newBiz.address = updates.address;
 	if (updates.hasOwnProperty('phone'))
-		newList.phone = updates.phone;
+		newBiz.phone = updates.phone;
 	if (updates.hasOwnProperty('description'))
-		newList.description = updates.description;
+		newBiz.description = updates.description;
 	
-	newList.save(function(err) {
+	newBiz.save(function(err) {
 		if (err)
 			console.log(err);
 		else
 			console.log('Update success.');
 	});
 
-	cb(newList);
+	cb(newBiz);
 };
 
 // ---------------------------------------------------------------- //
 
-// Probably we will not need this
-exports.readListing = function(req) {
-	console.log(req.listing);
-	return json.req;
-};

@@ -4,9 +4,7 @@ var mongoose = require('mongoose'),
 
 const SALT_WORK_FACTOR = 10;
 
-
-var UserSchema = new Schema(
-	{
+var UserSchema = new Schema({
 	name: {type: String, required: true},
 	email: {type: String, required: true, unique: true},
 	password: {type: String, required: true},
@@ -18,34 +16,14 @@ var UserSchema = new Schema(
 	{ collection: 'users'}
 );
 
-/*
-var UserSchema = new Schema(
-{
-	name: { 
-		type: String,
-		required: true},
-	email: {
-		type: String, 
-		required: true, 
-		unique: true},
-	password: {
-		type: String, 
-		required: true},
-	loginAttempts: {
-		type: Number, 
-		required: true, 
-		default: 0},
-	lockUntil: {
-		type: Number }
-	},{ collection: 'users'}
-}
-);
-*/
-
-
-
 UserSchema.pre('save', function(next) {
     var user = this;
+	var currDate = new Date();
+	this.updated_at = currDate;	
+
+	if (!this.created_at)
+		this.created_at = currDate;
+
 	if (!user.isModified('password')) return next();
 	bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
     	if (err) return next(err);
