@@ -7,10 +7,10 @@
 
 var mongoose = require('mongoose'), 
     Schema = mongoose.Schema, 
-    Listing = require('../models/listings.server.model.js'),
-    User = require('../models/user.server.model.js'),
-    listFunction = require('../controllers/listings.server.controller.js'),
-    userFunction = require('../controllers/register.server.controller.js'),
+    Biz = require('../models/biz.model.js'),
+    User = require('../models/user.model.js'),
+    bizFunction = require('../controllers/biz.db.controller.js'),
+    userFunction = require('../controllers/user.db.controller.js'),
     config = require('../config/config');
 
 	mongoose.connect(config.db.uri, { useNewUrlParser: true });
@@ -21,12 +21,12 @@ var mongoose = require('mongoose'),
 
 
 
-var changeAccountListingEmail = function() {
+var changeAccountBizEmail = function() {
 	var findEmail = { email: "new_user1email@domain.com" };
 	var updateEmail = { email: "correct_email888@domain.com" }; 
 
-	listFunction.findListing(findEmail, function(found) {
-		listFunction.changeListingEmail(found, updateEmail, function(result) {
+	bizFunction.findBiz(findEmail, function(found) {
+		bizFunction.changeBizEmail(found, updateEmail, function(result) {
 			console.log('The listing was updated to: ');
 			console.log(result);
 		});		
@@ -42,12 +42,12 @@ var changeAccountListingEmail = function() {
 
 
 
-var changeListingEmailProp = function() {
+var changeBizEmailProp = function() {
 	var findEmail = { email: "a@bx7.com" };
 	var updateProp = { email: "new_user1email@domain.com" }; 
 
-	listFunction.findListing(findEmail, function(found) {
-		listFunction.changeListingEmail(found, updateProp, function(result) {
+	bizFunction.findBiz(findEmail, function(found) {
+		bizFunction.changeBizEmail(found, updateProp, function(result) {
 			console.log('The listing was updated to: ');
 			console.log(result);
 		});		
@@ -156,7 +156,7 @@ var hasPropertyTest = function() {
 
 
 
-var updateListingProp = function() {
+var updateBizProp = function() {
 	var findEmail = { email: "correct_email888@domain.com" };
 	var updateProp = { 
 		name: "SEVEN",
@@ -165,8 +165,8 @@ var updateListingProp = function() {
 		phone: 7771231234 }; 
 
 
-	listFunction.findListing(findEmail, function(found) {
-		listFunction.updateListing(found, updateProp, function(result) {
+	bizFunction.findBiz(findEmail, function(found) {
+		bizFunction.updateBiz(found, updateProp, function(result) {
 			console.log('The listing was updated to: ');
 			console.log(result);
 		});		
@@ -175,7 +175,7 @@ var updateListingProp = function() {
 
 var findABC = function() {
 	var findEmail = { email: 'a@bx.com' };
-	listFunction.findListing(findEmail, function(found) {
+	bizFunction.findBiz(findEmail, function(found) {
 		console.log(found);
 //		console.log("type of data: "+typeof(found));
 	});
@@ -184,7 +184,7 @@ var findABC = function() {
 
 var searchAndDestroy = function() {
 	var findEmail = { email: 'a@bx3.com' };
-	listFunction.deleteListing(findEmail, function(found) {
+	bizFunction.deleteBiz(findEmail, function(found) {
 		console.log('In original test function: ');
 		console.log(found);
 	});
@@ -199,7 +199,7 @@ var addProperFunct = function() {
 		phone: 9999999999
 	};
 
-	listFunction.createListing(exampleList, function(found) {
+	bizFunction.createBiz(exampleList, function(found) {
 		console.log('this was returned to test function: ');
 		console.log(found);
 	});
@@ -208,7 +208,7 @@ var addProperFunct = function() {
 
 var findABC = function() {
 	var findEmail = { email: 'a@bx.com' };
-	listFunction.findListing(findEmail, function(found) {
+	bizFunction.findBiz(findEmail, function(found) {
 		console.log(found);
 //		console.log("type of data: "+typeof(found));
 	});
@@ -224,7 +224,7 @@ var newBizYo = function() {
 		phone: 555765847
 	};
 
-	var list = new Listing(exampleList);
+	var list = new Biz(exampleList);
 
   list.save(function(err) {
     if(err) {
@@ -315,49 +315,49 @@ var populateDB = function() {
 		phone: 55576000
 	};
 	
-	listFunction.createListing(exampleList, function(found) {
+	bizFunction.createBiz(exampleList, function(found) {
 		console.log('this was returned to test function: ');
 		console.log(found);
 	});
-	listFunction.createListing(exampleList2, function(found) {
+	bizFunction.createBiz(exampleList2, function(found) {
 		console.log('this was returned to test function: ');
 		console.log(found);
 	});
-	listFunction.createListing(exampleList3, function(found) {
+	bizFunction.createBiz(exampleList3, function(found) {
 		console.log('this was returned to test function: ');
 		console.log(found);
 	});
-	listFunction.createListing(exampleList4, function(found) {
+	bizFunction.createBiz(exampleList4, function(found) {
 		console.log('this was returned to test function: ');
 		console.log(found);
 	});
-	listFunction.createListing(exampleList5, function(found) {
+	bizFunction.createBiz(exampleList5, function(found) {
 		console.log('this was returned to test function: ');
 		console.log(found);
 	});
-	listFunction.createListing(exampleList6, function(found) {
+	bizFunction.createBiz(exampleList6, function(found) {
 		console.log('this was returned to test function: ');
 		console.log(found);
 	});
-	listFunction.createListing(exampleList7, function(found) {
+	bizFunction.createBiz(exampleList7, function(found) {
 		console.log('this was returned to test function: ');
 		console.log(found);
 	});
-	listFunction.createListing(exampleList7b, function(found) {
+	bizFunction.createBiz(exampleList7b, function(found) {
 		console.log('this was returned to test function: ');
 		console.log(found);
 	});
 };
 
-//changeAccountListingEmail();
-//changeListingEmailProp();
+//changeAccountBizEmail();
+//changeBizEmailProp();
 
 //addUserDB();
 //delUser();
 //findUserProp();
 //updateUserProp();
 
-//updateListingProp();
+//updateBizProp();
 //addProperFunct();
 //populateDB();
 //hasPropertyTest();
