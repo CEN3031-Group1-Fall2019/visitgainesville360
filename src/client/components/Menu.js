@@ -10,6 +10,7 @@ class Menu extends React.Component {
 						<Link className="menu-link h3" to="/">Home</Link>
 						<Link className="menu-link h3" to="/pages">Pages</Link>
 						<Link className="menu-link h3" to="/places">Places</Link>
+						<Link className="menu-link h3" to="/account">Account</Link>
 					</div>
 					<div className="menu-login">
 						<Link className="p-1" to="/register">
