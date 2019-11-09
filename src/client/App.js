@@ -9,6 +9,7 @@ import setLoginToken from "./utils/setLoginToken";
 import Login from './components/login/Login';
 import Register from './components/login/Register';
 import Menu from './components/Menu';
+import Account from './components/Account'
 import store from "./store";
 import './App.css';
 
@@ -28,6 +29,7 @@ class App extends React.Component {
 					<Switch>
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/login" component={Login} />
+						<Route exact path="/account" component={Account} />
 					</Switch>
 				</div>
 				</Router>
