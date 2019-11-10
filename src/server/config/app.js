@@ -6,14 +6,12 @@ var config = require('./config'),
 	users = require('../routes/user.router');
 
 
-
-// Heroku tutorial addition:
-const path = require('path');
-
-
-
 module.exports.start = function() {
 	const app = express();
+
+	// Heroku tutorial addition:
+	const path = require('path');
+	const port = process.env.PORT || 5000;
 
 	app.use(bodyParser.urlencoded({extended: false}));
   	app.use(bodyParser.json());
@@ -34,8 +32,9 @@ module.exports.start = function() {
   	// Added for Heroku:
 	// Server static assets if in production
 	if(process.env.NODE_ENV === 'production') {
+		console.log("YOU ARE IN PRODUCTION MODE");
 		// set static folder
-		app.use(express.static('build'));
+		app.use(express.static('build/index.html'));
 		
 		app.get('*', function(req, res) {
 			res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
@@ -47,6 +46,10 @@ module.exports.start = function() {
 	 	});
 */
 	}
+	else
+	{
+		console.log("NOT IN PRODUCTION MODE");
+	}
   	
 	// Configures router
 	app.use("/users", users);
@@ -54,7 +57,6 @@ module.exports.start = function() {
 
 
 	// HEROKU VERISION: 	
-	const port = process.env.PORT || 5000;
 	app.listen(port, () => console.log('server start on port:', port));
 /*	  
 	// TEMP comment out, may need to put back immediately
@@ -63,8 +65,42 @@ module.exports.start = function() {
   	});
 
 */
-  	
-
-
-
 };
+
+
+
+
+
+
+/*
+const express = require('express');
+
+const app = express();
+const path = require('path');
+const port = process.env.PORT || 5000;
+
+
+//Static file declaration
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+//production mode
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  //
+  app.get('*', (req, res) => {
+    res.sendfile(path.join(__dirname = 'client/build/index.html'));
+  })
+}
+
+
+//build mode
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/public/index.html'));
+})
+
+//start server
+app.listen(port, (req, res) => {
+  console.log( `server listening on port: ${port}`);
+})
+
+*/
