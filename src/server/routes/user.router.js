@@ -31,7 +31,6 @@ router.post("/login", function(req, res) {
 		bcrypt.compare(password, user.password, function(err, isMatch) {
 			if (err) throw err;
 			if (isMatch) {
-				// Handle Match
 				const payload = {
 					id: user.id,
 					name: user.name

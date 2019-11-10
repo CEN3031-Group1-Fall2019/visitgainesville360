@@ -4,11 +4,10 @@ import {connect} from "react-redux";
 
 class Menu extends React.Component {
 	isLoggedIn = () => {
-		console.log("Checking if logged in");
 		var loggedInState = this.props.login.isLoggedIn;
+		console.log("Logged in state: ", loggedInState);
 		
 		if (loggedInState) {
-			console.log("Is logged in");
 			return  (
 				<div className="menu-login">
 					<Link className="menu-link h3" to="/samplepage">Dashboard</Link>
@@ -19,7 +18,6 @@ class Menu extends React.Component {
 			);
 		}
 
-		console.log("Is logged out");
 		return (
 			<div className="menu-login">
 				<Link className="p-1" to="/register">

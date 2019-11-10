@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import classnames from "classnames";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {loginUser} from "../../actions/login.actions";
+import {validateLoginInput} from "../../actions/validate.action";
 
 class Login extends React.Component {
 	constructor() {
@@ -20,6 +20,7 @@ class Login extends React.Component {
 			console.log("Sending to client's dashboard");
 			this.props.history.push("/samplepage");
 		}
+
 		if (nextProps.errors) {
 			console.log("Received errors");
 			this.setState({
@@ -40,13 +41,26 @@ class Login extends React.Component {
 			email: this.state.email,
 			password: this.state.password
 		};
+
+		validateLoginInput(userData, function(errors, isValid) {
+			if (isValid) {
+				console.log("Logging in for user email", this.state.email);
+				this.props.loginUser(userData);
+			} else {
+				this.setState ({
+					errors: errors
+				});
+			}
+		}.bind(this));
 		
-		console.log("Logging in for user email", this.state.email);
-		this.props.loginUser(userData);
 	}
 
 	render() {
-		const {errors} = this.state;
+		if (this.props.login.isLoggedIn) {
+			console.log("User is already logged in");
+			this.props.history.push("/samplepage");
+		}
+
 		return (
 			<div className="container">
 			<p className="page-header">Login</p>
@@ -57,17 +71,10 @@ class Login extends React.Component {
 							<input
 								onChange={this.handleChange.bind(this)}
 								value={this.state.email}
-								error={errors.email}
 								id="email"
 								type="email"
-								className={classnames("", {
-									invalid: errors.email || errors.emailnotfound
-								})}
 							/>
-							<span className="red-text">
-								{errors.email}
-								{errors.emailnotfound}
-							</span>
+							<div className="inputError">{this.state.errors.email}</div>
 						</div>
 					</div>
 
@@ -77,17 +84,10 @@ class Login extends React.Component {
 							<input
 								onChange={this.handleChange.bind(this)}
 								value={this.state.password}
-								error={errors.password}
 								id="password"
 								type="password"
-								className={classnames("", {
-									invalid: errors.password || errors.passwordincorrect
-								})}
 							/>
-							<span className="red-text">
-								{errors.password}
-								{errors.passwordincorrect}
-							</span>
+							<div className="inputError">{this.state.errors.password}</div>
 						</div>
 					</div>
 

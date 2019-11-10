@@ -10,7 +10,7 @@ import {
 export const registerUser = (userData, history) => dispatch => {
 	Axios
 		.post("/users/register", userData)
-		.then(res => history.push("/login"))
+		.then(() => {history.push("/login")})
 		.catch(err => dispatch({
         	type: GET_ERROR,
 			payload: err
@@ -22,7 +22,7 @@ export const loginUser = userData => dispatch => {
 	Axios
     	.post("/users/login", userData)
     	.then(res => {
-      		const { token } = res.data;
+      		const {token} = res.data;
       		localStorage.setItem("jwtToken", token);
       		setLoginToken(token);
       		const decoded = jwt_decode(token);
