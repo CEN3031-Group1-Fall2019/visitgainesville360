@@ -38,7 +38,7 @@
     "build": "react-scripts build",
     "server": "nodemon src/server/server.js",
     "client": "npm start",
-	"client-install": "npm install --prefix client",
+    "client-install": "npm install --prefix client",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },

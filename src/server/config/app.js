@@ -31,6 +31,19 @@ module.exports.start = function() {
 
   	// Added for Heroku:
 	// Server static assets if in production
+if (process.env.NODE_ENV === "production") {
+  // Express will serve up production assets
+  app.use(express.static("build"));
+
+  // Express will serve up the front-end index.html file if it doesn't recognize the route
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve("build", "index.html"))
+  );
+}
+
+
+
+/*
 	if(process.env.NODE_ENV === 'production') {
 		console.log("YOU ARE IN PRODUCTION MODE");
 		// set static folder
@@ -39,17 +52,12 @@ module.exports.start = function() {
 		app.get('*', function(req, res) {
 			res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 		});
-
-/*
-		app.get('*', (req, res) = > {
-			res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-	 	});
-*/
 	}
 	else
 	{
 		console.log("NOT IN PRODUCTION MODE");
 	}
+*/
   	
 	// Configures router
 	app.use("/users", users);
