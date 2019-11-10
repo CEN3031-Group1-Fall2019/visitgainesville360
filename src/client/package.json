@@ -39,7 +39,7 @@
     "server": "nodemon src/server/server.js",
     "client": "npm start",
 	"client-install": "npm install --prefix client",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "eslintConfig": {
@@ -59,7 +59,7 @@
   },
   "description": "### How To Run",
   "main": "index.js",
-  "proxy": "http://localhost:5050",
+  "proxy": "http://localhost:5000",
   "devDependencies": {},
   "repository": {
     "type": "git",
