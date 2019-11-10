@@ -8,6 +8,7 @@ class Menu extends React.Component {
 				<nav className="navbar navbar-dark bg-dark">
 					<div className="menu-row">
 						<Link className="menu-link h3" to="/">Home</Link>
+						<Link className="menu-link h3" to="/display">Display</Link>
 						<Link className="menu-link h3" to="/pages">Pages</Link>
 						<Link className="menu-link h3" to="/places">Places</Link>
 					</div>

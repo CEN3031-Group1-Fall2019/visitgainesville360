@@ -5,6 +5,23 @@ var express = require("express"),
 	login = require('../controllers/login.controller'),
 	config = require('../config/config');
 
+router.get("/display", function(req, res) { // req, res
+	// actually displays:
+	console.log("You called the router.get function for Display");
+//	console.log(req);
+	console.log(req.query.email);
+	return res.status(400).json({email: "email exists"});
+/*
+	login.findUser(req, function(err, found) {
+		if (err) throw err;
+		console.log(found);
+//		return found;
+	});
+//	return('returning from router.get() in user.router.js');
+*/
+});
+
+
 router.post("/register", function(req, res) {
 	console.log("Routing to register user");
 
