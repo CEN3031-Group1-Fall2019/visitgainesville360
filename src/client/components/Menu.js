@@ -1,8 +1,16 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {logoutUser} from "../actions/login.actions";
 
 class Menu extends React.Component {
+	logout = () => {
+		console.log("Logging out");
+		logoutUser();
+		window.location.href = "/";
+	}
+
 	isLoggedIn = () => {
 		var loggedInState = this.props.login.isLoggedIn;
 		console.log("Logged in state: ", loggedInState);
@@ -11,9 +19,9 @@ class Menu extends React.Component {
 			return  (
 				<div className="menu-login">
 					<Link className="menu-link h3" to="/samplepage">Dashboard</Link>
-					<Link className="p-1" to="/logout">
+					<a className="p-1" to="/logout">
 						<button className="button menu-button button-outline-gray">Logout</button>
-					</Link>
+					</a>
 				</div>
 			);
 		}
@@ -51,6 +59,11 @@ const mapStateToProps = state => ({
 	login: state.login
 });
 
+Menu.propTypes = {
+	logoutUser: PropTypes.func.isRequired
+};
+
 export default connect(
-	mapStateToProps
+	mapStateToProps,
+	{logoutUser}
 )(Menu);
