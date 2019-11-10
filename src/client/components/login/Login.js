@@ -15,9 +15,13 @@ class Login extends React.Component {
 		};
 	}
 
-	componentWillReceiveProps(nextProps) {
-		console.log("Send to client's dashboard here");
+	UNSAFE_componentWillReceiveProps(nextProps) {
+		if (nextProps.login.isLoggedIn) {
+			console.log("Sending to client's dashboard");
+			this.props.history.push("/samplepage");
+		}
 		if (nextProps.errors) {
+			console.log("Received errors");
 			this.setState({
 				errors: nextProps.errors
 			});
@@ -42,7 +46,7 @@ class Login extends React.Component {
 	}
 
 	render() {
-		const { errors } = this.state;
+		const {errors} = this.state;
 		return (
 			<div className="container">
 			<p className="page-header">Login</p>
@@ -105,13 +109,15 @@ class Login extends React.Component {
 		);
 	}
 }
+
 Login.propTypes = {
 	loginUser: PropTypes.func.isRequired,
+	login: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired
 };
   
 const mapStateToProps = state => ({
-	auth: state.auth,
+	login: state.login,
 	errors: state.errors
 });
   

@@ -17,7 +17,7 @@ class Register extends React.Component {
 		};
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		if (nextProps.errors) {
 		  	this.setState({
 				errors: nextProps.errors
@@ -40,8 +40,8 @@ class Register extends React.Component {
 			password2: this.state.password2
 		};
 
-		console.log("Register new user: ", newUser.name, newUser.email);
-		this.props.registerUser(newUser, this.props.history); 
+		console.log("Registering new user: ", newUser.name, newUser.email);
+		this.props.registerUser(newUser); 
 	}
 
 	render() {
@@ -134,6 +134,7 @@ class Register extends React.Component {
 
 Register.propTypes = {
 	registerUser: PropTypes.func.isRequired,
+	login: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired
 };
 

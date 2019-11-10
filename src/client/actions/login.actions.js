@@ -13,7 +13,7 @@ export const registerUser = (userData, history) => dispatch => {
 		.then(res => history.push("/login"))
 		.catch(err => dispatch({
         	type: GET_ERROR,
-			payload: JSON.stringify(err.response.data)
+			payload: err
 		})
     );
 };
@@ -30,8 +30,15 @@ export const loginUser = userData => dispatch => {
 		})
     	.catch(err => dispatch({
         		type: GET_ERROR,
-        		payload: err.response.data })
+				payload: err
+			})
     );
+}
+
+export const logoutUser = () => dispatch => {
+  	localStorage.removeItem("jwtToken");
+  	setLoginToken(false);
+  	dispatch(setUser({}));
 }
 
 export const setUser = decoded => {
@@ -43,6 +50,6 @@ export const setUser = decoded => {
 
 export const setUserLoading = () => {
 	return {
-	  type: GET_USER
+	  	type: GET_USER
 	};
 };

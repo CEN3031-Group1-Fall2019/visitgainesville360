@@ -1,7 +1,35 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 class Menu extends React.Component {
+	isLoggedIn = () => {
+		console.log("Checking if logged in");
+		var loggedInState = this.props.login.isLoggedIn;
+		if (loggedInState) {
+			console.log("Is logged in");
+			return  (
+				<div className="menu-login">
+					<Link className="menu-link h3" to="/samplepage">Dashboard</Link>
+					<Link className="p-1" to="/logout">
+						<button className="button menu-button button-outline-gray">Logout</button>
+					</Link>
+				</div>
+			);
+		}
+		console.log("Is logged out");
+		return (
+			<div className="menu-login">
+				<Link className="p-1" to="/register">
+					<button className="button menu-button button-background">Register</button>
+				</Link>
+				<Link className="p-1" to="/login">
+					<button type="button" className="button menu-button button-outline-gray">Login</button>
+				</Link>
+			</div>
+		);
+	}
+
 	render() {
 		return (
 			<div className="menu">
@@ -11,17 +39,17 @@ class Menu extends React.Component {
 						<Link className="menu-link h3" to="/pages">Pages</Link>
 						<Link className="menu-link h3" to="/places">Places</Link>
 					</div>
-					<div className="menu-login">
-						<Link className="p-1" to="/register">
-							<button className="button menu-button button-background">Register</button>
-						</Link>
-						<Link className="p-1" to="/login">
-							<button type="button" className="button menu-button button-outline-gray">Login</button>
-						</Link>
-					</div>
+					<this.isLoggedIn />
 				</nav>
 			</div>
 		);
 	}
 }
-export default Menu;
+
+const mapStateToProps = state => ({
+	login: state.login
+});
+
+export default connect(
+	mapStateToProps
+)(Menu);
