@@ -40,7 +40,7 @@
     "server": "nodemon src/server/server.js",
     "client": "npm start",
     "client-install": "npm install --prefix client",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "eslintConfig": {
