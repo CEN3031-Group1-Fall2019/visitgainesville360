@@ -31,18 +31,18 @@ module.exports.start = function() {
 
 
 
-
+/*
   	// Added for Heroku:
 	// Server static assets if in production
 	if(process.env.NODE_ENV === 'production') {
 		// set static folder
-		app.use(express.static('/build'));
+		app.use(express.static('build'));
 
 		app.get('*', (req, res) = > {
 			res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 	 	});
 	}
-  	
+  */
   	
 	// Configures router
 	app.use("/users", users);
