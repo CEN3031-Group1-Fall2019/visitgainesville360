@@ -1,23 +1,14 @@
 import React from 'react';
-import jwt_decode from "jwt-decode";
-
-import { setUser } from "./actions/login.actions";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import { Provider } from "react-redux";
+import {Provider} from "react-redux";
 
-import setLoginToken from "./utils/setLoginToken";
 import Login from './components/login/Login';
 import Register from './components/login/Register';
+import DashboardPlaceholder from './components/dashboard/DashboardPlaceholder';
 import Menu from './components/Menu';
 import store from "./store";
 import './App.css';
 
-if (localStorage.jwtToken) {
-	const token = localStorage.jwtToken;
-	setLoginToken(token);
-	const decoded = jwt_decode(token);
-	store.dispatch(setUser(decoded));
-  }
 class App extends React.Component {
 	render() {
 		return (
@@ -26,6 +17,7 @@ class App extends React.Component {
 				<div className="App">
 					<Menu />
 					<Switch>
+						<Route exact path="/samplepage" component={DashboardPlaceholder} />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/login" component={Login} />
 					</Switch>

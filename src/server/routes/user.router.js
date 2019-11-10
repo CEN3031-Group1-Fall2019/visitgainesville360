@@ -23,6 +23,7 @@ router.post("/register", function(req, res) {
 });
 
 router.post("/login", function(req, res) {
+	console.log("Finding user with email ", req.body.email);
 	login.findUser(req, function(user) {
 		if (!user) return res.status(404).json({emailnotfound: "Email not found"});
 
@@ -30,7 +31,6 @@ router.post("/login", function(req, res) {
 		bcrypt.compare(password, user.password, function(err, isMatch) {
 			if (err) throw err;
 			if (isMatch) {
-				// Handle Match
 				const payload = {
 					id: user.id,
 					name: user.name

@@ -54,11 +54,17 @@
 }
 .menu-button {
 	margin-right: 2rem;
+	margin-left: 2rem;
 }
 
+/*** FORMS ***/
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus { 
 	border-color: darkcyan;
+}
+
+.inputError {
+	color: red;
 }

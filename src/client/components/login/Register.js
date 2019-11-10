@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import classnames from "classnames";
 import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
 import {registerUser} from "../../actions/login.actions"
+import {validateRegisterInput} from "../../actions/validate.action";
 
 class Register extends React.Component {
 	constructor() {
@@ -17,7 +17,7 @@ class Register extends React.Component {
 		};
 	}
 
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		if (nextProps.errors) {
 		  	this.setState({
 				errors: nextProps.errors
@@ -31,8 +31,9 @@ class Register extends React.Component {
 		});
 	};
 
-	onSubmit(e) {
+	onSubmit = e => {
 		e.preventDefault();
+
 		const newUser = {
 			name: this.state.name,
 			email: this.state.email,
@@ -40,12 +41,24 @@ class Register extends React.Component {
 			password2: this.state.password2
 		};
 
-		console.log("Register new user: ", newUser.name, newUser.email);
-		this.props.registerUser(newUser, this.props.history); 
+		validateRegisterInput(newUser, function(errors, isValid) {
+			if (isValid) {
+				console.log("Registering new user: ", newUser.name, newUser.email);
+				this.props.registerUser(newUser);
+			} else {
+				this.setState ({
+					errors: errors
+				});
+			}
+		}.bind(this));
 	}
 
 	render() {
-		const {errors} = this.state;
+		if (this.props.login.isLoggedIn) {
+			console.log("User is already logged in.");
+			this.props.history.push("/samplepage");
+		}
+
 		return (
 			<div className="container">
 				<p className="page-header">Register</p>
@@ -58,11 +71,8 @@ class Register extends React.Component {
 								value={this.state.name}
 								id="name"
 								type="text"
-								className={classnames("", {
-									invalid: errors.name
-								})}
 							/>
-						<span className="red-text">{errors.name}</span>
+							<div className="inputError">{this.state.errors.name}</div>
 						</div>
 					</div>
 
@@ -74,11 +84,8 @@ class Register extends React.Component {
 								value={this.state.email}
 								id="email"
 								type="email"
-								className={classnames("", {
-									invalid: errors.email
-								})}
 							/>
-						<span className="red-text">{errors.email}</span>
+							<div className="inputError">{this.state.errors.email}</div>
 						</div>
 					</div>
 
@@ -90,11 +97,8 @@ class Register extends React.Component {
 								value={this.state.password}
 								id="password"
 								type="password"
-								className={classnames("", {
-									invalid: errors.password
-								})}
 							/>
-							<span className="red-text">{errors.password}</span>
+							<div className="inputError">{this.state.errors.password}</div>
 						</div>
 					</div>
 
@@ -106,11 +110,8 @@ class Register extends React.Component {
 								value={this.state.password2}
 								id="password2"
 								type="password"
-								className={classnames("", {
-									invalid: errors.password2
-								})}
 							/>
-						<span className="red-text">{errors.password2}</span>
+							<div className="inputError">{this.state.errors.password2}</div>
 						</div>
 					</div>
 
@@ -134,6 +135,7 @@ class Register extends React.Component {
 
 Register.propTypes = {
 	registerUser: PropTypes.func.isRequired,
+	login: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired
 };
 

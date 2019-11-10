@@ -6,7 +6,7 @@ import {
 const isEmpty = require("is-empty");
 
 const initialState = {
-	isAuthenticated: false,
+	isLoggedIn: false,
 	user: {},
 	loading: false
 };
@@ -16,12 +16,14 @@ export default function(state = initialState, action) {
 	  	case SET_USER:
 			return {
 		  		...state,
-		  		isAuthenticated: !isEmpty(action.payload),
-		  		user: action.payload };
+		  		isLoggedIn: !isEmpty(action.payload),
+				user: action.payload
+			};
 	  	case GET_USER:
 			return {
 		  		...state,
-		  		loading: true};
+				loading: true
+			};
 	  	default:
 			return state;
 	}

@@ -1,8 +1,7 @@
-var User = require('../models/user.model.js'),
-	userFunct = require('../controllers/user.db.controller.js');
+var userFunct = require('../controllers/user.db.controller.js');
 
 exports.findUser = function(req, cb) {		
-	userFunct.findUser({email: email}, function(found) {
+	userFunct.findUser(req, function(found) {
 		return cb(found);
 	});
 }

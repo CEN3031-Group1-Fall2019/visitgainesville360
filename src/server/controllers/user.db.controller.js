@@ -19,7 +19,7 @@ exports.findUser = function(req, cb) {
 	console.log("Looking for user", req.body.email);
 	const email = req.body.email;
 
-	User.findOne(req, function(err, found) {
+	User.findOne({email: email}, function(err, found) {
 		if (err)
 			throw err;
 		else
