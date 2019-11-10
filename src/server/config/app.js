@@ -49,18 +49,18 @@ module.exports.start = function() {
 
 
 
-/*	  
-
 	// HEROKU VERISION: 	
 	const port = process.env.PORT || 5000;
 	app.listen(port, () => console.log('server start on port ${port}'));
-*/
-  	
-
+/*	  
 	// TEMP comment out, may need to put back immediately
   	app.listen(config.port, function() {
     	console.log('Server is listening on port', config.port);
   	});
+
+*/
+  	
+
 
 
 };
