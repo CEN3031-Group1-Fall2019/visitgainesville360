@@ -36,12 +36,16 @@ module.exports.start = function() {
 	if(process.env.NODE_ENV === 'production') {
 		// set static folder
 		app.use(express.static('build'));
+		
+		app.get('*', function(req, res) {
+			res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+		});
 
 /*
 		app.get('*', (req, res) = > {
 			res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-*/
 	 	});
+*/
 	}
   	
 	// Configures router
@@ -51,7 +55,7 @@ module.exports.start = function() {
 
 	// HEROKU VERISION: 	
 	const port = process.env.PORT || 5000;
-	app.listen(port, () => console.log('server start on port ${port}'));
+	app.listen(port, () => console.log('server start on port:', port));
 /*	  
 	// TEMP comment out, may need to put back immediately
   	app.listen(config.port, function() {

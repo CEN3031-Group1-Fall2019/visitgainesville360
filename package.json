@@ -59,7 +59,7 @@
   },
   "description": "### How To Run",
   "main": "index.js",
-  "proxy": "http://localhost:5050",
+  "proxy": "http://localhost:5000",
   "devDependencies": {},
   "repository": {
     "type": "git",
