@@ -30,6 +30,7 @@
     "validator": "^12.0.0"
   },
   "scripts": {
+	"client-install": "npm install --prefix client",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "server": "nodemon src/server/server.js",
