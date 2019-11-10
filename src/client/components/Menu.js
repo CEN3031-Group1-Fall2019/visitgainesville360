@@ -6,6 +6,7 @@ class Menu extends React.Component {
 	isLoggedIn = () => {
 		console.log("Checking if logged in");
 		var loggedInState = this.props.login.isLoggedIn;
+		
 		if (loggedInState) {
 			console.log("Is logged in");
 			return  (
@@ -17,6 +18,7 @@ class Menu extends React.Component {
 				</div>
 			);
 		}
+
 		console.log("Is logged out");
 		return (
 			<div className="menu-login">
