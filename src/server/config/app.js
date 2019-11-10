@@ -34,7 +34,7 @@ module.exports.start = function() {
 	if(process.env.NODE_ENV === 'production') {
 		console.log("YOU ARE IN PRODUCTION MODE");
 		// set static folder
-		app.use(express.static('build/index.html'));
+		app.use(express.static('/build/index.html'));
 		
 		app.get('*', function(req, res) {
 			res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
