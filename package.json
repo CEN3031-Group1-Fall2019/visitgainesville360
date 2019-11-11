@@ -44,7 +44,8 @@
   "scripts": {
     "start": "react-scripts start",
     "server": "nodemon src/server/server.js",
-    "client": "npm start",
+	"client": "npm start",
+	"heroku-postbuild": "npm run build",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "eslintConfig": {
@@ -64,7 +65,6 @@
   },
   "description": "### How To Run",
   "main": "index.js",
-  "proxy": "http://localhost:5050",
   "devDependencies": {},
   "repository": {
     "type": "git",
