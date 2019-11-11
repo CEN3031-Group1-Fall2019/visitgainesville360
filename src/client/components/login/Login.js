@@ -20,13 +20,6 @@ class Login extends React.Component {
 			console.log("Sending to client's dashboard");
 			this.props.history.push("/samplepage");
 		}
-
-		if (nextProps.errors) {
-			console.log("Received errors");
-			this.setState({
-				errors: nextProps.errors
-			});
-		}
 	}
 
 	handleChange(e) {
@@ -112,13 +105,11 @@ class Login extends React.Component {
 
 Login.propTypes = {
 	loginUser: PropTypes.func.isRequired,
-	login: PropTypes.object.isRequired,
-	errors: PropTypes.object.isRequired
+	login: PropTypes.object.isRequired
 };
   
 const mapStateToProps = state => ({
-	login: state.login,
-	errors: state.errors
+	login: state.login
 });
   
 export default connect(

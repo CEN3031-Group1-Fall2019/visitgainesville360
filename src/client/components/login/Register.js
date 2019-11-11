@@ -17,14 +17,6 @@ class Register extends React.Component {
 		};
 	}
 
-	UNSAFE_componentWillReceiveProps(nextProps) {
-		if (nextProps.errors) {
-		  	this.setState({
-				errors: nextProps.errors
-		  	});
-		}
-	}
-
 	handleChange(e) {
 		this.setState({ 
 			[e.target.id]: e.target.value 
@@ -65,7 +57,7 @@ class Register extends React.Component {
 				<form noValidate onSubmit={this.onSubmit.bind(this)}>
 					<div className="row d-flex justify-content-center p-3">
 						<div className="column column-40">
-						<label htmlFor="name">Business Name</label>
+						<label htmlFor="name">Name</label>
 							<input
 								onChange={this.handleChange.bind(this)}
 								value={this.state.name}
@@ -135,13 +127,11 @@ class Register extends React.Component {
 
 Register.propTypes = {
 	registerUser: PropTypes.func.isRequired,
-	login: PropTypes.object.isRequired,
-	errors: PropTypes.object.isRequired
+	login: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-	login: state.login,
-	errors: state.errors
+	login: state.login
 });
 
 export default connect(
