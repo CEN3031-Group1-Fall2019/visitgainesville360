@@ -57,7 +57,7 @@ class Register extends React.Component {
 				<form noValidate onSubmit={this.onSubmit.bind(this)}>
 					<div className="row d-flex justify-content-center p-3">
 						<div className="column column-40">
-						<label htmlFor="name">Business Name</label>
+						<label htmlFor="name">Name</label>
 							<input
 								onChange={this.handleChange.bind(this)}
 								value={this.state.name}
