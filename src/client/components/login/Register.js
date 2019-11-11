@@ -17,14 +17,6 @@ class Register extends React.Component {
 		};
 	}
 
-	UNSAFE_componentWillReceiveProps(nextProps) {
-		if (nextProps.errors) {
-		  	this.setState({
-				errors: nextProps.errors
-		  	});
-		}
-	}
-
 	handleChange(e) {
 		this.setState({ 
 			[e.target.id]: e.target.value 
@@ -135,13 +127,11 @@ class Register extends React.Component {
 
 Register.propTypes = {
 	registerUser: PropTypes.func.isRequired,
-	login: PropTypes.object.isRequired,
-	errors: PropTypes.object.isRequired
+	login: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-	login: state.login,
-	errors: state.errors
+	login: state.login
 });
 
 export default connect(
