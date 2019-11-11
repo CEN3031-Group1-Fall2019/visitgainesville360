@@ -35,7 +35,8 @@ export const loginUser = userData => dispatch => {
 export const logoutUser = () => dispatch => {
   	localStorage.removeItem("jwtToken");
   	setLoginToken(false);
-  	dispatch(setUser({}));
+	dispatch(setUser({}));
+	console.log("The user is logged out");
 }
 
 export const setUser = decoded => {

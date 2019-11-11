@@ -40,7 +40,7 @@ export const validateRegisterInput = function(input, cb) {
 		errors.email = "Enter a valid email";
 	}
 
-	var pwdRegex = new RegExp((/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/));
+	var pwdRegex = new RegExp(("^(?=.*[a-z])(?=.*[A-Z])(?=.*)[a-zA-Z]{8,}$"));
 	if (isEmpty(input.password)) {
 		isValid = false;
 		errors.password = "A password is required";
@@ -50,9 +50,9 @@ export const validateRegisterInput = function(input, cb) {
 						   <br />,
 						   "- have at least 8 characters",
 						   <br />,
-						   "- contain 1 special character (@#$%&)",
+						   "- contain an uppercase and a lowercase character",
 						   <br />,
-						   "- contain 1 number, 1 lowercase, 1 uppercase"];
+						   "- contain 1 number"];
 	}
 
 	if (!input.password.match(input.password2)) {
