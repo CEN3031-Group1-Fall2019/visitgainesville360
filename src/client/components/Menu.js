@@ -5,10 +5,10 @@ import {connect} from "react-redux";
 import {logoutUser} from "../actions/login.actions";
 
 class Menu extends React.Component {
-	logout = () => {
+	logoutUser = e => {
 		console.log("Logging out");
-		logoutUser();
-		window.location.href = "/";
+		e.preventDefault();
+		this.props.logoutUser();
 	}
 
 	isLoggedIn = () => {
@@ -19,19 +19,23 @@ class Menu extends React.Component {
 			return  (
 				<div className="menu-login">
 					<Link className="menu-link h3" to="/samplepage">Dashboard</Link>
-					<a className="p-1" to="/logout">
-						<button className="button menu-button button-outline-gray">Logout</button>
-					</a>
+					<Link to="/logout">
+						<button 
+							className="button menu-button button-outline-gray" 
+							onClick={this.logoutUser.bind(this)}>
+								Logout
+						</button>
+					</Link>
 				</div>
 			);
 		}
 
 		return (
 			<div className="menu-login">
-				<Link className="p-1" to="/register">
+				<Link to="/register">
 					<button className="button menu-button button-background">Register</button>
 				</Link>
-				<Link className="p-1" to="/login">
+				<Link to="/login">
 					<button type="button" className="button menu-button button-outline-gray">Login</button>
 				</Link>
 			</div>
