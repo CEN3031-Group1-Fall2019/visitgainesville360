@@ -19,7 +19,7 @@ Or try deleting package-lock.json
 * `concurrently` - Used to run server and client concurrently
 * `datepicker` - `npm install react-datepicker --save` - Hours of op selectors
 * `express`
-* `filepond` - `npm install react-filepond filepond` - file upload
+* `filepond` - `npm install react-filepond filepond --save` - file upload
 * `is-empty`
 * `jquery`
 * `jwt-decode` - Decodes web tokens
