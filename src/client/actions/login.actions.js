@@ -2,20 +2,18 @@ import Axios from "axios";
 import setLoginToken from "../utils/setLoginToken";
 import jwt_decode from "jwt-decode";
 import {
-	GET_ERROR,
 	GET_USER,
 	SET_USER
 } from "./types";
 
-export const registerUser = (userData, history) => dispatch => {
+export const registerUser = (userData, history) => () => {
 	Axios
 		.post("/users/register", userData)
 		.then(() => {history.push("/login")})
-		.catch(err => dispatch({
-        	type: GET_ERROR,
-			payload: err
-		})
-    );
+		.catch(err => {
+			console.log("Error during registration for email: ", userData.email);
+			console.log(err);
+		});
 };
 
 export const loginUser = userData => dispatch => {
@@ -28,11 +26,10 @@ export const loginUser = userData => dispatch => {
       		const decoded = jwt_decode(token);
 			dispatch(setUser(decoded));
 		})
-    	.catch(err => dispatch({
-        		type: GET_ERROR,
-				payload: err
-			})
-    );
+    	.catch(err => {
+			console.log("Error during login for email: ", userData.email);
+			console.log(err);
+		});
 }
 
 export const logoutUser = () => dispatch => {
