@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 import 'filepond/dist/filepond.min.css';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
 import "react-datepicker/dist/react-datepicker.css";
+// import '.Form.css';
 
 registerPlugin(FilePondPluginImagePreview);
 
@@ -13,11 +14,12 @@ class Account extends React.Component {
         super(props);
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.handleTimeChange=this.handleTimeChange.bind(this);
-        this.onSubmitHandler = this.onSubmitHandler.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             listingTitle: '',
             listingDescription: '',
             listingLocation: '',
+            listingEmail: '',
             listingHours: {
                 Monday: {
                     startTime: new Date(),
@@ -51,7 +53,7 @@ class Account extends React.Component {
             files: ''
         };
     }
-    onSubmitHandler (event) {
+    handleSubmit (event) {
         event.preventDefault();
         const listing = {
             listingTitle: this.state.listingTitle,
@@ -73,27 +75,27 @@ class Account extends React.Component {
             listingHours:
                 {...this.state.listingHours,
                     [day]: {
-                    ...this.state.listingHours[day],
+                        ...this.state.listingHours[day],
                         [open_close]: time}}
         });
     };
     render() {
         return (
-            <form onSubmit={this.onSubmitHandler}>
+            <form onSubmit={this.handleSubmit}>
                 <div className = "container">
                     <br/>
-                    <h1>Submit a listing</h1>
+                    <h1>Create a listing for your business</h1>
                     <br/>
                     <div className = "row">
                         <div className = "col-lg-6">
-                            <h4>Enter a title for your listing:</h4>
+                            <h4>Business name:</h4>
                             <input
                                 type='text'
                                 name='listingTitle'
                                 onChange={this.onChangeHandler}
                                 value =  {this.state.listingTitle}
                             />
-                            <h4>Enter business location:</h4>
+                            <h4>Location:</h4>
                             <input
                                 type='text'
                                 name='listingLocation'
@@ -102,16 +104,56 @@ class Account extends React.Component {
                             />
                         </div>
                         <div className = "col-lg-6">
-                            <h4>Enter a description for your listing:</h4>
+                            <h4>Description:</h4>
                             <textarea style={{ height: 100 }}
-                                type='text'
-                                name='listingDescription'
-                                onChange={this.onChangeHandler}
-                                value = {this.state.listingDescription}
+                                      type='text'
+                                      name='listingDescription'
+                                      onChange={this.onChangeHandler}
+                                      value = {this.state.listingDescription}
                             />
                         </div>
                     </div>
-                    <h4>Enter hours of operation:</h4>
+                    <div className = "row">
+                        <div className = "col-lg-6">
+                            <h4>Contact email:</h4>
+                            <input
+                                type='text'
+                                name='listingLocation'
+                                onChange={this.handleEmailChange}
+                                value = {this.state.listingEmail}
+                            />
+                        </div>
+                        <div className = "col-lg-6">
+                            <h4>Confirm email:</h4>
+                            <input
+                                type='text'
+                                name='listingLocation'
+                                onChange={this.handleEmailChange}
+                                value = {this.state.listingEmail}
+                            />
+                        </div>
+                    </div>
+                    <div className = "row">
+                        <div className = "col-lg-6">
+                            <h4>Phone number:</h4>
+                            <input
+                                type='text'
+                                name='listingLocation'
+                                onChange={this.onChangeHandler}
+                                value = {this.state.listingLocation}
+                            />
+                        </div>
+                        <div className = "col-lg-6">
+                            <h4>Placeholder</h4>
+                            <input
+                                type='text'
+                                name='listingLocation'
+                                onChange={this.onChangeHandler}
+                                value = {this.state.listingLocation}
+                            />
+                        </div>
+                    </div>
+                    <h4>Hours of operation:</h4>
                     <div className = "row">
                         <div className = "col">
                             <h5>Mon</h5>
