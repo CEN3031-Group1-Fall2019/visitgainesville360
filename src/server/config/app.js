@@ -8,15 +8,18 @@ var config = require('./config'),
 module.exports.start = function() {
 	const app = express();
 
+	/** BodyParser for requests **/
 	app.use(bodyParser.urlencoded({extended: false}));
 	app.use(bodyParser.json());
-	  
+	
+	/** Heroku **/
 	app.use(express.static(path.join('../../client')));
 
     app.get('*', (req, res) => {
 		res.sendFile(path.join(__dirname + '../../client/index.html'));
 	});
 
+	/** MongoDB **/
   	mongoose
 	  .connect(config.db.uri, { 
 		  useNewUrlParser: true,
@@ -24,10 +27,11 @@ module.exports.start = function() {
 	  .then(() => console.log("MongoDB successfully connected"))
 	  .catch(err => console.log(err));
   
+	/** Passport **/
   	app.use(passport.initialize());
   	require('./passport')(passport);
 
-	// Configures router
+	/** Configures router **/
 	app.use("/users", users);
 	  
   	app.listen(config.port, function() {
