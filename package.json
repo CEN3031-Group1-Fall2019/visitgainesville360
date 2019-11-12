@@ -61,7 +61,7 @@
     ]
   },
   "description": "### How To Run",
-  "main": "index.js",
+  "main": "src/index.js",
   "devDependencies": {},
   "repository": {
     "type": "git",

@@ -10,14 +10,6 @@ module.exports.start = function() {
 	/** BodyParser for requests **/
 	app.use(bodyParser.urlencoded({extended: false}));
 	app.use(bodyParser.json());
-	
-	/** Heroku **/
-	app.use(express.static('../../client'));
-
-	var path = require("path");
-    app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname + '/../../../public/index.html'));
-	});
 
 	/** MongoDB **/
   	mongoose
@@ -33,6 +25,14 @@ module.exports.start = function() {
 
 	/** Configures router **/
 	app.use("/users", users);
+
+	/** Heroku **/
+	var path = require("path");
+	app.use(express.static(path.join('../../client')));
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname + '/../../../public/index.html'));
+	});
 	  
 	var port = process.env.PORT || 80;
   	app.listen(port, function() {
