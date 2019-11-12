@@ -21,7 +21,7 @@ module.exports.start = function() {
 
 	/** MongoDB **/
   	mongoose
-	  .connect(config.dburi, { 
+	  .connect(process.env.dburi, { 
 		  useNewUrlParser: true,
 		  useUnifiedTopology: true})
 	  .then(() => console.log("MongoDB successfully connected"))

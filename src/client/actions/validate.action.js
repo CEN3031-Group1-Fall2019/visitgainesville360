@@ -1,5 +1,4 @@
 import isEmpty from 'is-empty';
-import Axios from "axios";
 
 export const validateLoginInput = function(input, cb) {
 	var errors = {};
