@@ -43,8 +43,9 @@
     "validator": "^12.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-	"heroku-postbuild": "node src/server/server.js"
+	"server": "node src/server/server.js",
+	"client": "react-scripts start",
+    "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "eslintConfig": {
     "extends": "react-app"
