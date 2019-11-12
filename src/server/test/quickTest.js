@@ -10,8 +10,7 @@ var mongoose = require('mongoose'),
     Biz = require('../models/biz.model.js'),
     User = require('../models/user.model.js'),
     bizFunction = require('../controllers/biz.db.controller.js'),
-    userFunction = require('../controllers/user.db.controller.js'),
-    config = require('../config/config');
+    userFunction = require('../controllers/user.db.controller.js');
 
 	mongoose.connect(process.env.MONGOLAB_URI, { useNewUrlParser: true });
 

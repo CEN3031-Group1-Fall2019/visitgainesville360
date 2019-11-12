@@ -2,8 +2,7 @@ var express = require("express"),
 	bcrypt = require("bcryptjs"),
 	jwt = require("jsonwebtoken"),
 	router = express.Router(),
-	login = require('../controllers/login.controller'),
-	config = require('../config/config');
+	login = require('../controllers/login.controller');
 
 router.post("/register", function(req, res) {
 	console.log("Routing to register user");

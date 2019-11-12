@@ -1,5 +1,4 @@
-var config = require('./config'), 
-	express = require("express"),
+var express = require("express"),
 	mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
 	passport = require("passport"),
@@ -34,7 +33,8 @@ module.exports.start = function() {
 	/** Configures router **/
 	app.use("/users", users);
 	  
-  	app.listen(config.port, function() {
-    	console.log('Server is listening on port', config.port);
+	var port = process.env.PORT || 80;
+  	app.listen(port, function() {
+    	console.log('Server is listening on port', port);
   	});
 };
