@@ -44,8 +44,8 @@
   },
   "scripts": {
 	"server": "node src/server/server.js",
-	"client": "PORT=2000 react-scripts start",
-    "start": "concurrently \"npm run server\" \"npm run client\" && echo \"running concurrent client\""
+	"client": "react-scripts start",
+    "start": "concurrently \"npm run client\" \"npm run server\""
   },
   "eslintConfig": {
     "extends": "react-app"
