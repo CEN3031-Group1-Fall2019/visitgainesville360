@@ -42,7 +42,7 @@
     "validator": "^12.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node src/server/server.js",
     "server": "nodemon src/server/server.js",
 	"client": "npm start",
 	"heroku-postbuild": "npm run build",
