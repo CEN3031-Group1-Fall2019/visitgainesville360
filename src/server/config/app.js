@@ -2,8 +2,7 @@ var express = require("express"),
 	mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
 	passport = require("passport"),
-	users = require('../routes/user.router'),
-	path = require("path");
+	users = require('../routes/user.router');
 
 module.exports.start = function() {
 	const app = express();
@@ -13,10 +12,10 @@ module.exports.start = function() {
 	app.use(bodyParser.json());
 	
 	/** Heroku  **/
-	app.use(express.static(path.join('../../client')));
+	app.use(express.static('../../client', { root: __dirname }));
 
     app.get('*', (req, res) => {
-		res.sendFile(path.join('../../client/index.html'));
+		res.sendFile('../../client/index.html', { root: __dirname });
 	});
 
 	/** MongoDB **/
