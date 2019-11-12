@@ -44,9 +44,9 @@
   },
   "scripts": {
     "start": "node src/server/server.js",
-	"heroku-postbuild": "npm run build && echo \"Running postbuild\""
+    "build": "react-scripts build",
+	"heroku-postbuild": "npm run build"
   },
-  "heroku-run-build-script": true,
   "eslintConfig": {
     "extends": "react-app"
   },
