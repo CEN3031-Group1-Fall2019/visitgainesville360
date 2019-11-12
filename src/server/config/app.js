@@ -12,7 +12,7 @@ module.exports.start = function() {
 	app.use(bodyParser.urlencoded({extended: false}));
 	app.use(bodyParser.json());
 	
-	/** Heroku **/
+	/** Heroku  **/
 	app.use(express.static(path.join('../../client')));
 
     app.get('*', (req, res) => {
