@@ -39,7 +39,7 @@ router.post("/login", function(req, res) {
 
 				jwt.sign(
 					payload,
-					process.env.keys,
+					process.env.PROD_KEYS,
 					{expiresIn: 10 * 60 * 60},
 					(err, token) => {res.json({success: true, token: "Bearer " + token});}
 				);
