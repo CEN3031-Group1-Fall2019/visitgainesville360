@@ -16,7 +16,7 @@ module.exports.start = function() {
 
 	var path = require("path");
     app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname + '/../../client/index.html'));
+		res.sendFile(path.resolve(__dirname + '/../../../public/index.html'));
 	});
 
 	/** MongoDB **/
