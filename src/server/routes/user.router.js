@@ -5,6 +5,8 @@ var express = require("express"),
 	login = require('../controllers/login.controller'),
 	config = require('../config/config');
 
+const keys = "secret";
+
 router.post("/register", function(req, res) {
 	console.log("Routing to register user");
 
@@ -38,7 +40,7 @@ router.post("/login", function(req, res) {
 
 				jwt.sign(
 					payload,
-					config.keys,
+					keys,
 					{expiresIn: 10 * 60 * 60},
 					(err, token) => {res.json({success: true, token: "Bearer " + token});}
 				);

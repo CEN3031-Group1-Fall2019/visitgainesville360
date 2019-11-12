@@ -13,7 +13,7 @@ var mongoose = require('mongoose'),
     userFunction = require('../controllers/user.db.controller.js'),
     config = require('../config/config');
 
-	mongoose.connect(config.db.uri, { useNewUrlParser: true });
+	mongoose.connect(config.dburi, { useNewUrlParser: true });
 
 
 
