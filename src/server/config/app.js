@@ -28,8 +28,8 @@ module.exports.start = function() {
 
 	/** Heroku **/
 	var path = require("path");
-	app.use(express.static(path.join(__dirname + './../../client')));
-	var checkPath = path.join(__dirname + './../../client');
+	app.use(express.static(path.join(__dirname + './../..')));
+	var checkPath = path.join(__dirname + './../..');
 	console.log("Pathing to: ", checkPath);
 
 	app.get('*', (req, res) => {
