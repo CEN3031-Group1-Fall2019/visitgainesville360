@@ -45,7 +45,8 @@
   "scripts": {
 	"server": "node src/server/server.js",
 	"client": "react-scripts start",
-    "start": "npm run server && npm run client"
+	"start": "npm run client",
+	"heroku-postbuild": "npm run server"
   },
   "eslintConfig": {
     "extends": "react-app"
