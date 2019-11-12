@@ -43,8 +43,8 @@
     "validator": "^12.0.0"
   },
   "scripts": {
-    "start": "node src/server/server.js",
-	"heroku-postbuild": "npm install --only=dev && npm install && npm run build"
+    "start": "react-scripts start",
+	"heroku-postbuild": "node src/server/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
