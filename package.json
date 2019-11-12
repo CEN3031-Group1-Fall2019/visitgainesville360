@@ -43,6 +43,7 @@
     "validator": "^12.0.0"
   },
   "scripts": {
+    "build": "react-scripts build",
 	"server": "node src/server/server.js",
 	"client": "npm install && npm run build",
 	"start": "npm run server",
