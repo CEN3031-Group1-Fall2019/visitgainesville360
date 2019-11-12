@@ -44,7 +44,7 @@
   },
   "scripts": {
     "start": "node src/server/server.js",
-    "build": "react-scripts build",
+    "build": "react-scripts start",
 	"heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
@@ -73,5 +73,5 @@
   "bugs": {
     "url": "https://github.com/CEN3031-Group1-Fall2019/visitgainesville360/issues"
   },
-  "homepage": "https://github.com/CEN3031-Group1-Fall2019/visitgainesville360#readme"
+  "homepage": "https://visitgainesville360.herokuapp.com/"
 }
