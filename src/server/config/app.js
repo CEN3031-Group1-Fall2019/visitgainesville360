@@ -28,7 +28,7 @@ module.exports.start = function() {
 
 	/** Heroku **/
 	var path = require("path");
-	app.use(express.static(path.join('../../client')));
+	app.use(express.static(path.resolve(__dirname + '/../../client')));
 
 	app.get('*', (req, res) => {
 		res.sendFile(path.resolve(__dirname + '/../../../public/index.html'));
