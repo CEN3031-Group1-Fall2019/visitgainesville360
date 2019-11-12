@@ -13,10 +13,10 @@ module.exports.start = function() {
 	app.use(bodyParser.json());
 	
 	/** Heroku  **/
-	app.use(express.static(path.join(__dirname + '../../client')));
+	app.use(express.static(path.join('../../client')));
 
     app.get('*', (req, res) => {
-		res.sendFile(path.join(__dirname + '../../client/index.html'));
+		res.sendFile(path.join('../../client/index.html'));
 	});
 
 	/** MongoDB **/
@@ -36,6 +36,6 @@ module.exports.start = function() {
 	  
 	var port = process.env.PORT || 80;
   	app.listen(port, function() {
-    	console.log('Server is listening on port', port);
+    	console.log('Server is listening on port', );
   	});
 };
