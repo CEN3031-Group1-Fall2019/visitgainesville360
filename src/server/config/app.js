@@ -11,20 +11,12 @@ module.exports.start = function() {
 	app.use(bodyParser.urlencoded({extended: false}));
 	app.use(bodyParser.json());
 	
-	/** Heroku  **/
-<<<<<<< HEAD
+	/** Heroku **/
 	app.use(express.static('../../client'));
-=======
-	app.use(express.static('../../client', { root: __dirname }));
->>>>>>> b7d5a3e50a998c26a72a640801883e928c13ae28
 
 	var path = require("path");
     app.get('*', (req, res) => {
-<<<<<<< HEAD
 		res.sendFile(path.resolve('../../client/index.html'));
-=======
-		res.sendFile('../../client/index.html', { root: __dirname });
->>>>>>> b7d5a3e50a998c26a72a640801883e928c13ae28
 	});
 
 	/** MongoDB **/
