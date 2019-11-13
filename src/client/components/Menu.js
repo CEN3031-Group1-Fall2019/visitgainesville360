@@ -18,7 +18,8 @@ class Menu extends React.Component {
 		if (loggedInState) {
 			return  (
 				<div className="align-right">
-					<Link className="menu-link h3" to="/create">Add a Listing</Link>
+					<Link className="menu-link h3" to="/create">Create Listing</Link>
+					<Link className="menu-link h3" to="/update">Update Listing</Link>
 					<Link className="menu-link h3" to="/samplepage">Dashboard</Link>
 					<Link to="/logout">
 						<button 
