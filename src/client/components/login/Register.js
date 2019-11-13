@@ -25,7 +25,6 @@ class Register extends React.Component {
 
 	onSubmit = e => {
 		e.preventDefault();
-
 		const newUser = {
 			name: this.state.name,
 			email: this.state.email,
@@ -36,7 +35,7 @@ class Register extends React.Component {
 		validateRegisterInput(newUser, function(errors, isValid) {
 			if (isValid) {
 				console.log("Registering new user: ", newUser.name, newUser.email);
-				this.props.registerUser(newUser);
+				this.props.registerUser(newUser, this.props.history);
 			} else {
 				this.setState ({
 					errors: errors

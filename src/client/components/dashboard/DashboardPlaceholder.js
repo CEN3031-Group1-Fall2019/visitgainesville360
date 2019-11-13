@@ -17,7 +17,8 @@ class DashboardPlaceholder extends React.Component {
 
 		return (
 			<div className="container">
-				<p className="page-header">You are logged in!</p>
+				<p className="page-header">Welcome, {this.props.login.user.name}</p>
+				<p className="d-flex justify-content-center p-3">You are logged in!</p>
         	</div>
 		);
 	}
