@@ -17,7 +17,8 @@ class Menu extends React.Component {
 		
 		if (loggedInState) {
 			return  (
-				<div className="menu-login">
+				<div className="align-right">
+					<Link className="menu-link h3" to="/create">Add a Listing</Link>
 					<Link className="menu-link h3" to="/samplepage">Dashboard</Link>
 					<Link to="/logout">
 						<button 
@@ -31,7 +32,7 @@ class Menu extends React.Component {
 		}
 
 		return (
-			<div className="menu-login">
+			<div className="align-right">
 				<Link to="/register">
 					<button className="button menu-button button-background">Register</button>
 				</Link>
@@ -46,11 +47,10 @@ class Menu extends React.Component {
 		return (
 			<div className="menu">
 				<nav className="navbar navbar-dark bg-dark">
-					<div className="menu-row">
+					<div className="align-left">
 						<Link className="menu-link h3" to="/">Home</Link>
-						<Link className="menu-link h3" to="/pages">Pages</Link>
-						<Link className="menu-link h3" to="/places">Places</Link>
-						<Link className="menu-link h3" to="/account">Account</Link>
+						<Link className="menu-link h3" to="/featured">Featured</Link>
+						<Link className="menu-link h3" to="/browse">Browse</Link>
 					</div>
 					<this.isLoggedIn />
 				</nav>

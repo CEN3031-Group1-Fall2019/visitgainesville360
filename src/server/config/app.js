@@ -3,6 +3,7 @@ var express = require("express"),
     bodyParser = require('body-parser'),
 	passport = require("passport"),
 	users = require('../routes/user.router');
+	listings = require('../routes/listing.router');
 
 module.exports.start = function() {
 	const app = express();
@@ -25,6 +26,7 @@ module.exports.start = function() {
 
 	/** Configures router **/
 	app.use("/users", users);
+	app.use("/listings", listings);
 
 	/** Heroku **/
 	var path = require("path");

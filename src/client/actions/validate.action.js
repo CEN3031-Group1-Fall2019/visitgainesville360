@@ -44,7 +44,7 @@ export const validateRegisterInput = function(input, cb) {
 		errors.password = "A password is required";
 	} else if (input.password.length < 8) {
 		isValid = false;
-		errors.password = "Password must contain at least 8 characters.";
+		errors.password = "Password must be at least 8 characters";
 	}
 
 	if (!input.password.match(input.password2)) {

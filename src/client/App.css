@@ -27,18 +27,18 @@
 	font-size: 3rem;
 	font-weight: normal bold; 
 }
+.alight-right {
+    float: right;
+}
+.align-left {
+	float: left;
+}
 
 /*** MENU ***/
 .menu {
 	margin-right: auto;
 	margin-left: auto;
 	width: 100%;
-}
-.menu-row {
-	float: left;
-}
-.menu-login {
-    float: right;
 }
 .menu-link {
 	font-weight: bold;

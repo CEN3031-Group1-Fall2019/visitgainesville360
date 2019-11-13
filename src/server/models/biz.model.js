@@ -3,10 +3,42 @@ var mongoose = require('mongoose'),
 
 // Schema for the Client's Business
 var bizSchema = new Schema({
-	email: { type: String, required: true, unique: true },
-	name: { type: String, required: true },
+	title: { type: String, required: true, unique: true },
+	email: String,
 	address: String,
-	phone: Number,
+	phone: String,
+	state: String,
+	zip: String,
+	hours: {
+		Monday: {
+			startTime: Date,
+			endTime: Date
+		},
+		Tuesday: {
+			startTime: Date,
+			endTime: Date
+		},
+		Wednesday: {
+			startTime: Date,
+			endTime: Date
+		},
+		Thursday: {
+			startTime: Date,
+			endTime: Date
+		},
+		Friday: {
+			startTime: Date,
+			endTime: Date
+		},
+		Saturday: {
+			startTime: Date,
+			endTime: Date
+		},
+		Sunday: {
+			startTime: Date,
+			endTime: Date
+		},
+	},
 	description: String,
 	created_at: Date,
 	updated_at: Date
