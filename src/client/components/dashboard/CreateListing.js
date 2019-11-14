@@ -105,22 +105,21 @@ class CreateListing extends React.Component {
 		return listOfDates;
 	}
 
-	createTimeListings = (time) => {
-		var date;
+	createTimeListings = (e,time) => {
 		var listOfDates = [];
-		var selectedDate = new Date();
-		selectedDate.setDate(selectedDate.getDate() + 3);
 
-		for(date of this.dates) {
+		for(let date of this.dates) {
+			var altDate = new Date();
 			listOfDates.push(
 				<div className = "col">
 					<DatePicker 
 						showTimeSelect
 						showTimeSelectOnly
+						timeCaption="Time"
 						dateFormat="h:mm a" 
+						selected={altDate}
 						id = {date}
 						timeIntervals={15}
-						selected = {selectedDate}
 						onChange= { e => this.handleTimeChange({date}, {time}, e) }
 				/>
 				</div>
@@ -136,6 +135,11 @@ class CreateListing extends React.Component {
                 <div className = "container">
                     <br/>
                     <p className="page-header">Create a listing</p>
+                    <br/>
+                    <FilePond
+                        allowMultiple={true}
+                    />
+                    <br/>
                     <br/>
                     <div className = "row">
                         <div className = "col-lg-6">
@@ -216,11 +220,6 @@ class CreateListing extends React.Component {
 								time="endTime"
 							/>
 						</div>
-                    <br/>
-                    <br/>
-                    <FilePond
-                        allowMultiple={true}
-                    />
                     <br/>
 					<div className="row d-flex justify-content-center p-3">
 						<button
