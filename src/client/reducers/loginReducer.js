@@ -7,6 +7,7 @@ const isEmpty = require("is-empty");
 
 const initialState = {
 	isLoggedIn: false,
+	isAdmin: false,
 	user: {},
 	loading: false
 };
@@ -16,7 +17,8 @@ export default function(state = initialState, action) {
 	  	case SET_USER:
 			return {
 		  		...state,
-		  		isLoggedIn: !isEmpty(action.payload),
+				isLoggedIn: !isEmpty(action.payload),
+				isAdmin: !isEmpty(action.payload),
 				user: action.payload
 			};
 	  	case GET_USER:
