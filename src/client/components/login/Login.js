@@ -17,8 +17,13 @@ class Login extends React.Component {
 
 	UNSAFE_componentWillReceiveProps(nextProps) {
 		if (nextProps.login.isLoggedIn) {
-			console.log("Sending to client's dashboard");
-			this.props.history.push("/samplepage");
+			if(nextProps.login.isAdmin) {
+				console.log("Sending to admin's dashboard");
+				this.props.history.push("/admin");
+			} else {
+				console.log("Sending to client's dashboard");
+				this.props.history.push("/samplepage");
+			}
 		}
 	}
 

@@ -13,8 +13,9 @@ exports.userExists = function(req, cb) {
 }
 
 exports.createNewUser = function(req, cb) {
-	userFunct.registerUser(req, function(err) {
-		return cb(err);
+	userFunct.registerUser(req, function(err, res) {
+		if(err) return cb(err);
+		return cb(res);
 	});
 }
 

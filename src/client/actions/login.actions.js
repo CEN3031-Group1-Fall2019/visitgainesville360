@@ -6,10 +6,16 @@ import {
 	SET_USER
 } from "./types";
 
-export const registerUser = (userData, history) => () => {
+export const registerUser = userData => dispatch => {
 	Axios
 		.post("/users/register", userData)
-		.then(() => {history.push("/login")})
+    	.then(res => {
+      		const {token} = res.data;
+      		localStorage.setItem("jwtToken", token);
+      		setLoginToken(token);
+      		const decoded = jwt_decode(token);
+			dispatch(setUser(decoded));
+		})
 		.catch(err => {
 			console.log("Error during registration for email: ", userData.email);
 			console.log(err);
@@ -20,6 +26,7 @@ export const loginUser = userData => dispatch => {
 	Axios
     	.post("/users/login", userData)
     	.then(res => {
+			console.log("User logged in: ", res);
       		const {token} = res.data;
       		localStorage.setItem("jwtToken", token);
       		setLoginToken(token);

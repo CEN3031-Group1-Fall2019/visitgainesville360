@@ -17,11 +17,18 @@ class Register extends React.Component {
 		};
 	}
 
+	UNSAFE_componentWillReceiveProps(nextProps) {
+		if (nextProps.login.isLoggedIn) {
+			console.log("Sending to client's dashboard");
+			this.props.history.push("/samplepage");
+		}
+	}
+
 	handleChange(e) {
 		this.setState({ 
 			[e.target.id]: e.target.value 
 		});
-	};
+	}
 
 	onSubmit = e => {
 		e.preventDefault();
