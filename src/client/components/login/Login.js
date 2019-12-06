@@ -15,17 +15,21 @@ class Login extends React.Component {
 		};
 	}
 
-	UNSAFE_componentWillReceiveProps(nextProps) {
-		if (nextProps.login.isLoggedIn) {
-			if(nextProps.login.isAdmin) {
-				console.log("Sending to admin's dashboard");
+	routeUser(prop) {
+		if (prop.login.isLoggedIn) {
+			if(prop.login.isAdmin) {
+				console.log("Sending to ADMIN");
 				this.props.history.push("/admin");
 			} else {
-				console.log("Sending to client's dashboard");
+				console.log("Sending to CLIENT");
 				this.props.history.push("/samplepage");
 			}
 		}
 	}
+
+	/*UNSAFE_componentWillReceiveProps(nextProps) {
+		this.routeUser(nextProps);
+	}*/
 
 	handleChange(e) {
 		this.setState({ 
@@ -53,10 +57,7 @@ class Login extends React.Component {
 	}
 
 	render() {
-		if (this.props.login.isLoggedIn) {
-			console.log("User is already logged in");
-			this.props.history.push("/samplepage");
-		}
+		this.routeUser(this.props);
 
 		return (
 			<div className="container">
