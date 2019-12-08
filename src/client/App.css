@@ -46,9 +46,9 @@ html, body, .App {
 	font-weight: normal bold; 
 }
 .sub-header {
-	background-color: #ECECEC;
+	background-color: #264653;
 	border-radius: .25rem;
-	color: #008B8B;
+	color: #ECECEC;
 	text-align: center;
 	font-size: 2rem;
 	font-weight: normal bold; 

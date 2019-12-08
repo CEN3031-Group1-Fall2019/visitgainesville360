@@ -19,7 +19,7 @@ class Login extends React.Component {
 		if (prop.login.isLoggedIn) {
 			if(prop.login.isAdmin) {
 				console.log("Sending to ADMIN");
-				this.props.history.push("/admin");
+				this.props.history.push("/admin-dashboard");
 			} else {
 				console.log("Sending to CLIENT");
 				this.props.history.push("/samplepage");

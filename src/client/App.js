@@ -9,6 +9,7 @@ import Menu from './components/Menu';
 import Account from './components/Account'
 import store from "./store";
 import './App.css';
+import AdminListings from './components/admin/AdminListings';
 import AdminDashboard from './components/admin/AdminDashboard';
 import AdminMenu from './components/admin/AdminMenu';
 
@@ -22,7 +23,8 @@ class App extends React.Component {
 					<AdminMenu />
 					<Switch>
 						<Route exact path="/samplepage" component={DashboardPlaceholder} />
-						<Route exact path="/admin" component={AdminDashboard} />
+						<Route exact path="/admin-dashboard" component={AdminDashboard} />\
+						<Route exact path="/admin-listings" component={AdminListings} />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/account" component={Account} />

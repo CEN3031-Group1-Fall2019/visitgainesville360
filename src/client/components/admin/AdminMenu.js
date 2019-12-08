@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Nav} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartPie, faUser, faBookOpen } from '@fortawesome/free-solid-svg-icons';
+import { faChartPie, faUser, faBookOpen, faColumns } from '@fortawesome/free-solid-svg-icons';
 
 class AdminMenu extends React.Component {
 
@@ -17,17 +17,21 @@ class AdminMenu extends React.Component {
 					<Nav className="flex-column">
 						<p className="menu-header">Admin Console</p>
 						<hr />
-						<Link to="/requests" className="admin-menu">
+						<Link to="/admin-dashboard" className="admin-menu">
+							<FontAwesomeIcon className="admin-icon" icon={faColumns}/>
+							Dashboard
+						</Link>
+						<Link to="/admin-listings" className="admin-menu">
 							<FontAwesomeIcon className="admin-icon" icon={faBookOpen}/>
 							Listings
 							<span class="badge admin-notification">9</span>
 						</Link>
-						<Link to="/users" className="admin-menu">
+						<Link to="/admin-users" className="admin-menu">
 							<FontAwesomeIcon className="admin-icon" icon={faUser}/>
 							Users
 							<span class="badge admin-notification">4</span>
 						</Link>
-						<Link to="/stats" className="admin-menu">
+						<Link to="/admin-stats" className="admin-menu">
 							<FontAwesomeIcon className="admin-icon" icon={faChartPie}/>
 							Stats
 						</Link>
