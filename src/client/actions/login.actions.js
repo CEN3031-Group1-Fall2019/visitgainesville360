@@ -1,10 +1,7 @@
 import Axios from "axios";
 import setLoginToken from "../utils/setLoginToken";
 import jwt_decode from "jwt-decode";
-import {
-	GET_USER,
-	SET_USER
-} from "./types";
+import {GET_USER, SET_USER} from "./types";
 
 export const registerUser = userData => dispatch => {
 	Axios

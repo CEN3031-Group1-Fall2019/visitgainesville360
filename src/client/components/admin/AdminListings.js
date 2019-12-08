@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import {CardGroup, Card, Button} from "react-bootstrap";
+import {CardDeck, Card, Button} from "react-bootstrap";
 
 class AdminListings extends React.Component {
 	businessCard = () => {
@@ -34,21 +34,23 @@ class AdminListings extends React.Component {
 				<p className="page-header">Overview of Recent Acitity</p>
 				<hr />
 				<p className="sub-header">Listing Requests</p>
-				<CardGroup>
+				<CardDeck>
 					<this.businessCard />
 					<this.businessCard />
 					<this.businessCard />
-				</CardGroup>
-				<CardGroup>
+				</CardDeck>
+				<br />
+				<CardDeck>
 					<this.businessCard />
 					<this.businessCard />
 					<this.businessCard />
-				</CardGroup>
-				<CardGroup>
+				</CardDeck>
+				<br />
+				<CardDeck>
 					<this.businessCard />
 					<this.businessCard />
 					<this.businessCard />
-				</CardGroup>
+				</CardDeck>
         	</div>
 		);
 	}
