@@ -1,9 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
-import AdminMenu from "./AdminMenu";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import {CardGroup, Card, Button} from "react-bootstrap";
+import {CardDeck, Card, Button} from "react-bootstrap";
 
 class AdminDashboard extends React.Component {
 	businessCard = () => {
@@ -49,18 +48,18 @@ class AdminDashboard extends React.Component {
 				<p className="page-header">Overview of Recent Acitity</p>
 				<hr />
 				<p className="sub-header">Listing Requests</p>
-				<CardGroup>
+				<CardDeck>
 					<this.businessCard />
 					<this.businessCard />
 					<this.businessCard />
-				</CardGroup>
+				</CardDeck>
 				<hr />
 				<p className="sub-header">New Users</p>
-				<CardGroup>
+				<CardDeck>
 					<this.userCard />
 					<this.userCard />
 					<this.userCard />
-				</CardGroup>
+				</CardDeck>
         	</div>
 		);
 	}
