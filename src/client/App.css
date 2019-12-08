@@ -143,6 +143,7 @@ hr {
 
 /*** FORMS ***/
 textarea,
+Form.Control,
 input[type="text"],
 input[type="password"],
 input[type="email"]  {
@@ -151,6 +152,7 @@ input[type="email"]  {
 }
 
 textarea:focus,
+Form.Control,
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus { 

@@ -4,6 +4,7 @@ var config = require('./config'),
     bodyParser = require('body-parser'),
 	passport = require("passport"),
 	users = require('../routes/user.router');
+	listings = require('../routes/listing.router');
 
 module.exports.start = function() {
 	const app = express();
@@ -23,6 +24,7 @@ module.exports.start = function() {
 
 	// Configures router
 	app.use("/users", users);
+	app.use("/listings", listings);
 	  
   	app.listen(config.port, function() {
     	console.log('Server is listening on port', config.port);

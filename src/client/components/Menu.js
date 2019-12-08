@@ -20,10 +20,9 @@ class Menu extends React.Component {
 		if (loggedInState) {
 			return  (
 				<div className="menu-login">
-					<Link className="menu-link" to="/samplepage">
-						Dashboard
-					</Link>
-					<Link className="menu-link" onClick={this.logoutUser.bind(this)}>
+					<Link className="menu-link" to="/create-listing">Create</Link>
+					<Link className="menu-link" to="/samplepage">Listings</Link>
+					<Link className="menu-link" onClick={this.logoutUser.bind(this)} to="/">
 						<FontAwesomeIcon icon={faSignOutAlt}/>
 					</Link>
 				</div>
@@ -48,9 +47,7 @@ class Menu extends React.Component {
 				<nav className="navbar">
 					<div className="menu-row">
 						<Link className="menu-link" to="/"><FontAwesomeIcon icon={faHome}/></Link>
-						<Link className="menu-link" to="/pages">Pages</Link>
-						<Link className="menu-link" to="/places">Places</Link>
-						<Link className="menu-link" to="/account">Account</Link>
+						<Link className="menu-link" to="/browse">Browse</Link>
 					</div>
 					<this.isLoggedIn />
 				</nav>
