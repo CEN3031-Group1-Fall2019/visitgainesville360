@@ -1,4 +1,3 @@
-import React from 'react';
 import isEmpty from 'is-empty';
 
 export const validateLoginInput = function(input, cb) {
@@ -40,19 +39,12 @@ export const validateRegisterInput = function(input, cb) {
 		errors.email = "Enter a valid email";
 	}
 
-	var pwdRegex = new RegExp(("^(?=.*[a-z])(?=.*[A-Z])(?=.*)[a-zA-Z]{8,}$"));
 	if (isEmpty(input.password)) {
 		isValid = false;
 		errors.password = "A password is required";
-	} else if (!pwdRegex.test(input.password)) {
+	} else if (input.password.length < 8) {
 		isValid = false;
-		errors.password = ["Password must:",
-						   <br />,
-						   "- have at least 8 characters",
-						   <br />,
-						   "- contain an uppercase and a lowercase character",
-						   <br />,
-						   "- contain 1 number"];
+		errors.password = ["Password must have at least 8 characters"];
 	}
 
 	if (!input.password.match(input.password2)) {

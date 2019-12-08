@@ -16,14 +16,37 @@ router.post("/register", function(req, res) {
 		};
 
 		console.log("User doesn't exist. Adding user to database.");
-		login.createNewUser(req, function(err, user) {
-			if (err) throw err;
-		})
+		login.createNewUser(req, function() {
+			console.log("Logging in the user");
+			login.findUser(req, function(user) {
+				if (!user) return res.status(404).json({emailnotfound: "Email not found"});
+				const password = req.body.password;
+				bcrypt.compare(password, user.password, function(err, isMatch) {
+					if (err) throw err;
+					if (isMatch) {
+						const payload = {
+							id: user.id,
+							name: user.name,
+							isAdmin: user.isAdmin
+						};
+						
+						jwt.sign(
+							payload,
+							config.keys,
+							{expiresIn: 10 * 60 * 60},
+							(err, token) => {res.json({success: true, token: "Bearer " + token});}
+						);
+					} else {
+						return res.status(400).json({ passwordincorrect: "Password incorrect" });
+					}
+				});
+			});
+		});
 	});
 });
 
 router.post("/login", function(req, res) {
-	console.log("Finding user with email ", req.body.email);
+	console.log("Finding user with email: ", req.email);
 	login.findUser(req, function(user) {
 		if (!user) return res.status(404).json({emailnotfound: "Email not found"});
 
@@ -33,9 +56,10 @@ router.post("/login", function(req, res) {
 			if (isMatch) {
 				const payload = {
 					id: user.id,
-					name: user.name
+					name: user.name,
+					isAdmin: user.isAdmin
 				};
-
+				
 				jwt.sign(
 					payload,
 					config.keys,

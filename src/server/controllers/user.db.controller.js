@@ -38,10 +38,10 @@ exports.registerUser = function(req, cb) {
 		password: req.body.password
 	});
 
-	newUser.save(function(err) {
+	newUser.save(function(err, res) {
 		if (err) return cb(err);
-		console.log("Saved litsing: ", newUser);
-		return cb(err);
+		console.log("Saved listing: ", newUser);
+		return cb(res);
 	});
 }
 

@@ -20,6 +20,7 @@ Or try deleting package-lock.json
 * `datepicker` - `npm install react-datepicker --save` - Hours of op selectors
 * `express`
 * `filepond` - `npm install react-filepond filepond --save` - file upload
+* `npm i --save @fortawesome/fontawesome-svg-core  @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome`
 * `is-empty`
 * `jquery`
 * `jwt-decode` - Decodes web tokens

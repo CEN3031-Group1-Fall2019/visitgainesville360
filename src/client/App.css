@@ -1,68 +1,163 @@
+html, body, .App {
+	background-color: #363637;
+	color: #ECECEC;
+}
+
+/** COLORS
+	#008B8B
+	#264653
+	#CCAC5B
+	#363637
+	#ECECEC
+**/
+
 /*** GENERAL ***/
 .link {
-	color: darkcyan
+	color: #008B8B;
 }
 .link:hover {
-	color: darkslategray;
+	color: #363637;
 }
 .button {
 	width: 125px;
-	border-radius: 3px;
-	margin-top: 1rem;
+	border-radius: .25rem;
+	margin: 0px;
+	color: #264653;
+	border-color: #264653;
 }
 .button-background {
-	background-color: darkcyan;
-	border-color: darkcyan;
-	color: white;
+	background-color: #008B8B;
+	color: #ECECEC;
 }
 .button-outline-gray {
-	border-color: darkgray;
 	background-color: transparent;
-	color: darkgray;
+}
+.button:hover {
+	border-radius: .25rem;
+	color: #264653;
+	border-color: #264653;
+	background-color: #CCAC5B;
 }
 .page-header {
 	padding-top: 5rem;
-	color: darkslategray;
+	color: #CCAC5B;
 	text-align: center;
 	font-size: 3rem;
+	font-weight: normal bold; 
+}
+.sub-header {
+	background-color: #264653;
+	border-radius: .25rem;
+	color: #ECECEC;
+	text-align: center;
+	font-size: 2rem;
 	font-weight: normal bold; 
 }
 
 /*** MENU ***/
 .menu {
-	margin-right: auto;
-	margin-left: auto;
-	width: 100%;
+	display: flex;
+	align-self: stretch;
+	flex-flow: row wrap;
+	background-color: #ECECEC;
+	padding: 1rem;
+}
+.menu > * {
+	flex-grow: 1;
 }
 .menu-row {
-	float: left;
+	justify-content: flex-start center;
 }
 .menu-login {
-    float: right;
+	justify-content: flex-end center;
 }
 .menu-link {
+	flex: 1;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	align-self: center;
+	font-size: 2rem;
 	font-weight: bold;
-	margin-left: 3rem;
-	padding: 0.5rem;
-	color: azure;
-	border-bottom: .2rem solid transparent;
+	color: #363637;
 }
 .menu-link:hover {
-	color: azure;
-	border-bottom-color: azure;
+	color: #CCAC5B;
 	text-decoration: none;
 }
 .menu-button {
-	margin-right: 2rem;
+	align-self: center;
+	justify-content: space-evenly;
 	margin-left: 2rem;
 }
 
+/*** ADMIN-MENU ***/
+.admin-menu-container {
+	width: 20rem;
+	max-width: 40%;
+    position: absolute;
+	height: 100%;
+	background-color: #264653;
+}
+.admin-menu,
+.admin-menu:hover {
+	padding: 5px;
+	padding-left: 2rem;
+	font-size: 1.5rem;
+}
+.admin-menu {
+	color: #ECECEC;
+}
+.admin-menu:hover {
+	color: #264653;
+    background-color: #ECECEC;
+	text-decoration: none;
+}
+.admin-notification {
+	margin-left: 1.5rem;
+	background-color: #CCAC5B;
+	color: #264653;
+}
+.menu-header {
+	padding-top: 2rem;
+	display: flex;
+	justify-content: center;
+	font-size: 2rem;
+	font-weight: bold;
+}
+.admin-icon {
+	margin-right: 1rem;
+}
+
+/*** ADMIN ***/
+hr {
+	display: flex;
+	justify-content: center;
+	background-color: #ECECEC;
+	height: 5px;
+}
+.card {
+	width: 30rem;
+	background-color: #ECECEC;
+	color: #363637;
+}
+
 /*** FORMS ***/
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="email"]  {
+	border-radius: .25rem;
+	background-color: #ECECEC;
+}
+
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus { 
-	border-color: darkcyan;
+	border-radius: .25rem;
+	border-width: .2rem;
+	border-color: #CCAC5B;
+	background-color: #ECECEC;
 }
 
 .inputError {

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons';
 import {logoutUser} from "../actions/login.actions";
 
 class Menu extends React.Component {
@@ -18,13 +20,11 @@ class Menu extends React.Component {
 		if (loggedInState) {
 			return  (
 				<div className="menu-login">
-					<Link className="menu-link h3" to="/samplepage">Dashboard</Link>
-					<Link to="/logout">
-						<button 
-							className="button menu-button button-outline-gray" 
-							onClick={this.logoutUser.bind(this)}>
-								Logout
-						</button>
+					<Link className="menu-link" to="/samplepage">
+						Dashboard
+					</Link>
+					<Link className="menu-link" onClick={this.logoutUser.bind(this)}>
+						<FontAwesomeIcon icon={faSignOutAlt}/>
 					</Link>
 				</div>
 			);
@@ -45,12 +45,12 @@ class Menu extends React.Component {
 	render() {
 		return (
 			<div className="menu">
-				<nav className="navbar navbar-dark bg-dark">
+				<nav className="navbar">
 					<div className="menu-row">
-						<Link className="menu-link h3" to="/">Home</Link>
-						<Link className="menu-link h3" to="/pages">Pages</Link>
-						<Link className="menu-link h3" to="/places">Places</Link>
-						<Link className="menu-link h3" to="/account">Account</Link>
+						<Link className="menu-link" to="/"><FontAwesomeIcon icon={faHome}/></Link>
+						<Link className="menu-link" to="/pages">Pages</Link>
+						<Link className="menu-link" to="/places">Places</Link>
+						<Link className="menu-link" to="/account">Account</Link>
 					</div>
 					<this.isLoggedIn />
 				</nav>
