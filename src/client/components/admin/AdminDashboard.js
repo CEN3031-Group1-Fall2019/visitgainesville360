@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
+import AdminMenu from "./AdminMenu";
 
 class AdminDashboard extends React.Component {
 
