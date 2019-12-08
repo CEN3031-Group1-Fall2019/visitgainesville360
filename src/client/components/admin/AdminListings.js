@@ -8,6 +8,12 @@ import {CardDeck, Card, Button} from "react-bootstrap";
 import setUnapprovedListings from "./AdminMenu";
 
 class AdminListings extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			hasListings: false
+		};
+	}
 
 	businessCard = () => {
 		var unaprrovedListings = [];
