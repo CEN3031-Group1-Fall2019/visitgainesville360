@@ -10,6 +10,7 @@ var bizSchema = new Schema({
 	phone: String,
 	state: String,
 	zip: String,
+	isPosted: {type: Boolean, default: false},
 	hours: {
 		Monday: {
 			startTime: Date,

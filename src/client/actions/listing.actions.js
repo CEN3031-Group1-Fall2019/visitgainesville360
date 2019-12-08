@@ -17,7 +17,7 @@ export const addImage = imageData => dispatch => {
 		});
 };
 
-export const createListing = listingData => {
+export const createListing = (listingData) => () => {
 	Axios
 	.post("/listings/create", listingData)
 	.catch(err => {
