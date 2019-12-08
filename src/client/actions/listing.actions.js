@@ -1,4 +1,4 @@
-import { ADD_IMAGE, GET_LISTING, BROWSE_LISTINGS} from "./types";
+import { ADD_IMAGE, GET_LISTINGS} from "./types";
 import Axios from "axios";
 import history from "../utils/setLoginToken"; 
 
@@ -30,7 +30,7 @@ export const getSingleListing = () => dispatch => {
 	Axios
 	.post("/listings/get")
 	.then(res => dispatch({
-			type: GET_LISTING,
+			type: GET_LISTINGS,
 			payload: res.data
 		}).catch(err => {
 			console.log("Error while adding image", err);
@@ -45,7 +45,7 @@ export const getAdminApproveListings = () => dispatch => {
 	Axios
 	.post("/listings/admin")
 	.then(res => dispatch({
-			type: BROWSE_LISTINGS,
+			type: GET_LISTINGS,
 			payload: res.data
 		}).catch(err => {
 			console.log("Error while adding image", err);
@@ -60,7 +60,7 @@ export const getAllListings = () => dispatch => {
 	Axios
 	.post("/listings/browse")
 	.then(res => dispatch({
-			type: BROWSE_LISTINGS,
+			type: GET_LISTINGS,
 			payload: res.data
 		}).catch(err => {
 			console.log("Error while adding image", err);

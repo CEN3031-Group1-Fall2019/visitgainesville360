@@ -1,26 +1,43 @@
 import React from 'react';
+import PropTypes from "prop-types";
+import {getAllListings} from "../../actions/listing.actions";
 import {connect} from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import {CardDeck, Card, Button} from "react-bootstrap";
+import setUnapprovedListings from "./AdminMenu";
 
 class AdminListings extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			hasListings: false
+		};
+	}
+
 	businessCard = () => {
-		return (
-			<Card style={{ width: '18rem' }}>
-			<Card.Img variant="top" src="holder.js/100px180" />
-			<Card.Body>
-				<Card.Title>Card Title</Card.Title>
-				<Card.Text>
-				Some quick example text to build on the card title and make up the bulk of
-				the card's content.
-				</Card.Text>
-				<Button variant="success"><FontAwesomeIcon icon={faThumbsUp}/></Button>
-				<Button variant="danger"><FontAwesomeIcon icon={faThumbsDown}/></Button>
-				<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
-			</Card.Body>
-			</Card>
-		)
+		var unaprrovedListings = [];
+		
+		for(let listing of Object.values(this.props.listing.browseListing)) {
+			if(!listing.isApproved) {
+				unaprrovedListings.push(
+					<Card style={{ width: '12rem' }}>
+					<Card.Img variant="top" src="holder.js/100px180" />
+					<Card.Body>
+						<Card.Title>{listing.title}</Card.Title>
+						<Card.Text>{listing.phone}</Card.Text>
+						<Card.Text>{listing.address}<br />
+						{listing.city}, {listing.state} {listing.zip}</Card.Text>
+						<Card.Text>{listing.description}</Card.Text>
+						<Button variant="success"><FontAwesomeIcon icon={faThumbsUp}/></Button>
+						<Button variant="danger"><FontAwesomeIcon icon={faThumbsDown}/></Button>
+						<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
+					</Card.Body>
+					</Card>
+				);
+			}
+		}
+		return unaprrovedListings;
 	}
 
 	render() {
@@ -36,30 +53,23 @@ class AdminListings extends React.Component {
 				<p className="sub-header">Listing Requests</p>
 				<CardDeck>
 					<this.businessCard />
-					<this.businessCard />
-					<this.businessCard />
-				</CardDeck>
-				<br />
-				<CardDeck>
-					<this.businessCard />
-					<this.businessCard />
-					<this.businessCard />
-				</CardDeck>
-				<br />
-				<CardDeck>
-					<this.businessCard />
-					<this.businessCard />
-					<this.businessCard />
 				</CardDeck>
         	</div>
 		);
 	}
 }
 
+AdminListings.propTypes = {
+	getAllListings: PropTypes.func.isRequired,
+	listing: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
+	listing: state.listing,
 	login: state.login
 });
 
 export default connect(
-	mapStateToProps
+	mapStateToProps,
+	{getAllListings}
 )(AdminListings);

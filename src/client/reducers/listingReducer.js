@@ -1,7 +1,6 @@
-import {ADD_IMAGE, GET_LISTING, BROWSE_LISTINGS} from "../actions/types";
+import {ADD_IMAGE, GET_LISTINGS, COMPLETE_LISTINGS} from "../actions/types";
 
 const initialState = {
-	listingCount: 0,
 	browseListing: {},
 	isPosted: false
 };
@@ -13,18 +12,14 @@ export default function(state = initialState, action) {
 			return {
 				...state
 			};
-		case GET_LISTING:
-				return {
-					...state,
-					listingCount: 1,
-					browseListing: action.payload,
-					isPosted: true
-				};
-	  	case BROWSE_LISTINGS:
+	  	case GET_LISTINGS:
 			return {
 				...state,
-				listingCount: action.payload.count,
 				browseListing: action.payload,
+				isPosted: false
+			};
+		case COMPLETE_LISTINGS:
+			return {
 				isPosted: true
 			};
 	  	default:

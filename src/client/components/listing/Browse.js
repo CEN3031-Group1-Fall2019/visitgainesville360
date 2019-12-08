@@ -26,6 +26,11 @@ class Browse extends React.Component {
 			<div>
 				Monday: {moment(hours.Monday.startTime).format('hh:mm a')} - {moment(hours.Monday.endTime).format('hh:mm a')} <br />
 				Tuesday: {moment(hours.Tuesday.startTime).format('hh:mm a')} - {moment(hours.Tuesday.endTime).format('hh:mm a')} <br />
+				Wednesday: {moment(hours.Wednesday.startTime).format('hh:mm a')} - {moment(hours.Wednesday.endTime).format('hh:mm a')} <br />
+				Thursday: {moment(hours.Thursday.startTime).format('hh:mm a')} - {moment(hours.Thursday.endTime).format('hh:mm a')} <br />
+				Friday: {moment(hours.Friday.startTime).format('hh:mm a')} - {moment(hours.Friday.endTime).format('hh:mm a')} <br />
+				Saturday: {moment(hours.Saturday.startTime).format('hh:mm a')} - {moment(hours.Saturday.endTime).format('hh:mm a')} <br />
+				Sunday: {moment(hours.Sunday.startTime).format('hh:mm a')} - {moment(hours.Sunday.endTime).format('hh:mm a')}
 			</div>
 		);
 	}
@@ -50,7 +55,6 @@ class Browse extends React.Component {
 					</Card>);
 			}
 		}
-		console.log("the lists", listOfLists);
 		return listOfLists;
 	}
 
