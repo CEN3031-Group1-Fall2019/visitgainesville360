@@ -34,7 +34,7 @@ class Browse extends React.Component {
 		var listOfLists = [];
 
 		for(let listing of Object.values(this.props.listing.browseListing)) {
-			if(listing.isPosted) {
+			if(listing.isApproved) {
 				listOfLists.push(
 					<Card style={{ width: '30rem' }}>
 					<Card.Img variant="top" src="holder.js/100px180" />
