@@ -5,11 +5,8 @@ var express = require("express"),
 router.post("/create", function(req) {
 	console.log("Routing to create listing");
 	biz.createBiz(req, function(err) {
-		console.log("1111");
 		if (err) throw err;
-		console.log("222");
 	});
-	console.log("3333");
 });
 
 router.post("/browse", function(req, res) {

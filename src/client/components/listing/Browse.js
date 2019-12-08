@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getAllListings} from "../../actions/listing.actions";
 import {CardDeck, Card, Button} from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import moment from 'moment';
 
 class Browse extends React.Component {
 	constructor() {
@@ -16,6 +19,15 @@ class Browse extends React.Component {
 		if (nextProps.listing.isPosted) {
 			this.setState({hasListings: true});
 		}
+	}
+
+	renderHours = (hours) => {
+		return (
+			<div>
+				Monday: {moment(hours.Monday.startTime).format('hh:mm a')} - {moment(hours.Monday.endTime).format('hh:mm a')} <br />
+				Tuesday: {moment(hours.Tuesday.startTime).format('hh:mm a')} - {moment(hours.Tuesday.endTime).format('hh:mm a')} <br />
+			</div>
+		);
 	}
 
 	renderListings = () => {
@@ -32,6 +44,8 @@ class Browse extends React.Component {
 						<Card.Text>{listing.address}<br />
 						{listing.city}, {listing.state} {listing.zip}</Card.Text>
 						<Card.Text>{listing.description}</Card.Text>
+						<Card.Text>{this.renderHours(listing.hours)}</Card.Text>
+						<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
 					</Card.Body>
 					</Card>);
 			}
