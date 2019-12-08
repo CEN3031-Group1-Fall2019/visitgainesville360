@@ -45,6 +45,14 @@ html, body, .App {
 	font-size: 3rem;
 	font-weight: normal bold; 
 }
+.sub-header {
+	background-color: #ECECEC;
+	border-radius: .25rem;
+	color: #008B8B;
+	text-align: center;
+	font-size: 2rem;
+	font-weight: normal bold; 
+}
 
 /*** MENU ***/
 .menu {
@@ -84,22 +92,53 @@ html, body, .App {
 
 /*** ADMIN-MENU ***/
 .admin-menu-container {
-	width: 15rem;
+	width: 20rem;
 	max-width: 40%;
-    position: fixed;
+    position: absolute;
 	height: 100%;
 	background-color: #264653;
 }
-.admin-menu {
-	padding: 5px;
-	color: #ECECEC;
-	font-size: 2rem;
-}
+.admin-menu,
 .admin-menu:hover {
 	padding: 5px;
+	padding-left: 2rem;
+	font-size: 1.5rem;
+}
+.admin-menu {
+	color: #ECECEC;
+}
+.admin-menu:hover {
 	color: #264653;
     background-color: #ECECEC;
 	text-decoration: none;
+}
+.admin-notification {
+	margin-left: 1.5rem;
+	background-color: #CCAC5B;
+	color: #264653;
+}
+.menu-header {
+	padding-top: 2rem;
+	display: flex;
+	justify-content: center;
+	font-size: 2rem;
+	font-weight: bold;
+}
+.admin-icon {
+	margin-right: 1rem;
+}
+
+/*** ADMIN ***/
+hr {
+	display: flex;
+	justify-content: center;
+	background-color: #ECECEC;
+	height: 5px;
+}
+.card {
+	width: 30rem;
+	background-color: #ECECEC;
+	color: #363637;
 }
 
 /*** FORMS ***/

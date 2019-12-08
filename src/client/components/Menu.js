@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons';
 import {logoutUser} from "../actions/login.actions";
 
 class Menu extends React.Component {
