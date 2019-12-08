@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 class AdminDashboard extends React.Component {
 
 	render() {
-		if (!this.props.login.isAdmin) {
+		if (!this.props.login.user.isAdmin) {
 			console.log("Does not have authentication");
 			this.props.history.push("/login");
 		}

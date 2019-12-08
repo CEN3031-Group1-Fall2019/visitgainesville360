@@ -26,7 +26,6 @@ export const loginUser = userData => dispatch => {
 	Axios
     	.post("/users/login", userData)
     	.then(res => {
-			console.log("User logged in: ", res);
       		const {token} = res.data;
       		localStorage.setItem("jwtToken", token);
       		setLoginToken(token);

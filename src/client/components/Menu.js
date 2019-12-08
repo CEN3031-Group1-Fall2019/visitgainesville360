@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 import {logoutUser} from "../actions/login.actions";
 
 class Menu extends React.Component {
@@ -18,13 +21,11 @@ class Menu extends React.Component {
 		if (loggedInState) {
 			return  (
 				<div className="menu-login">
-					<Link className="menu-link h3" to="/samplepage">Dashboard</Link>
-					<Link to="/logout">
-						<button 
-							className="button menu-button button-outline-gray" 
-							onClick={this.logoutUser.bind(this)}>
-								Logout
-						</button>
+					<Link className="menu-link h3" to="/samplepage">
+						<FontAwesomeIcon icon={faHome} />
+					</Link>
+					<Link className="menu-link h3" onClick={this.logoutUser.bind(this)}>
+						<FontAwesomeIcon icon={faSignOutAlt} />
 					</Link>
 				</div>
 			);

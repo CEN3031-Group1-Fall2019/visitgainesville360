@@ -18,7 +18,7 @@ export default function(state = initialState, action) {
 			return {
 		  		...state,
 				isLoggedIn: !isEmpty(action.payload),
-				isAdmin: !isEmpty(action.payload),
+				isAdmin: action.payload.isAdmin,
 				user: action.payload
 			};
 	  	case GET_USER:

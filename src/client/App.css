@@ -57,6 +57,26 @@
 	margin-left: 2rem;
 }
 
+/*** ADMIN-MENU ***/
+.admin-menu-container {
+	width: 15rem;
+	max-width: 40%;
+    position: fixed;
+	height: 100%;
+	background-color: black;
+}
+.admin-menu {
+	padding: 5px;
+	color: white;
+	font-size: 2rem;
+}
+.admin-menu:hover {
+	padding: 5px;
+	color: black;
+    background-color: #CCC;
+	text-decoration: none;
+}
+
 /*** FORMS ***/
 textarea:focus,
 input[type="text"]:focus,

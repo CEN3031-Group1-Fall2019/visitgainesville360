@@ -10,6 +10,7 @@ import Account from './components/Account'
 import store from "./store";
 import './App.css';
 import AdminDashboard from './components/admin/AdminDashboard';
+import AdminMenu from './components/admin/AdminMenu';
 
 class App extends React.Component {
 	render() {
@@ -18,6 +19,7 @@ class App extends React.Component {
 				<Router>
 				<div className="App">
 					<Menu />
+					<AdminMenu />
 					<Switch>
 						<Route exact path="/samplepage" component={DashboardPlaceholder} />
 						<Route exact path="/admin" component={AdminDashboard} />
