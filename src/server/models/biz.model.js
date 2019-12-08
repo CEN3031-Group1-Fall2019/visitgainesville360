@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 // Schema for the Client's Business
 var bizSchema = new Schema({
-	title: { type: String, required: true, unique: true },
+	title: { type: String, required: true },
 	email: { type: String, required: true },
 	isApproved: {type: Boolean, default: false},
 	address: String,

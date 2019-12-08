@@ -27,6 +27,7 @@ router.post("/register", function(req, res) {
 						const payload = {
 							id: user.id,
 							name: user.name,
+							email: user.email,
 							isAdmin: user.isAdmin
 						};
 						
@@ -57,6 +58,7 @@ router.post("/login", function(req, res) {
 				const payload = {
 					id: user.id,
 					name: user.name,
+					email: user.email,
 					isAdmin: user.isAdmin
 				};
 				
