@@ -4,7 +4,9 @@ var mongoose = require('mongoose'),
 // Schema for the Client's Business
 var bizSchema = new Schema({
 	email: String,
+	title: String,
 	address: String,
+	city: String,
 	phone: String,
 	state: String,
 	zip: String,
