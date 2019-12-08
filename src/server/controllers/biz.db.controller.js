@@ -17,25 +17,22 @@ exports.userExists = function(req, cb) {
 // ---------------------------------------------------------------- //
 
 exports.findBiz = function(req, cb) {
+	console.log("Entering findBiz");
 	Biz.findOne(req, function(err, found) {
-		if (err)
-			throw err;
-		else
-			cb(found);
+		console.log("Finding one");
+		if (err) throw err;
+		console.log("Found: ", found);
+		cb(found);
 	});
 };
 
 // ---------------------------------------------------------------- //
 
 exports.createBiz = function(req, cb) {
-	console.log("creating biz1");
 	var newListing = new Biz(req.body);
-	console.log("creating biz2", newListing);
-
+	console.log("creating biz", newListing);
 	newListing.save(function(err) {
-		if(err) throw err;
-		console.log('This listing was added to the database: ');
-		console.log("3");
+		if(err) return cb(err);
 	});
 };
 

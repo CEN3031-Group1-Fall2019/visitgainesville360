@@ -3,12 +3,12 @@ var mongoose = require('mongoose'),
 
 // Schema for the Client's Business
 var bizSchema = new Schema({
-	businessID: { type: Number, required: true, unique: true },
 	email: String,
 	address: String,
 	phone: String,
 	state: String,
 	zip: String,
+	isPosted: {type: Boolean, default: false},
 	hours: {
 		Monday: {
 			startTime: Date,

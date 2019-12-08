@@ -2,21 +2,14 @@ var express = require("express"),
 	router = express.Router(),
 	biz = require('../controllers/biz.db.controller');
 
-router.post("/create", function(req, res) {
+router.post("/create", function(req) {
 	console.log("Routing to create listing");
-
-	biz.findBiz({title: req.title}, function(err, bizExists) {
+	biz.createBiz(req, function(err) {
+		console.log("1111");
 		if (err) throw err;
-
-		if (bizExists) {
-			return res.status(400).json({title: "Business already exists"})
-		};
-
-		console.log("Business doesn't exist. Adding biz to database.");
-		biz.createBiz(req, function(err) {
-			if (err) throw err;
-		})
+		console.log("222");
 	});
+	console.log("3333");
 });
 
 router.post("/browse", function(req, res) {
