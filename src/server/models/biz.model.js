@@ -11,6 +11,8 @@ var bizSchema = new Schema({
 	state: String,
 	zip: String,
 	isPosted: {type: Boolean, default: false},
+	image: String,
+	imageId: String,
 	hours: {
 		Monday: {
 			startTime: Date,

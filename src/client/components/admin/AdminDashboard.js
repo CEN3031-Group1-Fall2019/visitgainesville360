@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import {CardDeck, Card, Button, Row, Col} from "react-bootstrap";
+import {CardDeck, Card, Button} from "react-bootstrap";
 
 class AdminDashboard extends React.Component {
 	businessCard = () => {

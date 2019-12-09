@@ -42,7 +42,7 @@ class Browse extends React.Component {
 			if(listing.isApproved) {
 				listOfLists.push(
 					<Card border="dark" style={{ width: '30rem' }}>
-					<Card.Img variant="top" src="holder.js/100px180" />
+					<Card.Img variant="top" src={listing.image} />
 					<Card.Body>
 						<Card.Title>{listing.title}</Card.Title>
 						<Card.Text>{listing.phone}</Card.Text>
