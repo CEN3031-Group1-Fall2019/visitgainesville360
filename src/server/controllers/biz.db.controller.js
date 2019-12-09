@@ -113,10 +113,8 @@ exports.updateBiz = function(req, updates, cb) {
 // ---------------------------------------------------------------- //
 
 exports.findAll = function(req, cb) {
-	console.log("Entering findAll");
 	Biz.find({}, function(err, listings) {
 		if (err) throw err;
-		console.log("Successfully found all listings. Returning to router.");
 		cb(null, listings);
 	});
 };

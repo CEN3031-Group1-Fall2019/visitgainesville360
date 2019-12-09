@@ -4,8 +4,7 @@ import {getAllListings} from "../../actions/listing.actions";
 import {connect} from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import {CardDeck, Card, Button} from "react-bootstrap";
-import setUnapprovedListings from "./AdminMenu";
+import {CardDeck, Card, Button, Row, Col} from "react-bootstrap";
 
 class AdminListings extends React.Component {
 	constructor() {
@@ -21,7 +20,7 @@ class AdminListings extends React.Component {
 		for(let listing of Object.values(this.props.listing.browseListing)) {
 			if(!listing.isApproved) {
 				unaprrovedListings.push(
-					<Card style={{ width: '12rem' }}>
+					<Card border="dark" style={{ width: '12rem', }}>
 					<Card.Img variant="top" src="holder.js/100px180" />
 					<Card.Body>
 						<Card.Title>{listing.title}</Card.Title>
@@ -29,9 +28,11 @@ class AdminListings extends React.Component {
 						<Card.Text>{listing.address}<br />
 						{listing.city}, {listing.state} {listing.zip}</Card.Text>
 						<Card.Text>{listing.description}</Card.Text>
-						<Button variant="success"><FontAwesomeIcon icon={faThumbsUp}/></Button>
-						<Button variant="danger"><FontAwesomeIcon icon={faThumbsDown}/></Button>
-						<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
+						<div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+							<Button style={{flex:'1'}} variant="success"><FontAwesomeIcon icon={faThumbsUp}/></Button>
+							<Button style={{flex:'1'}} variant="danger"><FontAwesomeIcon icon={faThumbsDown}/></Button>
+							<Button style={{flex:'1'}} variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
+						</div>
 					</Card.Body>
 					</Card>
 				);
