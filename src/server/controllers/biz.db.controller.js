@@ -1,5 +1,4 @@
-var mongoose = require('mongoose'), 
-    Biz = require('../models/biz.model.js');
+var Biz = require('../models/biz.model.js');
 
 /*
 exports.userExists = function(req, cb) {
@@ -31,6 +30,13 @@ exports.findBiz = function(req, cb) {
 exports.createBiz = function(req, cb) {
 	var newListing = new Biz(req.body);
 	console.log("creating biz", newListing);
+
+	cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
+		if (err) throw err;
+		req.body.image = result.secure_url; 
+		req.body.imageId = result.public_id; 
+	});
+
 	newListing.save(function(err) {
 		if(err) return cb(err);
 	});
@@ -113,10 +119,8 @@ exports.updateBiz = function(req, updates, cb) {
 // ---------------------------------------------------------------- //
 
 exports.findAll = function(req, cb) {
-	console.log("Entering findAll");
 	Biz.find({}, function(err, listings) {
 		if (err) throw err;
-		console.log("Successfully found all listings. Returning to router.");
 		cb(null, listings);
 	});
 };

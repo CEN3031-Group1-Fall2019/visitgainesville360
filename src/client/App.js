@@ -13,6 +13,7 @@ import AdminDashboard from './components/admin/AdminDashboard';
 import AdminMenu from './components/admin/AdminMenu';
 import CreateListing from './components/listing/CreateListing';
 import Browse from './components/listing/Browse';
+import AdminListingInfo from './components/admin/AdminListingInfo';
 
 class App extends React.Component {
 	render() {
@@ -26,6 +27,7 @@ class App extends React.Component {
 						<Route exact path="/samplepage" component={DashboardPlaceholder} />
 						<Route exact path="/admin-dashboard" component={AdminDashboard} />
 						<Route exact path="/admin-listings" component={AdminListings} />
+						<Route exact path="/view" component={AdminListingInfo} />
 						<Route exact path="/browse" component={Browse} />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/login" component={Login} />

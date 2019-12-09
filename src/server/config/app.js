@@ -4,7 +4,8 @@ var config = require('./config'),
     bodyParser = require('body-parser'),
 	passport = require("passport"),
 	users = require('../routes/user.router');
-	listings = require('../routes/listing.router');
+	listings = require('../routes/listing.router'),
+	cloud = require('./cloud');
 
 module.exports.start = function() {
 	const app = express();
@@ -20,7 +21,10 @@ module.exports.start = function() {
 	  .catch(err => console.log(err));
   
   	app.use(passport.initialize());
-  	require('./passport')(passport);
+	require('./passport')(passport);
+	  
+	// Configures Cloudinary
+	cloud.start();
 
 	// Configures router
 	app.use("/users", users);

@@ -257,7 +257,7 @@ class CreateListing extends React.Component {
 							type="file"
 							name='listingImage'
 							onChange={this.onChangeHandler}
-							value =  {this.state.image} />
+							value = {this.state.listingImage} />
 					</Form.Group>
 				</Form.Row>
 				<button className="button button-background">Submit</button>

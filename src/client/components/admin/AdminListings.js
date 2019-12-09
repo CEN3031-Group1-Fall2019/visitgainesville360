@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import {CardDeck, Card, Button} from "react-bootstrap";
-import setUnapprovedListings from "./AdminMenu";
+import {Link} from "react-router-dom";
 
 class AdminListings extends React.Component {
 	constructor() {
@@ -15,23 +15,28 @@ class AdminListings extends React.Component {
 		};
 	}
 
+	viewInfo = listing => {
+	}
+
 	businessCard = () => {
 		var unaprrovedListings = [];
 		
 		for(let listing of Object.values(this.props.listing.browseListing)) {
 			if(!listing.isApproved) {
 				unaprrovedListings.push(
-					<Card style={{ width: '12rem' }}>
-					<Card.Img variant="top" src="holder.js/100px180" />
+					<Card border="dark" style={{ width: '12rem', }}>
+					<Card.Img variant="top" src={listing.image} />
 					<Card.Body>
 						<Card.Title>{listing.title}</Card.Title>
 						<Card.Text>{listing.phone}</Card.Text>
 						<Card.Text>{listing.address}<br />
 						{listing.city}, {listing.state} {listing.zip}</Card.Text>
 						<Card.Text>{listing.description}</Card.Text>
-						<Button variant="success"><FontAwesomeIcon icon={faThumbsUp}/></Button>
-						<Button variant="danger"><FontAwesomeIcon icon={faThumbsDown}/></Button>
-						<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
+						<div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+							<Link to='/approve'><Button style={{flex:'1'}} variant="success"><FontAwesomeIcon icon={faThumbsUp}/></Button></Link>
+							<Link to='/deny'><Button style={{flex:'1'}} variant="danger"><FontAwesomeIcon icon={faThumbsDown}/></Button></Link>
+							<Link to='/view'><Button style={{flex:'1'}}variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button></Link>
+						</div>
 					</Card.Body>
 					</Card>
 				);

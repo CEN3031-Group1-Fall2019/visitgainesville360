@@ -20,28 +20,6 @@ router.post("/browse", function(req, res) {
 	});
 });
 
-router.post("/image", function(req, res) {
-	console.log("Routing to browse listings");
-
-	biz.findAll(req, function(err, listings) {
-		if (err) throw err;
-
-		console.log("Found all within router. Returning a json");
-		return res.json(listings);
-	});
-});
-
-router.post("/get", function(req, res) {
-	console.log("Routing to browse listings");
-
-	biz.findAll(req, function(err, listings) {
-		if (err) throw err;
-
-		console.log("Found all within router. Returning a json");
-		return res.json(listings);
-	});
-});
-
 router.post("/admin", function(req, res) {
 	console.log("Routing to browse listings");
 

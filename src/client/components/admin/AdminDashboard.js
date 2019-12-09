@@ -15,9 +15,11 @@ class AdminDashboard extends React.Component {
 				Some quick example text to build on the card title and make up the bulk of
 				the card's content.
 				</Card.Text>
-				<Button variant="success"><FontAwesomeIcon icon={faThumbsUp}/></Button>
-				<Button variant="danger"><FontAwesomeIcon icon={faThumbsDown}/></Button>
-				<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
+				<div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+					<Button style={{flex:'1'}} variant="success"><FontAwesomeIcon icon={faThumbsUp}/></Button>
+					<Button style={{flex:'1'}} variant="danger"><FontAwesomeIcon icon={faThumbsDown}/></Button>
+					<Button style={{flex:'1'}} variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
+				</div>
 			</Card.Body>
 			</Card>
 		)
