@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
+import {Card} from "react-bootstrap";
 import AdminControls from '../admin/AdminControls';
 import Axios from "axios";
 
@@ -31,38 +32,34 @@ class ViewListing extends React.Component {
 		});
 	}
 
-	adminControls(listing) {
+	adminControls() {
 		if (this.props.login.user.isAdmin) {
-			return (<AdminControls
-				{...this.props}
-				currentListing={listing} />);
+			return (
+				<div className="flex-row justify-content-center">	
+						<AdminControls
+							{...this.props}
+							currentListing={this.state.currentListing} />
+				</div>);
 		}
 	}
 
 	render() {
 		console.log("The current listing: ", this.state.currentListing);
 		return (
-			<div className="d-flex flex-row justify-content-center row">
-				<p className="page-header">{this.state.currentListing.title}</p>
-				<div className="d-flex justify-content-center row mb-2">
-					<img src={this.state.currentListing.image} />
-				</div>
-				<div className="d-flex row mb-5 justify-content-center">
-					<div className="col-2">
-						<p className="sub-header">Phone</p>
-						<p className="d-flex justify-content-center">{this.state.currentListing.phone}</p>
-					</div>
-					<div className="col-3">
-						<p className="sub-header">Address</p>
-						<p className="d-flex justify-content-center">{this.state.currentListing.address}<br />
-						{this.state.currentListing.city}, {this.state.currentListing.state} {this.state.currentListing.zip}</p>
-					</div>
-				</div>
-				<div className="d-flex row justify-content-center">
-					<div className="col-5">
-						<p className="sub-header">Description</p>
-						{this.state.currentListing.description}
-					</div>
+			<div className="d-flex flex-row justify-content-center">
+				<div className="card-view m-4">
+					<Card>
+					<Card.Img variant="top" src={this.state.currentListing.image} className="listing-img"/>
+					<div className="card-body">
+					<Card.Body>
+						<Card.Title>{this.state.currentListing.title}</Card.Title>
+						<Card.Text>{this.state.currentListing.phone}</Card.Text>
+						<Card.Text>{this.state.currentListing.address}<br />
+						{this.state.currentListing.city}, {this.state.currentListing.state} {this.state.currentListing.zip}</Card.Text>
+						<Card.Text>{this.state.currentListing.description}</Card.Text>
+						{this.adminControls()}
+					</Card.Body></div>
+					</Card>
 				</div>
 			</div>
 		);

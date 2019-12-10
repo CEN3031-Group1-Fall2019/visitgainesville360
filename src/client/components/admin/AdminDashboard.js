@@ -15,7 +15,7 @@ class AdminDashboard extends React.Component {
 				Some quick example text to build on the card title and make up the bulk of
 				the card's content.
 				</Card.Text>
-				<div className="flex flex-center flex-children">
+				<div className="d-flex justify-content-center align-items-end">
 					<Button variant="success"><FontAwesomeIcon icon={faThumbsUp}/></Button>
 					<Button variant="danger"><FontAwesomeIcon icon={faThumbsDown}/></Button>
 					<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
@@ -48,6 +48,8 @@ class AdminDashboard extends React.Component {
 		return (
 			<div className="container">
 				<p className="page-header">Overview of Recent Acitity</p>
+				<hr />
+				<p className="sub-header">This is a placeholder for Admin Console</p>
 				<hr />
 				<p className="sub-header">Listing Requests</p>
 				<CardDeck>

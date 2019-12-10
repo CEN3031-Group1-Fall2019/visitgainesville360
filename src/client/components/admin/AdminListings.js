@@ -46,9 +46,9 @@ class AdminListings extends React.Component {
 	businessCard = listing => {
 		if(!listing.isApproved && !listing.isDenied) {
 			return(
-				<div className="flex flex-row flex-children m-2">
-				<Card border="dark">
-				<Card.Img variant="top" src={listing.image} />
+				<div className="m-2 card-browse">
+				<Card>
+				<Card.Img variant="top" src={listing.image}  className="card-img"/>
 				<div className="card-body">
 				<Card.Body>
 					<Card.Title>{listing.title}</Card.Title>
@@ -56,13 +56,14 @@ class AdminListings extends React.Component {
 					<Card.Text>{listing.address}<br />
 					{listing.city}, {listing.state} {listing.zip}</Card.Text>
 					<Card.Text>{listing.description}</Card.Text>
-					<div  className="card-action">
+					<div className="d-flex flex-row justify-content-center align-items-end">
 					<AdminControls
 						{...this.props}
 						currentListing={listing} />
 					<InfoControl
 						{...this.props}
-						currentListing={listing} /></div>
+						currentListing={listing} />
+					</div>
 				</Card.Body></div>
 				</Card>
 				</div>

@@ -28,7 +28,8 @@ class AdminListings extends React.Component {
 
 	approveButton = () => {
 		var updates = {
-			isApproved: true
+			isApproved: true,
+			isDenied: false
 		};
 
 		return (
@@ -54,27 +55,9 @@ class AdminListings extends React.Component {
 			<div>
 				<Link to="/admin-listings">
 				<Button 
-					variant="warning"
-					onClick={this.updateBusiness(updates).bind(this)}>
-					<FontAwesomeIcon icon={faThumbsDown}/>
-				</Button>
-				</Link>
-        	</div>
-		);
-	}
-
-	deleteButton = () => {
-		var updates = {
-			isApproved: false,
-			isDenied: true
-		};
-		return (
-			<div>
-				<Link to="/admin-listings">
-				<Button 
 					variant="danger"
 					onClick={this.updateBusiness(updates).bind(this)}>
-					<FontAwesomeIcon icon={faTimes}/>
+					<FontAwesomeIcon icon={faThumbsDown}/>
 				</Button>
 				</Link>
         	</div>
@@ -94,10 +77,9 @@ class AdminListings extends React.Component {
 
 		if(this.state.stateSet) {
 			return (
-				<div className="row">
+				<div className="d-flex justify-content-center align-items-bottom row">
 					<div className="col-1">{this.approveButton()}</div>
 					<div className="col-1">{this.denyButton()}</div>
-					<div className="col-1">{this.deleteButton()}</div>
 				</div>
 			);
 		}

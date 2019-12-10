@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {CardDeck, Card, Button} from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import {CardDeck, Card} from "react-bootstrap";
 import moment from 'moment';
 import Axios from "axios";
+import InfoControl from './InfoControl';
 
 class Browse extends React.Component {
 	constructor(props) {
@@ -39,6 +38,7 @@ class Browse extends React.Component {
 	businessCard = listing => {
 		if(listing.isApproved) {
 			return (
+				<div className="card-browse">
 				<Card>
 				<Card.Img variant="top" src={listing.image} />
 				<Card.Body>
@@ -49,9 +49,13 @@ class Browse extends React.Component {
 					<Card.Text>{listing.description}</Card.Text>
 					<Card.Text>{this.renderTags(listing)}</Card.Text>
 					<Card.Body>{this.renderHours(listing.hours)}</Card.Body>
-					<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
+					<div className="d-flex justify-content-center">
+					<InfoControl
+						{...this.props}
+						currentListing={listing} /></div>
 				</Card.Body>
-				</Card>);
+				</Card>
+				</div>);
 		} else return null;
 	}
 
@@ -88,8 +92,10 @@ class Browse extends React.Component {
 		}
 
 		return (
-			<div className="d-flex justify-content-center p-5">
-				<CardDeck>{businessListings}</CardDeck>
+			<div className="d-flex flex-row m-5">
+				<div className="justify-content-right m-6">
+					<CardDeck>{businessListings}</CardDeck>
+				</div>
 			</div>
 		);
 	}

@@ -1,13 +1,10 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import {updateListing} from "../../actions/admin.actions";
-import {connect} from "react-redux";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import {Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
-class AdminListings extends React.Component {
+class InfoControl extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -30,8 +27,6 @@ class AdminListings extends React.Component {
 	}
 
 	render() {
-		if (!this.props.login.user.isAdmin) return null;
-
 		if(!this.state.stateSet) {
 			const {currentListing} = this.props;
 			this.setState({
@@ -42,7 +37,7 @@ class AdminListings extends React.Component {
 
 		if(this.state.stateSet) {
 			return (
-				<div className="flex-center flex-bottom row">
+				<div className="d-flex justify-content-center align-items-bottom row">
 					<div className="col-1">{this.infoButton()}</div>
 				</div>
 			);
@@ -51,17 +46,4 @@ class AdminListings extends React.Component {
 	}
 }
 
-AdminListings.propTypes = {
-	updateListing: PropTypes.func.isRequired,
-	listing: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-	listing: state.listing,
-	login: state.login
-});
-
-export default connect(
-	mapStateToProps,
-	{updateListing}
-)(AdminListings);
+export default InfoControl;

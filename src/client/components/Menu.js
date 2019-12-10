@@ -44,7 +44,7 @@ class Menu extends React.Component {
 
 	render() {
 		return (
-			<div className="menu flex flex-row flex-children">
+			<div className="menu d-flex flex-row">
 				<nav className="navbar">
 					<div className="menu-row">
 						<Link className="menu-link" to="/"><FontAwesomeIcon icon={faHome}/></Link>

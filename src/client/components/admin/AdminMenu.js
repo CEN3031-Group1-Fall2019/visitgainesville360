@@ -64,7 +64,7 @@ class AdminMenu extends React.Component {
 		if (isAdmin) {
 			return  (
 				<div className="admin-menu-container">
-					<Nav className="flex-column">
+					<Nav className="d-flex flex-column">
 						<p className="menu-header">Admin Console</p>
 						<hr />
 						<Link to="/admin-dashboard" className="admin-menu">

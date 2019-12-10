@@ -53,11 +53,22 @@ html, body, .App {
 .listings {
 	padding-left: 25rem;
 }
+.listing-img {
+	height: 500px;
+	width: 500px;
+}
+.card-img {
+	height: 250px;
+	width: 250px;
+}
 
 /*** MENU ***/
 .menu {
 	background-color: #ECECEC;
 	padding: 1rem;
+}
+.menu > * {
+	flex-grow: 1;
 }
 .menu-link {
 	padding-left: 1rem;
@@ -117,13 +128,18 @@ hr {
 	background-color: #ECECEC;
 	height: 5px;
 }
+.card-browse {
+	width: 25%;
+}
+.card-view {
+	width: 550px;
+}
 .card {
 	padding: 5px;
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .13);
 	border-radius: 4px;
 	display: flex;
 	flex-direction: row;
-	width: 30rem;
 	background-color: #ECECEC;
 	color: #363637;
 	border-color:#363637;
@@ -138,38 +154,6 @@ hr {
 	align-items: center;
 	justify-content: space-between;
 	margin-top: 16px;
-}
-
-/*** FLEX ***/
-.flex {
-	display: flex;
-}
-.flex-row {
-	flex-flow: row wrap;
-}
-.flex-col {
-	flex-flow: column wrap;
-}
-.flex-children > * {
-	flex-grow: 1;
-}
-.flex-left {
-	justify-content: flex-start;
-}
-.flex-right {
-	justify-content: flex-end;
-}
-.flex-center {
-	justify-content: center stretch;
-}
-.flex-middle {
-	align-items: center;
-}
-.flex-bottom {
-	align-items: flex-end;
-}
-.flex-child {
-	flex: 1
 }
 
 /*** FORMS ***/
