@@ -13,6 +13,7 @@ var tagSchema = new Schema({
 );
 
 // Saves update/creation date/time to database listing
+//
 tagSchema.pre('save', function(next) {
 	var currDate = new Date();
 	this.updated_at = currDate;	
