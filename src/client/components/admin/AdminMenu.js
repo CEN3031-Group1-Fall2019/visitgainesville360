@@ -20,20 +20,6 @@ class AdminMenu extends React.Component {
 		};
 	}
 
-	componentDidUpdate() {
-		Axios
-		.post("/admin/notification", newListingCriteria)
-		.then(res => {
-			this.setState({
-				newListings: res.data
-			});
-		})
-		.catch(err => {
-			console.log("Error while getting notifications: ", newListingCriteria);
-			console.log(err);
-		});
-	}
-
 	componentDidMount() {
 		Axios
 		.post("/admin/notification", newListingCriteria)
@@ -59,7 +45,6 @@ class AdminMenu extends React.Component {
 
 	render() {
 		var isAdmin = this.props.login.isAdmin;
-		console.log("Admin: ", isAdmin);
 		
 		if (isAdmin) {
 			return  (

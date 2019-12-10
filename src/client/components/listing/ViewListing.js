@@ -10,11 +10,15 @@ class ViewListing extends React.Component {
 		super(props);
 		this.state = {
 			currentListing: '',
-			stateSet: false
+			isAdmin: false
 		};
 	}
 
 	componentDidMount() {
+		this.setState({
+			isAdmin: this.props.login.user.isAdmin
+		})
+
 		var pathname = this.props.location.pathname;
 		var listingId = pathname.substring(pathname.lastIndexOf("/") + 1);;
 		console.log("this is it", listingId);
@@ -23,8 +27,7 @@ class ViewListing extends React.Component {
 		.post("/listings/get", {id: listingId})
 		.then(res => {
 			this.setState({
-				currentListing: res.data,
-				stateSet: true
+				currentListing: res.data
 			})
 		})
 		.catch(err => {

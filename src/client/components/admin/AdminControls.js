@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {updateListing} from "../../actions/admin.actions";
 import {connect} from "react-redux";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faThumbsUp, faThumbsDown, faTimes} from '@fortawesome/free-solid-svg-icons';
+import {faThumbsUp, faThumbsDown} from '@fortawesome/free-solid-svg-icons';
 import {Button} from "react-bootstrap";
 
 class AdminListings extends React.Component {
