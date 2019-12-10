@@ -125,3 +125,12 @@ exports.findAll = function(req, cb) {
 	});
 };
 
+// ---------------------------------------------------------------- //
+
+exports.adminUpdate = function(req, updates, cb) {
+	console.log("Attempting to update: ", req, " with: ", updates);
+	Biz.findOneAndUpdate(req, updates,{upsert: true}, function(err) {
+		if (err) return cb(err);
+		console.log("Successfully updated: ", req, "with", updates);
+	});
+}

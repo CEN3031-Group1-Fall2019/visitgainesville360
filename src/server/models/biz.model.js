@@ -52,7 +52,6 @@ var bizSchema = new Schema({
 // Saves update/creation date/time to database listing
 bizSchema.pre('save', function(next) {
 	var currDate = new Date();
-
 	this.updated_at = currDate;	
 
 	if (!this.created_at)

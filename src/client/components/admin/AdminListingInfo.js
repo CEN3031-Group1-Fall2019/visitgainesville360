@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {getAllListings} from "../../actions/listing.actions";
 import {connect} from "react-redux";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faThumbsDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import {CardDeck, Card, Button, Image} from "react-bootstrap";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faThumbsUp, faThumbsDown, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import {Button, Image} from "react-bootstrap";
 
 class AdminListingInfo extends React.Component {
 	constructor() {

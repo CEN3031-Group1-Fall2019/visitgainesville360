@@ -8,17 +8,22 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 
 class Browse extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			hasListings: false
-		};
-	}
-
-	UNSAFE_componentWillReceiveProps(nextProps) {
-		if (nextProps.listing.isPosted) {
-			this.setState({hasListings: true});
-		}
+	businessCard = listing => {
+		if(listing.isApproved) {
+			return (
+				<Card border='dark' style={{ width: '30rem' }}>
+				<Card.Img variant="top" src={listing.image} />
+				<Card.Body>
+					<Card.Title>{listing.title}</Card.Title>
+					<Card.Text>{listing.phone}</Card.Text>
+					<Card.Text>{listing.address}<br />
+					{listing.city}, {listing.state} {listing.zip}</Card.Text>
+					<Card.Text>{listing.description}</Card.Text>
+					<Card.Body>{this.renderHours(listing.hours)}</Card.Body>
+					<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
+				</Card.Body>
+				</Card>);
+		} else return null;
 	}
 
 	renderHours = (hours) => {
@@ -35,36 +40,19 @@ class Browse extends React.Component {
 		);
 	}
 
-	renderListings = () => {
-		var listOfLists = [];
-
-		for(let listing of Object.values(this.props.listing.browseListing)) {
-			if(listing.isApproved) {
-				listOfLists.push(
-					<Card border="dark" style={{ width: '30rem' }}>
-					<Card.Img variant="top" src={listing.image} />
-					<Card.Body>
-						<Card.Title>{listing.title}</Card.Title>
-						<Card.Text>{listing.phone}</Card.Text>
-						<Card.Text>{listing.address}<br />
-						{listing.city}, {listing.state} {listing.zip}</Card.Text>
-						<Card.Text>{listing.description}</Card.Text>
-						<Card.Text>{this.renderHours(listing.hours)}</Card.Text>
-						<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
-					</Card.Body>
-					</Card>);
-			}
-		}
-		return listOfLists;
-	}
-
 	render() {
-		if(!this.state.hasListings) {
+		if(!this.props.listing.isPosted) {
 			this.props.getAllListings();
 		}
+
+		var businessListings = [];
+		for(let listing of Object.values(this.props.listing.browseListing)) {
+			businessListings.push(this.businessCard(listing));
+		}
+
 		return (
 			<div className="d-flex justify-content-center p-5">
-				<CardDeck><this.renderListings /></CardDeck>
+				<CardDeck>{businessListings}</CardDeck>
 			</div>
 		);
 	}

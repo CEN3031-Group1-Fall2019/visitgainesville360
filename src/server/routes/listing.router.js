@@ -9,6 +9,21 @@ router.post("/create", function(req) {
 	});
 });
 
+router.post("/get", function(req, res) {
+	console.log("Routing to get a listing");
+	var findById = {
+		_id: req._id
+	}
+	console.log("using the request: ", findById);
+
+	biz.findBiz(findById, function(err, listing) {
+		if (err) throw err;
+
+		console.log("Found the listing: ", listing);
+		return res.json(listing);
+	});
+});
+
 router.post("/browse", function(req, res) {
 	console.log("Routing to browse listings");
 

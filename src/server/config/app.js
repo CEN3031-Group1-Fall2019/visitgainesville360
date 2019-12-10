@@ -5,6 +5,7 @@ var config = require('./config'),
 	passport = require("passport"),
 	users = require('../routes/user.router');
 	listings = require('../routes/listing.router'),
+	admin = require('../routes/admin.router'),
 	cloud = require('./cloud');
 
 module.exports.start = function() {
@@ -29,6 +30,7 @@ module.exports.start = function() {
 	// Configures router
 	app.use("/users", users);
 	app.use("/listings", listings);
+	app.use("/admin", admin);
 	  
   	app.listen(config.port, function() {
     	console.log('Server is listening on port', config.port);
