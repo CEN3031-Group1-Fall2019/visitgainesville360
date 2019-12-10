@@ -3,12 +3,26 @@ var mongoose = require('mongoose'),
 
 // Schema for the Client's Business
 var bizSchema = new Schema({
+<<<<<<< HEAD
 	title: { type: String, required: true, unique: true },
 	email: String,
+=======
+	title: { type: String, required: true },
+	email: { type: String, required: true },
+	isApproved: {type: Boolean, default: false},
+	isDenied: {type: Boolean, default: false},
+	typetag: {type: String},
+	loctag: {type: String},
+>>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6
 	address: String,
 	phone: String,
 	state: String,
 	zip: String,
+<<<<<<< HEAD
+=======
+	image: String,
+	imageId: String,
+>>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6
 	hours: {
 		Monday: {
 			startTime: Date,
@@ -48,7 +62,6 @@ var bizSchema = new Schema({
 // Saves update/creation date/time to database listing
 bizSchema.pre('save', function(next) {
 	var currDate = new Date();
-
 	this.updated_at = currDate;	
 
 	if (!this.created_at)

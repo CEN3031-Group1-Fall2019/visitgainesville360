@@ -13,48 +13,8 @@ exports.userExists = function(req, cb) {
 }
 
 exports.createNewUser = function(req, cb) {
-	userFunct.registerUser(req, function(err) {
-		return cb(err);
+	userFunct.registerUser(req, function(err, res) {
+		if(err) return cb(err);
+		return cb(res);
 	});
 }
-
-/*
-
-exports.createNewUser = function(req, cb) {
-	console.log("Creating user", req.body.name, req.body.email);
-
-	var newUser = new User({
-		name: req.body.name,
-		email: req.body.email,
-		password: req.body.password
-	});
-
-	newUser.save(function(err) {
-		if (err) return cb(err);
-		console.log("Saved litsing: ", newUser);
-		return cb(err);
-	});
-}
-
-exports.findUser = function(req, cb) {
-	console.log("Looking for user", req.body.email);
-	const email = req.body.email;
-
-	User.findOne({email: email}, function(err, user) {
-		if (err) throw err;
-		return cb(user);
-	});
-}
-
-exports.userExists = function(req, cb) {
-	var email = req.body.email;
-	console.log("Checking if userExists", email);
-
-	User.exists({email}, function(err, exists) {
-		if (err) return cb(err);
-		console.log("Result: ", exists);
-		return cb(exists);
-	});
-}
-
-*/

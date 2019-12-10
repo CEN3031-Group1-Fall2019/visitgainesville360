@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons';
 import {logoutUser} from "../actions/login.actions";
 
 class Menu extends React.Component {
@@ -17,27 +19,24 @@ class Menu extends React.Component {
 		
 		if (loggedInState) {
 			return  (
-				<div className="align-right">
-					<Link className="menu-link h3" to="/create">Add a Listing</Link>
-					<Link className="menu-link h3" to="/samplepage">Dashboard</Link>
-					<Link to="/logout">
-						<button 
-							className="button menu-button button-outline-gray" 
-							onClick={this.logoutUser.bind(this)}>
-								Logout
-						</button>
+				<div className="flex-right">
+					<Link className="menu-link" to="/create-listing">Create</Link>
+					<Link className="menu-link" to="/create-tags">Tag</Link>
+					<Link className="menu-link" to="/samplepage">Listings</Link>
+					<Link className="menu-link" onClick={this.logoutUser.bind(this)} to="/">
+						<FontAwesomeIcon icon={faSignOutAlt}/>
 					</Link>
 				</div>
 			);
 		}
 
 		return (
-			<div className="align-right">
+			<div className="flex-left">
 				<Link to="/register">
-					<button className="button menu-button button-background">Register</button>
+					<button className="button">Register</button>
 				</Link>
 				<Link to="/login">
-					<button type="button" className="button menu-button button-outline-gray">Login</button>
+					<button type="button" className="button button-transparent ml-3">Login</button>
 				</Link>
 			</div>
 		);
@@ -45,12 +44,11 @@ class Menu extends React.Component {
 
 	render() {
 		return (
-			<div className="menu">
-				<nav className="navbar navbar-dark bg-dark">
-					<div className="align-left">
-						<Link className="menu-link h3" to="/">Home</Link>
-						<Link className="menu-link h3" to="/featured">Featured</Link>
-						<Link className="menu-link h3" to="/browse">Browse</Link>
+			<div className="menu d-flex flex-row">
+				<nav className="navbar">
+					<div className="menu-row">
+						<Link className="menu-link" to="/"><FontAwesomeIcon icon={faHome}/></Link>
+						<Link className="menu-link" to="/browse">Browse</Link>
 					</div>
 					<this.isLoggedIn />
 				</nav>

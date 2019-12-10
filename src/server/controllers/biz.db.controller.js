@@ -1,5 +1,4 @@
-var mongoose = require('mongoose'), 
-    Biz = require('../models/biz.model.js');
+var Biz = require('../models/biz.model.js');
 
 /*
 exports.userExists = function(req, cb) {
@@ -29,6 +28,7 @@ exports.findBiz = function(req, cb) {
 // ---------------------------------------------------------------- //
 
 exports.createBiz = function(req, cb) {
+<<<<<<< HEAD
 	console.log("creating biz1");
 	var newListing = new Biz(req.body);
 	console.log("creating biz2", newListing);
@@ -37,6 +37,19 @@ exports.createBiz = function(req, cb) {
 		if(err) throw err;
 		console.log('This listing was added to the database: ');
 		console.log("3");
+=======
+	var newListing = new Biz(req.body);
+	console.log("creating biz", newListing);
+
+	/*cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
+		if (err) throw err;
+		req.body.image = result.secure_url; 
+		req.body.imageId = result.public_id; 
+	});*/
+
+	newListing.save(function(err) {
+		if(err) return cb(err);
+>>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6
 	});
 };
 
@@ -117,6 +130,7 @@ exports.updateBiz = function(req, updates, cb) {
 // ---------------------------------------------------------------- //
 
 exports.findAll = function(req, cb) {
+<<<<<<< HEAD
 	console.log("Entering findAll");
 	Biz.find({}, function(err, listings) {
 		if (err) throw err;
@@ -124,3 +138,50 @@ exports.findAll = function(req, cb) {
 		cb(null, listings);
 	});
 };
+=======
+	Biz.find({}, function(err, listings) {
+		if (err) throw err;
+		cb(null, listings);
+	});
+};
+
+// ---------------------------------------------------------------- //
+
+/**
+ * Allows the admin to update a listing in Biz
+ * 
+ * req will host the id of the listing to be updated
+ * {_id: 123}
+ * 
+ * updates will host the updates wanted to be made on the listing
+ * {item1: update_to_this, item2: update_to_that}
+ */
+
+exports.adminUpdate = function(req, updates, cb) {
+	console.log("Attempting to update: ", req, " with: ", updates);
+	Biz.findOneAndUpdate(req, updates,{upsert: true}, function(err) {
+		if (err) return cb(err);
+		console.log("Successfully updated: ", req, "with", updates);
+	});
+}
+
+// ---------------------------------------------------------------- //
+
+/**
+ * Counts all items in Biz that meet certain criteria
+ * 
+ * The criteria will be defined in req with the format
+ * {item1: criteria1, item2: criteria2, ...}
+ */
+
+exports.countAll = function(req, cb) {
+	console.log("Attempting to count all items with criteria", req);
+	Biz.find(req, function(err, res) {
+		if (err) {
+			console.log("Error while counting req", req, err);
+			throw err;
+		}
+		return cb(res.length);
+	})
+}
+>>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6

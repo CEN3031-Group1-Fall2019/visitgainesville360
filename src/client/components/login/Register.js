@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
 import {registerUser} from "../../actions/login.actions"
-import {validateRegisterInput} from "../../actions/validate.action";
+import {validateRegisterInput} from "../../utils/validate";
 
 class Register extends React.Component {
 	constructor() {
@@ -17,11 +17,18 @@ class Register extends React.Component {
 		};
 	}
 
+	/*UNSAFE_componentWillReceiveProps(nextProps) {
+		if (nextProps.login.isLoggedIn) {
+			console.log("Sending to client's dashboard");
+			this.props.history.push("/samplepage");
+		}
+	}*/
+
 	handleChange(e) {
 		this.setState({ 
 			[e.target.id]: e.target.value 
 		});
-	};
+	}
 
 	onSubmit = e => {
 		e.preventDefault();
@@ -46,8 +53,13 @@ class Register extends React.Component {
 
 	render() {
 		if (this.props.login.isLoggedIn) {
-			console.log("User is already logged in.");
-			this.props.history.push("/samplepage");
+			if(this.props.login.isAdmin) {
+				console.log("Sending to ADMIN");
+				this.props.history.push("/admin");
+			} else {
+				console.log("Sending to CLIENT");
+				this.props.history.push("/samplepage");
+			}
 		}
 
 		return (

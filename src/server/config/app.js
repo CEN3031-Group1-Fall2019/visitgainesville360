@@ -3,7 +3,13 @@ var express = require("express"),
     bodyParser = require('body-parser'),
 	passport = require("passport"),
 	users = require('../routes/user.router');
+<<<<<<< HEAD
 	listings = require('../routes/listing.router');
+=======
+	listings = require('../routes/listing.router'),
+	admin = require('../routes/admin.router'),
+	cloud = require('./cloud');
+>>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6
 
 module.exports.start = function() {
 	const app = express();
@@ -22,11 +28,15 @@ module.exports.start = function() {
   
 	/** Passport **/
   	app.use(passport.initialize());
-  	require('./passport')(passport);
+	require('./passport')(passport);
+	  
+	// Configures Cloudinary
+	cloud.start();
 
 	/** Configures router **/
 	app.use("/users", users);
 	app.use("/listings", listings);
+<<<<<<< HEAD
 
 	/** Heroku **/
 	var path = require("path");
@@ -35,6 +45,9 @@ module.exports.start = function() {
 	app.get('*', (req, res) => {
 		res.sendFile(path.resolve(__dirname + '/../../../public/index.html'));
 	});
+=======
+	app.use("/admin", admin);
+>>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6
 	  
 	var port = process.env.PORT || 5000;
   	app.listen(port, function() {

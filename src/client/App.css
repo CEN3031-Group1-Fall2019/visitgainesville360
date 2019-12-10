@@ -1,68 +1,180 @@
+html, body, .App {
+	background-color: #363637;
+	color: #ECECEC;
+}
+.min-100, .App {
+	height: 100%;
+	width: 100%;
+	min-width: 100% !important;
+	min-height: 100% !important;
+}
+
 /*** GENERAL ***/
 .link {
-	color: darkcyan
+	color: #008B8B;
 }
 .link:hover {
-	color: darkslategray;
+	color: #CCAC5B;
+	text-decoration: none;
 }
 .button {
 	width: 125px;
-	border-radius: 3px;
-	margin-top: 1rem;
+	border-radius: .25rem;
+	margin: 0px;
+	border-color: #264653;
+	background-color: #008B8B;
+	color: #ECECEC;
 }
-.button-background {
-	background-color: darkcyan;
-	border-color: darkcyan;
-	color: white;
-}
-.button-outline-gray {
-	border-color: darkgray;
+.button-transparent {
 	background-color: transparent;
-	color: darkgray;
+	color: #264653;
+}
+.button:hover {
+	border-radius: .25rem;
+	color: #264653;
+	border-color: #264653;
+	background-color: #CCAC5B;
 }
 .page-header {
 	padding-top: 5rem;
-	color: darkslategray;
+	color: #CCAC5B;
 	text-align: center;
 	font-size: 3rem;
 	font-weight: normal bold; 
 }
-.alight-right {
-    float: right;
+.sub-header {
+	background-color: #264653;
+	border-radius: .25rem;
+	color: #ECECEC;
+	text-align: center;
+	font-size: 2rem;
+	font-weight: normal bold; 
 }
-.align-left {
-	float: left;
+.listings {
+	padding-left: 25rem;
+}
+.listing-img {
+	height: 500px;
+	width: 500px;
+}
+.card-img {
+	height: 250px;
+	width: 250px;
 }
 
 /*** MENU ***/
 .menu {
-	margin-right: auto;
-	margin-left: auto;
-	width: 100%;
+	background-color: #ECECEC;
+	padding: 1rem;
+}
+.menu > * {
+	flex-grow: 1;
 }
 .menu-link {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	font-size: 2rem;
 	font-weight: bold;
-	margin-left: 3rem;
-	padding: 0.5rem;
-	color: azure;
-	border-bottom: .2rem solid transparent;
+	color: #363637;
 }
 .menu-link:hover {
-	color: azure;
-	border-bottom-color: azure;
+	color: #CCAC5B;
 	text-decoration: none;
 }
-.menu-button {
-	margin-right: 2rem;
-	margin-left: 2rem;
+
+/*** ADMIN-MENU ***/
+.admin-menu-container {
+	width: 20rem;
+    margin: 0 33% 0 0;
+	max-width: 40%;
+    position: absolute;
+	height: 100%;
+	background-color: #264653;
+}
+.admin-menu,
+.admin-menu:hover {
+	padding: 5px;
+	padding-left: 2rem;
+	font-size: 1.5rem;
+}
+.admin-menu {
+	color: #ECECEC;
+}
+.admin-menu:hover {
+	color: #264653;
+    background-color: #ECECEC;
+	text-decoration: none;
+}
+.admin-notification {
+	margin-left: 1.5rem;
+	background-color: #CCAC5B;
+	color: #264653;
+}
+.menu-header {
+	padding-top: 2rem;
+	display: flex;
+	justify-content: center;
+	font-size: 2rem;
+	font-weight: bold;
+}
+.admin-icon {
+	margin-right: 1rem;
+}
+
+/*** ADMIN ***/
+hr {
+	display: flex;
+	justify-content: center;
+	background-color: #ECECEC;
+	height: 5px;
+}
+.card-browse {
+	width: 25%;
+}
+.card-view {
+	width: 550px;
+}
+.card {
+	padding: 5px;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .13);
+	border-radius: 4px;
+	display: flex;
+	flex-direction: row;
+	background-color: #ECECEC;
+	color: #363637;
+	border-color:#363637;
+}
+.card-body {
+	flex: 1 0 auto;
+	align-items: flex-end;
+	justify-content: center;
+}
+.card-action {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 16px;
 }
 
 /*** FORMS ***/
+textarea,
+Form.Control,
+input[type="text"],
+input[type="password"],
+input[type="email"]  {
+	border-radius: .25rem;
+	background-color: #ECECEC;
+}
+
 textarea:focus,
+Form.Control,
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus { 
-	border-color: darkcyan;
+	border-radius: .25rem;
+	border-width: .2rem;
+	border-color: #CCAC5B;
+	background-color: #ECECEC;
 }
 
 .inputError {

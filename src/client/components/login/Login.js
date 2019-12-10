@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {loginUser} from "../../actions/login.actions";
-import {validateLoginInput} from "../../actions/validate.action";
+import {validateLoginInput} from "../../utils/validate";
 
 class Login extends React.Component {
 	constructor() {
@@ -15,12 +15,21 @@ class Login extends React.Component {
 		};
 	}
 
-	UNSAFE_componentWillReceiveProps(nextProps) {
-		if (nextProps.login.isLoggedIn) {
-			console.log("Sending to client's dashboard");
-			this.props.history.push("/samplepage");
+	routeUser(prop) {
+		if (prop.login.isLoggedIn) {
+			if(prop.login.isAdmin) {
+				console.log("Sending to ADMIN");
+				this.props.history.push("/admin-dashboard");
+			} else {
+				console.log("Sending to CLIENT");
+				this.props.history.push("/samplepage");
+			}
 		}
 	}
+
+	/*UNSAFE_componentWillReceiveProps(nextProps) {
+		this.routeUser(nextProps);
+	}*/
 
 	handleChange(e) {
 		this.setState({ 
@@ -48,10 +57,7 @@ class Login extends React.Component {
 	}
 
 	render() {
-		if (this.props.login.isLoggedIn) {
-			console.log("User is already logged in");
-			this.props.history.push("/samplepage");
-		}
+		this.routeUser(this.props);
 
 		return (
 			<div className="container">

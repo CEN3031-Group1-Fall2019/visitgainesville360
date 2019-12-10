@@ -1,15 +1,18 @@
 import Axios from "axios";
 import setLoginToken from "../utils/setLoginToken";
 import jwt_decode from "jwt-decode";
-import {
-	GET_USER,
-	SET_USER
-} from "./types";
+import {GET_USER, SET_USER} from "./types";
 
-export const registerUser = (userData, history) => () => {
+export const registerUser = userData => dispatch => {
 	Axios
 		.post("/users/register", userData)
-		.then(() => {history.push("/login")})
+    	.then(res => {
+      		const {token} = res.data;
+      		localStorage.setItem("jwtToken", token);
+      		setLoginToken(token);
+      		const decoded = jwt_decode(token);
+			dispatch(setUser(decoded));
+		})
 		.catch(err => {
 			console.log("Error during registration for email: ", userData.email);
 			console.log(err);
