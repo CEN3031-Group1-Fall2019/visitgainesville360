@@ -1,10 +1,5 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import {getSingleListing} from "../../actions/listing.actions";
 import {connect} from "react-redux";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faThumbsUp, faThumbsDown, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
-import {Button} from "react-bootstrap";
 import AdminControls from '../admin/AdminControls';
 import Axios from "axios";
 
@@ -74,17 +69,10 @@ class ViewListing extends React.Component {
 	}
 }
 
-ViewListing.propTypes = {
-	getSingleListing: PropTypes.func.isRequired,
-	listing: PropTypes.object.isRequired
-};
-
 const mapStateToProps = state => ({
-	listing: state.listing,
 	login: state.login
 });
 
 export default connect(
-	mapStateToProps,
-	{getSingleListing}
+	mapStateToProps
 )(ViewListing);

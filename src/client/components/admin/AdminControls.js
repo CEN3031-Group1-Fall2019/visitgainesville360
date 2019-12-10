@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import {updateListing} from "../../actions/admin.actions";
 import {connect} from "react-redux";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -22,7 +23,6 @@ class AdminListings extends React.Component {
 				updates: updates
 			}
 			this.props.updateListing(updateData);
-			this.props.history.push("/admin-listings");
 		}
 	}
 
@@ -33,11 +33,13 @@ class AdminListings extends React.Component {
 
 		return (
 			<div>
+				<Link to="/admin-listings">
 				<Button 
 					variant="success"
 					onClick={this.updateBusiness(updates).bind(this)}>
 					<FontAwesomeIcon icon={faThumbsUp}/>
 				</Button>
+				</Link>
         	</div>
 		);
 	}
@@ -50,11 +52,13 @@ class AdminListings extends React.Component {
 
 		return (
 			<div>
+				<Link to="/admin-listings">
 				<Button 
 					variant="warning"
 					onClick={this.updateBusiness(updates).bind(this)}>
 					<FontAwesomeIcon icon={faThumbsDown}/>
 				</Button>
+				</Link>
         	</div>
 		);
 	}
@@ -66,11 +70,13 @@ class AdminListings extends React.Component {
 		};
 		return (
 			<div>
+				<Link to="/admin-listings">
 				<Button 
 					variant="danger"
 					onClick={this.updateBusiness(updates).bind(this)}>
 					<FontAwesomeIcon icon={faTimes}/>
 				</Button>
+				</Link>
         	</div>
 		);
 	}

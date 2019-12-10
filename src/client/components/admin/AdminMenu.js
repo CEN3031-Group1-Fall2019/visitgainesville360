@@ -1,17 +1,57 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import {connect} from 'react-redux';
-import {getNotifications} from "../../actions/admin.actions";
 import {Nav} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faChartPie, faUser, faBookOpen, faColumns} from '@fortawesome/free-solid-svg-icons';
+import Axios from "axios";
+
+
+const newListingCriteria = {
+	isApproved: false,
+	isDenied: false
+}
 
 class AdminMenu extends React.Component {
-	renderNewListingNotification = count => {
-		if (count > 0) {
+	constructor(props) {
+		super(props);
+		this.state = {
+			newListings: ''
+		};
+	}
+
+	componentDidUpdate() {
+		Axios
+		.post("/admin/notification", newListingCriteria)
+		.then(res => {
+			this.setState({
+				newListings: res.data
+			});
+		})
+		.catch(err => {
+			console.log("Error while getting notifications: ", newListingCriteria);
+			console.log(err);
+		});
+	}
+
+	componentDidMount() {
+		Axios
+		.post("/admin/notification", newListingCriteria)
+		.then(res => {
+			this.setState({
+				newListings: res.data
+			});
+		})
+		.catch(err => {
+			console.log("Error while getting notifications: ", newListingCriteria);
+			console.log(err);
+		});
+	}
+
+	renderNewListingNotification = () => {
+		if (this.state.newListings > 0) {
 			return (
-				<span className="badge admin-notification">{count}</span>
+				<span className="badge admin-notification">{this.state.newListings}</span>
 			);
 		}
 		return null;
@@ -20,20 +60,8 @@ class AdminMenu extends React.Component {
 	render() {
 		var isAdmin = this.props.login.isAdmin;
 		console.log("Admin: ", isAdmin);
-		var newListings = 0;
 		
 		if (isAdmin) {
-			if(!this.props.admin.isNotified) {
-				var criteria = {
-					isApproved: false,
-					isDenied: false
-				}
-				this.props.getNotifications(criteria);
-			} else {
-				console.log("currNotifications: ", this.props.admin.currNotifications, "newListings", newListings);
-				newListings = this.props.admin.currNotifications;
-			}
-
 			return  (
 				<div className="admin-menu-container">
 					<Nav className="flex-column">
@@ -46,7 +74,7 @@ class AdminMenu extends React.Component {
 						<Link to="/admin-listings" className="admin-menu">
 							<FontAwesomeIcon className="admin-icon" icon={faBookOpen}/>
 							New Listings
-							{this.renderNewListingNotification(newListings)}
+							{this.renderNewListingNotification()}
 						</Link>
 						<Link to="/admin-users" className="admin-menu">
 							<FontAwesomeIcon className="admin-icon" icon={faUser}/>
@@ -59,23 +87,15 @@ class AdminMenu extends React.Component {
 					</Nav>
 				</div>
 			);
-		} else {
-			return (<div></div>);
 		}
+		return null;
 	}
 }
 
-AdminMenu.propTypes = {
-	getNotifications:  PropTypes.func.isRequired,
-	admin: PropTypes.object.isRequired
-};
-
 const mapStateToProps = state => ({
-	login: state.login,
-	admin: state.admin
+	login: state.login
 });
 
 export default connect(
-	mapStateToProps,
-	{getNotifications}
+	mapStateToProps
 )(AdminMenu);

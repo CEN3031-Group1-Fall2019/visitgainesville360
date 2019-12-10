@@ -1,18 +1,46 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {getAllListings} from "../../actions/listing.actions";
 import {updateListing} from "../../actions/admin.actions";
 import {connect} from "react-redux";
 import {CardDeck, Card} from "react-bootstrap";
 import AdminControls from './AdminControls';
 import InfoControl from '../listing/InfoControl';
+import Axios from "axios";
 
 class AdminListings extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			hasListings: false
+			browseListings: ''
 		};
+	}
+
+	componentDidMount() {
+		Axios
+		.post("/listings/browse")
+		.then(res => {
+			this.setState({
+				browseListings: res.data
+			});
+		})
+		.catch(err => {
+			console.log("Error getting all listings");
+			console.log(err);
+		});
+	}
+
+	componentDidUpdate() {
+		Axios
+		.post("/listings/browse")
+		.then(res => {
+			this.setState({
+				browseListings: res.data
+			});
+		})
+		.catch(err => {
+			console.log("Error getting all listings");
+			console.log(err);
+		});
 	}
 
 	businessCard = listing => {
@@ -47,13 +75,9 @@ class AdminListings extends React.Component {
 			console.log("Does not have authentication");
 			this.props.history.push("/login");
 		}
-		
-		if(!this.props.listing.isPosted) {
-			this.props.getAllListings();
-		}
 
 		var businessListings = [];
-		for(let listing of Object.values(this.props.listing.browseListing)) {
+		for(let listing of Object.values(this.state.browseListings)) {
 			businessListings.push(this.businessCard(listing));
 		}
 
@@ -70,7 +94,6 @@ class AdminListings extends React.Component {
 
 AdminListings.propTypes = {
 	updateListing: PropTypes.func.isRequired,
-	getAllListings: PropTypes.func.isRequired,
 	listing: PropTypes.object.isRequired
 };
 
@@ -81,5 +104,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{getAllListings, updateListing}
+	{updateListing}
 )(AdminListings);

@@ -1,17 +1,40 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getAllListings} from "../../actions/listing.actions";
 import {CardDeck, Card, Button} from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
-
-
-//	typetag: {type: String},
-//	loctag: {type: String},
+import Axios from "axios";
 
 class Browse extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			browseListings: ''
+		};
+	}
+
+	//	typetag: {type: String},
+	//	loctag: {type: String},
+
+	componentDidMount() {
+		var pathname = this.props.location.pathname;
+		var listingId = pathname.substring(pathname.lastIndexOf("/") + 1);;
+		console.log("this is it", listingId);
+
+		Axios
+		.post("/listings/browse")
+		.then(res => {
+			this.setState({
+				browseListings: res.data
+			});
+		})
+		.catch(err => {
+			console.log("Error getting all listings");
+			console.log(err);
+		});
+	}
 
 	businessCard = listing => {
 		if(listing.isApproved) {
@@ -31,7 +54,7 @@ class Browse extends React.Component {
 				</Card>);
 		} else return null;
 	}
-	
+
 	renderTags = (listing) => {
 		if (listing.hasOwnProperty('typetag') || listing.hasOwnProperty('loctag'))
 		{
@@ -42,7 +65,7 @@ class Browse extends React.Component {
 			);
 		}
 	}
-
+	
 	renderHours = (hours) => {
 		if(hours !== undefined) {
 			var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -56,27 +79,11 @@ class Browse extends React.Component {
 			
 			return displayHours;
 		} return null;
-		/*
-		return (
-			<div>
-				Monday: {moment(hours.Monday.startTime).format('hh:mm a')} - {moment(hours.Monday.endTime).format('hh:mm a')} <br />
-				Tuesday: {moment(hours.Tuesday.startTime).format('hh:mm a')} - {moment(hours.Tuesday.endTime).format('hh:mm a')} <br />
-				Wednesday: {moment(hours.Wednesday.startTime).format('hh:mm a')} - {moment(hours.Wednesday.endTime).format('hh:mm a')} <br />
-				Thursday: {moment(hours.Thursday.startTime).format('hh:mm a')} - {moment(hours.Thursday.endTime).format('hh:mm a')} <br />
-				Friday: {moment(hours.Friday.startTime).format('hh:mm a')} - {moment(hours.Friday.endTime).format('hh:mm a')} <br />
-				Saturday: {moment(hours.Saturday.startTime).format('hh:mm a')} - {moment(hours.Saturday.endTime).format('hh:mm a')} <br />
-				Sunday: {moment(hours.Sunday.startTime).format('hh:mm a')} - {moment(hours.Sunday.endTime).format('hh:mm a')}
-			</div>
-		);*/
 	}
 
 	render() {
-		if(!this.props.listing.isPosted) {
-			this.props.getAllListings();
-		}
-
 		var businessListings = [];
-		for(let listing of Object.values(this.props.listing.browseListing)) {
+		for(let listing of Object.values(this.state.browseListings)) {
 			businessListings.push(this.businessCard(listing));
 		}
 
@@ -90,7 +97,6 @@ class Browse extends React.Component {
 }
 
 Browse.propTypes = {
-	getAllListings: PropTypes.func.isRequired,
 	listing: PropTypes.object.isRequired
 };
 
@@ -99,6 +105,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-	mapStateToProps,
-	{getAllListings}
+	mapStateToProps
 )(Browse); 
