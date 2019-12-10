@@ -1,4 +1,5 @@
 var Tag = require('../models/tag.model.js');
+var Biz = require('../models/biz.model.js');
 
 // ---------------------------------------------------------------- //
 
@@ -8,6 +9,26 @@ exports.findTag = function(req, cb) {
 		if (err) throw err;
 		console.log("Found: ", found);
 		cb(found);
+	});
+};
+
+// ---------------------------------------------------------------- //
+
+exports.updateTag = function(req, cb) {	
+	var findThis = { 
+		email: req.body.email,
+		title: req.body.name
+	};
+	var updates = {
+		typetag: req.body.typetag,
+		loctag: req.body.loctag
+	};
+		
+	var nowDate = new Date();
+	updates.updated_at = nowDate;
+
+	Biz.findOneAndUpdate(findThis, updates, function(err) {
+		if (err) return cb(err);
 	});
 };
 
@@ -49,93 +70,13 @@ exports.createTag2 = function(req, cb) {
 		typetag: req.body.typetag,
 		loctag: req.body.loctag
 	};
-	console.log("UPDATES: ", updates);
+	var nowDate = new Date();
+	updates.updated_at = nowDate;
 
 	Tag.findOneAndUpdate(findThis, updates, function(err) {
 		if (err) return cb(err);
 	});
-
-/*
-	var tagz = new Tag(req.body);
-
-	console.log("creating tag", tagz);
-
-	tagz.save(function(err) {
-		if(err) return cb(err);
-	});
-*/
 };
-
-/*
-
-
-exports.createTag2 = function(req, cb) {
-	var newTag = req.email;
-
-	var nowDate = new Date();
-	newTag.updated_at = nowDate;
-
-	if (req.hasOwnProperty('typetag'))
-		newTag.typetag = updates.typetag;
-	if (req.hasOwnProperty('loctag'))
-		newTag.loctag = updates.loctag;
-	
-	
-	newTag.save(function(err) {
-		if(err) 
-			return cb(err);
-		else
-			console.log('update success.');		
-	});
-};
-
-var updateTagza = function() {
-	var findEmail = { email: "bizUPDATE@domain.com" };
-	var updateProp = { 
-		typetag: "UPDATED type tag",
-		loctag: "UPDATED loc tag" 
-	};
-
-	tagFunction.findTag(findEmail, function(found) {
-		tagFunction.updateTag(found, updateProp, function(result) {
-			console.log('The business tag was updated to: ');
-			console.log(result);
-		});		
-	});
-}
-
-
-
-// Updates listing from an already found listing
-exports.updateTag = function(req, updates, cb) {
-	// req - the found listing to change
-	// for changing the listings you cannot change email 
-		
-	var newTag = req;
-	var nowDate = new Date();
-	newTag.updated_at = nowDate;
-	console.log(updates);
-	
-	if (updates.hasOwnProperty('typetag'))
-		newTag.typetag = updates.typetag;
-	if (updates.hasOwnProperty('loctag'))
-		newTag.loctag = updates.loctag;
-	
-	newTag.save(function(err) {
-		if (err)
-			console.log(err);
-		else
-			console.log('Update success.');
-	});
-
-	cb(newTag);
-};
-
-
-
-*/
-
-
 
 // ---------------------------------------------------------------- //
 
@@ -163,6 +104,7 @@ exports.deleteTag = function(req, cb) {
 
 // ---------------------------------------------------------------- //
 
+/*
 // Updates listing from an already found listing
 exports.updateTag = function(req, updates, cb) {
 	// req - the found listing to change
@@ -187,6 +129,7 @@ exports.updateTag = function(req, updates, cb) {
 
 	cb(newTag);
 };
+*/
 
 // ---------------------------------------------------------------- //
 
