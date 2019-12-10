@@ -1,4 +1,5 @@
-import {ADD_IMAGE, GET_LISTINGS, COMPLETE_LISTINGS, GET_ITEM} from "../actions/types";
+import {ADD_IMAGE, GET_LISTINGS, GET_ITEM} from "../actions/types";
+import {LOCATION_CHANGE} from 'react-router-redux';
 
 const initialState = {
 	currentListing: {},
@@ -23,7 +24,7 @@ export default function(state = initialState, action) {
 				...state,
 				currentListing: action.payload
 			}
-		case COMPLETE_LISTINGS:
+		case LOCATION_CHANGE:
 			return {
 				...state,
 				currentListing: {},

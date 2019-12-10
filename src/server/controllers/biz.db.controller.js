@@ -31,11 +31,11 @@ exports.createBiz = function(req, cb) {
 	var newListing = new Biz(req.body);
 	console.log("creating biz", newListing);
 
-	cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
+	/*cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
 		if (err) throw err;
 		req.body.image = result.secure_url; 
 		req.body.imageId = result.public_id; 
-	});
+	});*/
 
 	newListing.save(function(err) {
 		if(err) return cb(err);
@@ -127,10 +127,40 @@ exports.findAll = function(req, cb) {
 
 // ---------------------------------------------------------------- //
 
+/**
+ * Allows the admin to update a listing in Biz
+ * 
+ * req will host the id of the listing to be updated
+ * {_id: 123}
+ * 
+ * updates will host the updates wanted to be made on the listing
+ * {item1: update_to_this, item2: update_to_that}
+ */
+
 exports.adminUpdate = function(req, updates, cb) {
 	console.log("Attempting to update: ", req, " with: ", updates);
 	Biz.findOneAndUpdate(req, updates,{upsert: true}, function(err) {
 		if (err) return cb(err);
 		console.log("Successfully updated: ", req, "with", updates);
 	});
+}
+
+// ---------------------------------------------------------------- //
+
+/**
+ * Counts all items in Biz that meet certain criteria
+ * 
+ * The criteria will be defined in req with the format
+ * {item1: criteria1, item2: criteria2, ...}
+ */
+
+exports.countAll = function(req, cb) {
+	console.log("Attempting to count all items with criteria", req);
+	Biz.find(req, function(err, res) {
+		if (err) {
+			console.log("Error while counting req", req, err);
+			throw err;
+		}
+		return cb(res.length);
+	})
 }

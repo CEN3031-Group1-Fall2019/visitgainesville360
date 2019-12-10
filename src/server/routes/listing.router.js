@@ -29,7 +29,6 @@ router.post("/browse", function(req, res) {
 
 	biz.findAll(req, function(err, listings) {
 		if (err) throw err;
-
 		console.log("Found all within router. Returning a json");
 		return res.json(listings);
 	});
