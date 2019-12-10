@@ -1,8 +1,3 @@
-// TK is using this to test all the backend functions, please do not edit/delete this file.
-// TK is using this to test all the backend functions, please do not edit/delete this file.
-// TK is using this to test all the backend functions, please do not edit/delete this file.
-
-
 'use strict';
 
 var mongoose = require('mongoose'), 
