@@ -79,10 +79,10 @@ class ViewListing extends React.Component {
 		console.log("The current listing: ", this.state.currentListing);
 		return (
 			<div className="d-flex flex-row justify-content-center">
-				<div className="card-view m-4">
+				<div className="card-view d-flex flex-row m-4">
 					<Card>
 						{this.state.currentListing.image ? this.renderImg() : ''}
-					<div className="card-body d-flex flex-row">
+					<div className="card-body">
 					<Card.Body>
 						<Card.Title>{this.state.currentListing.title ? this.state.currentListing.title : ''}</Card.Title>
 						<Card.Text>{this.state.currentListing.phone ? this.state.currentListing.phone : ''}</Card.Text>
