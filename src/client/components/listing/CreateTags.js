@@ -2,7 +2,7 @@ import React from 'react';
 import 'filepond/dist/filepond.min.css';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
 import "react-datepicker/dist/react-datepicker.css";
-import {Form, Col, Row } from 'react-bootstrap';
+import {Form, Col } from 'react-bootstrap';
 import {createTags} from "../../actions/listing.actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";

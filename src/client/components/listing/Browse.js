@@ -7,7 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 
+
+//	typetag: {type: String},
+//	loctag: {type: String},
+
 class Browse extends React.Component {
+
 	businessCard = listing => {
 		if(listing.isApproved) {
 			return (
@@ -19,11 +24,23 @@ class Browse extends React.Component {
 					<Card.Text>{listing.address}<br />
 					{listing.city}, {listing.state} {listing.zip}</Card.Text>
 					<Card.Text>{listing.description}</Card.Text>
+					<Card.Text>{this.renderTags(listing)}</Card.Text>
 					<Card.Body>{this.renderHours(listing.hours)}</Card.Body>
 					<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
 				</Card.Body>
 				</Card>);
 		} else return null;
+	}
+	
+	renderTags = (listing) => {
+		if (listing.hasOwnProperty('typetag') || listing.hasOwnProperty('loctag'))
+		{
+			return (
+				<div>
+					Tags: {listing.typetag} {listing.loctag}
+				</div>
+			);
+		}
 	}
 
 	renderHours = (hours) => {
