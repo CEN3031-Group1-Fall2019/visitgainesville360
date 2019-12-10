@@ -79,7 +79,7 @@ class ViewListing extends React.Component {
 		console.log("The current listing: ", this.state.currentListing);
 		return (
 			<div className="d-flex flex-row justify-content-center">
-				<div className="card-view d-flex flex-row m-4">
+				<div className="card-view flex-col m-4">
 					<Card>
 						{this.state.currentListing.image ? this.renderImg() : ''}
 					<div className="card-body">
@@ -94,7 +94,8 @@ class ViewListing extends React.Component {
 						<Card.Text>{this.renderTags()}</Card.Text>
 						<Card.Text>{this.renderHours(this.state.currentListing.hours)}</Card.Text>
 						{this.adminControls()}
-					</Card.Body></div>
+					</Card.Body>
+					</div>
 					</Card>
 				</div>
 			</div>
