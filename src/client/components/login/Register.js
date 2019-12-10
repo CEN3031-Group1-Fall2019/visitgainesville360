@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
 import {registerUser} from "../../actions/login.actions"
-import {validateRegisterInput} from "../../actions/validate.action";
+import {validateRegisterInput} from "../../utils/validate";
 
 class Register extends React.Component {
 	constructor() {

@@ -18,16 +18,14 @@ router.post("/tag", function(req) {
 });
 
 router.post("/get", function(req, res) {
-	console.log("Routing to get a listing");
+	console.log("Routing to get a listing", req.body);
 	var findById = {
-		_id: req._id
+		_id: req.body.id
 	}
 	console.log("using the request: ", findById);
 
-	biz.findBiz(findById, function(err, listing) {
-		if (err) throw err;
-
-		console.log("Found the listing: ", listing);
+	biz.findBiz(findById, function(listing) {
+		console.log("Found the listing and returning");
 		return res.json(listing);
 	});
 });

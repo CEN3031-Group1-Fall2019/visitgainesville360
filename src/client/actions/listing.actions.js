@@ -37,27 +37,9 @@ export const createTags = (tagData) => () => {
 export const getSingleListing = listingId => dispatch => {
 	Axios
 	.post("/listings/get")
-	.then(res => dispatch({
-			type: GET_ITEM,
-			payload: res.data
-		}).catch(err => {
-			console.log("Error while adding image", err);
-		}))
-	.catch(err => {
-		console.log("Error getting all listings");
-		console.log(err);
-	});
-};
-
-export const getAdminApproveListings = () => dispatch => {
-	Axios
-	.post("/listings/admin")
-	.then(res => dispatch({
-			type: GET_LISTINGS,
-			payload: res.data
-		}).catch(err => {
-			console.log("Error while adding image", err);
-		}))
+	.then(res => {
+		dispatch(getAListing(res.data));
+	})
 	.catch(err => {
 		console.log("Error getting all listings");
 		console.log(err);
@@ -82,3 +64,10 @@ export const getListings = data => {
 	  	payload: data
 	};
 };
+
+export const getAListing = data => {
+	return {
+		type: GET_ITEM,
+		payload: data
+	};
+}

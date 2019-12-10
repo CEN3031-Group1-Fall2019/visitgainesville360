@@ -26,7 +26,7 @@ class App extends React.Component {
 					<Switch>
 						<Route exact path="/samplepage" component={DashboardPlaceholder} />
 						<Route exact path="/admin-dashboard" component={AdminDashboard} />
-						<Route exact path="/listing" component={ViewListing} />
+						<Route exact path="/listing/:listingId" component={ViewListing} />
 						<Route exact path="/admin-listings" component={AdminListings} />
 						<Route exact path="/browse" component={Browse} />
 						<Route exact path="/register" component={Register} />

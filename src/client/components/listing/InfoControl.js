@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {updateListing} from "../../actions/admin.actions";
 import {connect} from "react-redux";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faThumbsUp, faThumbsDown, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import {Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
@@ -20,9 +20,7 @@ class AdminListings extends React.Component {
 		return (
 			<div>
 				<Link
-					to={`/listing/${this.state.currentListing._id}`}
-					{...this.props}
-					currentListing={this.state.currentListing}>
+					to={`/listing/${this.state.currentListing._id}`}>
 					<Button variant="info">
 						<FontAwesomeIcon icon={faInfoCircle}/>
 					</Button>

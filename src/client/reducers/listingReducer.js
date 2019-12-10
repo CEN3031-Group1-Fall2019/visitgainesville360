@@ -9,10 +9,6 @@ const initialState = {
 
 export default function(state = initialState, action) {
 	switch (action.type) {
-		case ADD_IMAGE:
-			return {
-				...state
-			};
 	  	case GET_LISTINGS:
 			return {
 				...state,
@@ -22,7 +18,8 @@ export default function(state = initialState, action) {
 		case GET_ITEM:
 			return {
 				...state,
-				currentListing: action.payload
+				currentListing: action.payload,
+				isPosted: true
 			}
 		case LOCATION_CHANGE:
 			return {
