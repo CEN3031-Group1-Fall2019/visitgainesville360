@@ -12,7 +12,7 @@ router.post("/create", function(req) {
 
 router.post("/tag", function(req) {
 	console.log("Routing to tagging");
-	tag.createTag(req, function(err) {
+	tag.createTag2(req, function(err) {
 		if (err) throw err;
 	});
 });

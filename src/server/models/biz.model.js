@@ -7,6 +7,8 @@ var bizSchema = new Schema({
 	email: { type: String, required: true },
 	isApproved: {type: Boolean, default: false},
 	isDenied: {type: Boolean, default: false},
+	typetag: {type: String},
+	loctag: {type: String},
 	address: String,
 	phone: String,
 	state: String,
