@@ -16,8 +16,7 @@ class ViewListing extends React.Component {
 
 	componentDidMount() {
 		var pathname = this.props.location.pathname;
-		var listingId = pathname.substring(pathname.lastIndexOf("/") + 1);;
-		console.log("this is it", listingId);
+		var listingId = pathname.substring(pathname.lastIndexOf("/") + 1);
 
 		Axios
 		.post("/listings/get", {id: listingId})
@@ -83,7 +82,7 @@ class ViewListing extends React.Component {
 				<div className="card-view m-4">
 					<Card>
 						{this.state.currentListing.image ? this.renderImg() : ''}
-					<div className="card-body">
+					<div className="card-body d-flex flex-row">
 					<Card.Body>
 						<Card.Title>{this.state.currentListing.title ? this.state.currentListing.title : ''}</Card.Title>
 						<Card.Text>{this.state.currentListing.phone ? this.state.currentListing.phone : ''}</Card.Text>
