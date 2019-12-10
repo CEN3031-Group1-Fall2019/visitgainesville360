@@ -86,6 +86,10 @@ class AdminListings extends React.Component {
 			console.log("Does not have authentication");
 			this.props.history.push("/login");
 		}
+		
+		if(!this.props.listing.isPosted) {
+			this.props.getAllListings();
+		}
 
 		var businessListings = [];
 		for(let listing of Object.values(this.props.listing.browseListing)) {

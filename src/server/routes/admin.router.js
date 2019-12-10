@@ -11,4 +11,14 @@ admin.post("/update", function(req) {
 	});
 });
 
+admin.post("/notification", function(req, res) {
+	console.log("Routing to notify listings");
+	var query = req.body;
+	console.log("with query", query);
+	biz.countAll(query, function(count) {
+		console.log("Counted", count);
+		return res.json(count);
+	});
+});
+
 module.exports = admin;
