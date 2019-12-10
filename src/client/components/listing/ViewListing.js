@@ -78,7 +78,7 @@ class ViewListing extends React.Component {
 	render() {
 		console.log("The current listing: ", this.state.currentListing);
 		return (
-			<div className="d-flex flex-row justify-content-center">
+			<div className="d-flex justify-content-center">
 				<div className="card-view flex-col m-4">
 					<Card>
 						{this.state.currentListing.image ? this.renderImg() : ''}
