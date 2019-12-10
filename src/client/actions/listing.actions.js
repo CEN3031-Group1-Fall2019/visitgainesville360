@@ -25,6 +25,15 @@ export const createListing = (listingData) => () => {
 	});
 };
 
+export const createTags = (tagData) => () => {
+	Axios
+	.post("/listings/tag", tagData)
+	.catch(err => {
+		console.log("Error during listing creation: ", tagData);
+		console.log(err);
+	});
+};
+
 export const getSingleListing = listingId => dispatch => {
 	Axios
 	.post("/listings/get")

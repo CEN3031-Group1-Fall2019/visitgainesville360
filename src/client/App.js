@@ -12,6 +12,7 @@ import AdminListings from './components/admin/AdminListings';
 import AdminDashboard from './components/admin/AdminDashboard';
 import AdminMenu from './components/admin/AdminMenu';
 import CreateListing from './components/listing/CreateListing';
+import CreateTags from './components/listing/CreateTags';
 import Browse from './components/listing/Browse';
 import AdminListingInfo from './components/admin/AdminListingInfo';
 
@@ -32,6 +33,7 @@ class App extends React.Component {
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/create-listing" component={CreateListing} />
+						<Route exact path="/create-tags" component={CreateTags} />
 					</Switch>
 				</div>
 				</Router>
