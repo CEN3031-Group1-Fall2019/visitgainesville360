@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import Axios from "axios";
-import {
-	POST_ALL_LISTINGS
-} from "./types";
-
-export const createListing = (listingData) => () => {
-	console.log("Axios to createlisting");
-=======
 import {ADD_IMAGE} from "./types";
 import Axios from "axios";
 
@@ -26,7 +17,6 @@ export const addImage = imageData => dispatch => {
 };
 
 export const createListing = (listingData) => () => {
->>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6
 	Axios
 	.post("/listings/create", listingData)
 	.catch(err => {
@@ -35,28 +25,6 @@ export const createListing = (listingData) => () => {
 	});
 };
 
-<<<<<<< HEAD
-export const getAllListings = () => dispatch => {
-	console.log("Axios to createlisting");
-	Axios
-	.post("/listings/browse")
-	.then(res => {
-		console.log("GETTING RES", res);
-		dispatch(postAllListings(res.data));
-	})
-	.catch(err => {
-		console.log("Error getting all listings");
-		console.log(err);
-	});
-};
-
-export const postAllListings = allListings => {
-	return {
-		type: POST_ALL_LISTINGS,
-	  	payload: allListings
-	};
-};
-=======
 export const createTags = (tagData) => () => {
 	Axios
 	.post("/listings/tag", tagData)
@@ -65,4 +33,3 @@ export const createTags = (tagData) => () => {
 		console.log(err);
 	});
 };
->>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6
