@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var tagSchema = new Schema({
-	name: {type: String, required: true},
+	name: {type: String, required: true, unique: true},
 	email: {type: String, required: true},
 	typetag: {type: String},
 	loctag: {type: String},

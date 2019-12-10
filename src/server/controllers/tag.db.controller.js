@@ -31,7 +31,7 @@ exports.createTag = function(req, cb) {
 
 exports.deleteTag = function(req, cb) {	
 
-	this.findListing(req, function(found) {
+	this.findTag(req, function(found) {
 //		var id = found[0]._id;
 		var id = found._id;
 		var param = { _id: id };	
@@ -61,11 +61,12 @@ exports.updateTag = function(req, updates, cb) {
 	var newTag = req;
 	var nowDate = new Date();
 	newTag.updated_at = nowDate;
+	console.log(updates);
 	
 	if (updates.hasOwnProperty('typetag'))
-		newTag.phone = updates.phone;
+		newTag.typetag = updates.typetag;
 	if (updates.hasOwnProperty('loctag'))
-		newTag.description = updates.description;
+		newTag.loctag = updates.loctag;
 	
 	newTag.save(function(err) {
 		if (err)
