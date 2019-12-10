@@ -16,32 +16,51 @@ class AdminListings extends React.Component {
 		};
 	}
 
-	approveBusiness = listing => {
+	updateBusiness = (listing, updates)  => {
 		return function(){
 			var updateData = {
 				listing: listing,
-				updates: {
-					isApproved: true
-				}
+				updates: updates
 			}
 			this.props.updateListing(updateData);
 		}
 	}
 
 	approveButton = listing => {
+		var updates = {
+			isApproved: true
+		};
+
 		return (
 			<div>
 				<Button 
 					variant="success"
-					onClick={this.approveBusiness(listing).bind(this)}>
+					onClick={this.updateBusiness(listing, updates).bind(this)}>
 					<FontAwesomeIcon icon={faThumbsUp}/>
 				</Button>
         	</div>
 		);
 	}
 
+	denyButton = listing => {
+		var updates = {
+			isApproved: false,
+			isDenied: true
+		};
+
+		return (
+			<div>
+				<Button 
+					variant="danger"
+					onClick={this.updateBusiness(listing, updates).bind(this)}>
+					<FontAwesomeIcon icon={faThumbsDown}/>
+				</Button>
+        	</div>
+		);
+	}
+
 	businessCard = (listing) => {
-		if(!listing.isApproved) {
+		if(!listing.isApproved && !listing.isDenied) {
 			return(
 				<Card border="dark" style={{ width: '12rem', }}>
 				<Card.Img variant="top" src={listing.image} />
@@ -53,7 +72,7 @@ class AdminListings extends React.Component {
 					<Card.Text>{listing.description}</Card.Text>
 					<div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
 						{this.approveButton(listing)}
-						<Link to='/deny'><Button style={{flex:'1'}} variant="danger"><FontAwesomeIcon icon={faThumbsDown}/></Button></Link>
+						{this.denyButton(listing)}
 						<Link to='/view'><Button style={{flex:'1'}}variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button></Link>
 					</div>
 				</Card.Body>
