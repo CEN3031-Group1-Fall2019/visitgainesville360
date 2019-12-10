@@ -13,7 +13,9 @@ exports.findTag = function(req, cb) {
 
 // ---------------------------------------------------------------- //
 
+/*
 exports.createTag = function(req, cb) {
+	console.log("you are in createTag");
 	var tagz = new Tag(req);
 
 	tagz.save(function(err) {
@@ -26,6 +28,17 @@ exports.createTag = function(req, cb) {
 	
 	cb(tagz);
 };
+*/
+
+exports.createTag = function(req, cb) {
+	var tagz = new Tag(req.body);
+	console.log("creating tag", tagz);
+
+	tagz.save(function(err) {
+		if(err) return cb(err);
+	});
+};
+
 
 // ---------------------------------------------------------------- //
 

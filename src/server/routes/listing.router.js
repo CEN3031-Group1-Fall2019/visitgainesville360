@@ -1,10 +1,18 @@
 var express = require("express"),
 	router = express.Router(),
+	tag = require('../controllers/tag.db.controller'),
 	biz = require('../controllers/biz.db.controller');
 
 router.post("/create", function(req) {
 	console.log("Routing to create listing");
 	biz.createBiz(req, function(err) {
+		if (err) throw err;
+	});
+});
+
+router.post("/tag", function(req) {
+	console.log("Routing to tagging");
+	tag.createTag(req, function(err) {
 		if (err) throw err;
 	});
 });
