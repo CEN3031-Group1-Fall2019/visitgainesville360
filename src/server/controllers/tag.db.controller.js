@@ -1,4 +1,5 @@
 var Tag = require('../models/tag.model.js');
+var Biz = require('../models/biz.model.js');
 
 // ---------------------------------------------------------------- //
 
@@ -8,6 +9,26 @@ exports.findTag = function(req, cb) {
 		if (err) throw err;
 		console.log("Found: ", found);
 		cb(found);
+	});
+};
+
+// ---------------------------------------------------------------- //
+
+exports.updateTag = function(req, cb) {	
+	var findThis = { 
+		email: req.body.email,
+		title: req.body.name
+	};
+	var updates = {
+		typetag: req.body.typetag,
+		loctag: req.body.loctag
+	};
+		
+	var nowDate = new Date();
+	updates.updated_at = nowDate;
+
+	Biz.findOneAndUpdate(findThis, updates, function(err) {
+		if (err) return cb(err);
 	});
 };
 
@@ -40,6 +61,23 @@ exports.createTag = function(req, cb) {
 };
 
 
+exports.createTag2 = function(req, cb) {	
+	var findThis = { 
+		email: req.body.email,
+		name: req.body.name
+	};
+	var updates = {
+		typetag: req.body.typetag,
+		loctag: req.body.loctag
+	};
+	var nowDate = new Date();
+	updates.updated_at = nowDate;
+
+	Tag.findOneAndUpdate(findThis, updates, function(err) {
+		if (err) return cb(err);
+	});
+};
+
 // ---------------------------------------------------------------- //
 
 exports.deleteTag = function(req, cb) {	
@@ -66,6 +104,7 @@ exports.deleteTag = function(req, cb) {
 
 // ---------------------------------------------------------------- //
 
+/*
 // Updates listing from an already found listing
 exports.updateTag = function(req, updates, cb) {
 	// req - the found listing to change
@@ -90,6 +129,7 @@ exports.updateTag = function(req, updates, cb) {
 
 	cb(newTag);
 };
+*/
 
 // ---------------------------------------------------------------- //
 
