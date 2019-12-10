@@ -1,82 +1,72 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {getAllListings} from "../../actions/listing.actions";
 import {updateListing} from "../../actions/admin.actions";
 import {connect} from "react-redux";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faThumbsDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import {CardDeck, Card, Button} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {CardDeck, Card} from "react-bootstrap";
+import AdminControls from './AdminControls';
+import InfoControl from '../listing/InfoControl';
+import Axios from "axios";
 
 class AdminListings extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
-			hasListings: false
+			browseListings: ''
 		};
 	}
 
-	updateBusiness = (listing, updates)  => {
-		return function(){
-			var updateData = {
-				listing: listing,
-				updates: updates
-			}
-			this.props.updateListing(updateData);
-		}
+	componentDidMount() {
+		Axios
+		.post("/listings/browse")
+		.then(res => {
+			this.setState({
+				browseListings: res.data
+			});
+		})
+		.catch(err => {
+			console.log("Error getting all listings");
+			console.log(err);
+		});
 	}
 
-	approveButton = listing => {
-		var updates = {
-			isApproved: true
-		};
-
-		return (
-			<div>
-				<Button 
-					variant="success"
-					onClick={this.updateBusiness(listing, updates).bind(this)}>
-					<FontAwesomeIcon icon={faThumbsUp}/>
-				</Button>
-        	</div>
-		);
+	componentDidUpdate() {
+		Axios
+		.post("/listings/browse")
+		.then(res => {
+			this.setState({
+				browseListings: res.data
+			});
+		})
+		.catch(err => {
+			console.log("Error getting all listings");
+			console.log(err);
+		});
 	}
 
-	denyButton = listing => {
-		var updates = {
-			isApproved: false,
-			isDenied: true
-		};
-
-		return (
-			<div>
-				<Button 
-					variant="danger"
-					onClick={this.updateBusiness(listing, updates).bind(this)}>
-					<FontAwesomeIcon icon={faThumbsDown}/>
-				</Button>
-        	</div>
-		);
-	}
-
-	businessCard = (listing) => {
+	businessCard = listing => {
 		if(!listing.isApproved && !listing.isDenied) {
 			return(
-				<Card border="dark" style={{ width: '12rem', }}>
-				<Card.Img variant="top" src={listing.image} />
+				<div className="m-2 card-browse">
+				<Card>
+				<Card.Img variant="top" src={listing.image}  className="card-img"/>
+				<div className="card-body">
 				<Card.Body>
 					<Card.Title>{listing.title}</Card.Title>
 					<Card.Text>{listing.phone}</Card.Text>
 					<Card.Text>{listing.address}<br />
 					{listing.city}, {listing.state} {listing.zip}</Card.Text>
 					<Card.Text>{listing.description}</Card.Text>
-					<div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-						{this.approveButton(listing)}
-						{this.denyButton(listing)}
-						<Link to='/view'><Button style={{flex:'1'}}variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button></Link>
+					<div className="d-flex flex-row justify-content-center align-items-end">
+					<AdminControls
+						{...this.props}
+						currentListing={listing} />
+					<InfoControl
+						{...this.props}
+						currentListing={listing} />
 					</div>
-				</Card.Body>
+				</Card.Body></div>
 				</Card>
+				</div>
 			)
 		} else return null;
 	}
@@ -86,22 +76,18 @@ class AdminListings extends React.Component {
 			console.log("Does not have authentication");
 			this.props.history.push("/login");
 		}
-		
-		if(!this.props.listing.isPosted) {
-			this.props.getAllListings();
-		}
 
 		var businessListings = [];
-		for(let listing of Object.values(this.props.listing.browseListing)) {
+		for(let listing of Object.values(this.state.browseListings)) {
 			businessListings.push(this.businessCard(listing));
 		}
 
 		return (
-			<div className="container">
+			<div className="container listings">
 				<p className="page-header">Overview of Recent Acitity</p>
 				<hr />
 				<p className="sub-header">Listing Requests</p>
-				<CardDeck>{businessListings}</CardDeck>
+				<CardDeck className="row">{businessListings}</CardDeck>
         	</div>
 		);
 	}
@@ -109,7 +95,6 @@ class AdminListings extends React.Component {
 
 AdminListings.propTypes = {
 	updateListing: PropTypes.func.isRequired,
-	getAllListings: PropTypes.func.isRequired,
 	listing: PropTypes.object.isRequired
 };
 
@@ -120,5 +105,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{getAllListings, updateListing}
+	{updateListing}
 )(AdminListings);

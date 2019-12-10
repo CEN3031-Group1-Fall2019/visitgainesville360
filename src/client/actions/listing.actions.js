@@ -1,4 +1,4 @@
-import { ADD_IMAGE, GET_LISTINGS, GET_ITEM} from "./types";
+import {ADD_IMAGE} from "./types";
 import Axios from "axios";
 
 export const addImage = imageData => dispatch => {
@@ -32,53 +32,4 @@ export const createTags = (tagData) => () => {
 		console.log("Error during listing creation: ", tagData);
 		console.log(err);
 	});
-};
-
-export const getSingleListing = listingId => dispatch => {
-	Axios
-	.post("/listings/get")
-	.then(res => dispatch({
-			type: GET_ITEM,
-			payload: res.data
-		}).catch(err => {
-			console.log("Error while adding image", err);
-		}))
-	.catch(err => {
-		console.log("Error getting all listings");
-		console.log(err);
-	});
-};
-
-export const getAdminApproveListings = () => dispatch => {
-	Axios
-	.post("/listings/admin")
-	.then(res => dispatch({
-			type: GET_LISTINGS,
-			payload: res.data
-		}).catch(err => {
-			console.log("Error while adding image", err);
-		}))
-	.catch(err => {
-		console.log("Error getting all listings");
-		console.log(err);
-	});
-};
-
-export const getAllListings = () => dispatch => {
-	Axios
-	.post("/listings/browse")
-	.then(res => {
-		dispatch(getListings(res.data));
-	})
-	.catch(err => {
-		console.log("Error getting all listings");
-		console.log(err);
-	});
-};
-
-export const getListings = data => {
-	return {
-	  	type: GET_LISTINGS,
-	  	payload: data
-	};
 };

@@ -1,10 +1,6 @@
 import {combineReducers} from "redux";
 import loginReducer from "./loginReducer";
-import listingReducer from "./listingReducer";
-import adminReducer from "./adminReducer";
 
 export default combineReducers ({
-  	login: loginReducer,
-	listing: listingReducer,
-	admin: adminReducer
+  	login: loginReducer
 });

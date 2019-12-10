@@ -2,35 +2,32 @@ html, body, .App {
 	background-color: #363637;
 	color: #ECECEC;
 }
-
-/** COLORS
-	#008B8B
-	#264653
-	#CCAC5B
-	#363637
-	#ECECEC
-**/
+.min-100, .App {
+	height: 100%;
+	width: 100%;
+	min-width: 100% !important;
+	min-height: 100% !important;
+}
 
 /*** GENERAL ***/
 .link {
 	color: #008B8B;
 }
 .link:hover {
-	color: #363637;
+	color: #CCAC5B;
+	text-decoration: none;
 }
 .button {
 	width: 125px;
 	border-radius: .25rem;
 	margin: 0px;
-	color: #264653;
 	border-color: #264653;
-}
-.button-background {
 	background-color: #008B8B;
 	color: #ECECEC;
 }
-.button-outline-gray {
+.button-transparent {
 	background-color: transparent;
+	color: #264653;
 }
 .button:hover {
 	border-radius: .25rem;
@@ -53,29 +50,29 @@ html, body, .App {
 	font-size: 2rem;
 	font-weight: normal bold; 
 }
+.listings {
+	padding-left: 25rem;
+}
+.listing-img {
+	height: 500px;
+	width: 500px;
+}
+.card-img {
+	height: 250px;
+	width: 250px;
+}
 
 /*** MENU ***/
 .menu {
-	display: flex;
-	align-self: stretch;
-	flex-flow: row wrap;
 	background-color: #ECECEC;
 	padding: 1rem;
 }
 .menu > * {
 	flex-grow: 1;
 }
-.menu-row {
-	justify-content: flex-start center;
-}
-.menu-login {
-	justify-content: flex-end center;
-}
 .menu-link {
-	flex: 1;
 	padding-left: 1rem;
 	padding-right: 1rem;
-	align-self: center;
 	font-size: 2rem;
 	font-weight: bold;
 	color: #363637;
@@ -84,15 +81,11 @@ html, body, .App {
 	color: #CCAC5B;
 	text-decoration: none;
 }
-.menu-button {
-	align-self: center;
-	justify-content: space-evenly;
-	margin-left: 2rem;
-}
 
 /*** ADMIN-MENU ***/
 .admin-menu-container {
 	width: 20rem;
+    margin: 0 33% 0 0;
 	max-width: 40%;
     position: absolute;
 	height: 100%;
@@ -135,10 +128,32 @@ hr {
 	background-color: #ECECEC;
 	height: 5px;
 }
+.card-browse {
+	width: 25%;
+}
+.card-view {
+	width: 550px;
+}
 .card {
-	width: 30rem;
+	padding: 5px;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .13);
+	border-radius: 4px;
+	display: flex;
+	flex-direction: row;
 	background-color: #ECECEC;
 	color: #363637;
+	border-color:#363637;
+}
+.card-body {
+	flex: 1 0 auto;
+	align-items: flex-end;
+	justify-content: center;
+}
+.card-action {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 16px;
 }
 
 /*** FORMS ***/

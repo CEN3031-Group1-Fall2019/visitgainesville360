@@ -1,22 +1,45 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getAllListings} from "../../actions/listing.actions";
-import {CardDeck, Card, Button} from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import {CardDeck, Card} from "react-bootstrap";
 import moment from 'moment';
-
-
-//	typetag: {type: String},
-//	loctag: {type: String},
+import Axios from "axios";
+import InfoControl from './InfoControl';
 
 class Browse extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			browseListings: ''
+		};
+	}
+
+	//	typetag: {type: String},
+	//	loctag: {type: String},
+
+	componentDidMount() {
+		var pathname = this.props.location.pathname;
+		var listingId = pathname.substring(pathname.lastIndexOf("/") + 1);;
+		console.log("this is it", listingId);
+
+		Axios
+		.post("/listings/browse")
+		.then(res => {
+			this.setState({
+				browseListings: res.data
+			});
+		})
+		.catch(err => {
+			console.log("Error getting all listings");
+			console.log(err);
+		});
+	}
 
 	businessCard = listing => {
 		if(listing.isApproved) {
 			return (
-				<Card border='dark' style={{ width: '30rem' }}>
+				<div className="card-browse">
+				<Card>
 				<Card.Img variant="top" src={listing.image} />
 				<Card.Body>
 					<Card.Title>{listing.title}</Card.Title>
@@ -26,12 +49,16 @@ class Browse extends React.Component {
 					<Card.Text>{listing.description}</Card.Text>
 					<Card.Text>{this.renderTags(listing)}</Card.Text>
 					<Card.Body>{this.renderHours(listing.hours)}</Card.Body>
-					<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
+					<div className="d-flex justify-content-center">
+					<InfoControl
+						{...this.props}
+						currentListing={listing} /></div>
 				</Card.Body>
-				</Card>);
+				</Card>
+				</div>);
 		} else return null;
 	}
-	
+
 	renderTags = (listing) => {
 		if (listing.hasOwnProperty('typetag') || listing.hasOwnProperty('loctag'))
 		{
@@ -42,34 +69,33 @@ class Browse extends React.Component {
 			);
 		}
 	}
-
+	
 	renderHours = (hours) => {
-		return (
-			<div>
-				Monday: {moment(hours.Monday.startTime).format('hh:mm a')} - {moment(hours.Monday.endTime).format('hh:mm a')} <br />
-				Tuesday: {moment(hours.Tuesday.startTime).format('hh:mm a')} - {moment(hours.Tuesday.endTime).format('hh:mm a')} <br />
-				Wednesday: {moment(hours.Wednesday.startTime).format('hh:mm a')} - {moment(hours.Wednesday.endTime).format('hh:mm a')} <br />
-				Thursday: {moment(hours.Thursday.startTime).format('hh:mm a')} - {moment(hours.Thursday.endTime).format('hh:mm a')} <br />
-				Friday: {moment(hours.Friday.startTime).format('hh:mm a')} - {moment(hours.Friday.endTime).format('hh:mm a')} <br />
-				Saturday: {moment(hours.Saturday.startTime).format('hh:mm a')} - {moment(hours.Saturday.endTime).format('hh:mm a')} <br />
-				Sunday: {moment(hours.Sunday.startTime).format('hh:mm a')} - {moment(hours.Sunday.endTime).format('hh:mm a')}
-			</div>
-		);
+		if(hours !== undefined) {
+			var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+			var displayHours = [];
+	
+			for(let day of daysOfWeek) {
+				if(hours.day !== undefined) {
+					displayHours.push(<div>{day}: {moment(hours.day.startTime).format('hh:mm a')} - {moment(hours.day.endTime).format('hh:mm a')} <br /></div>);
+				}
+			}
+			
+			return displayHours;
+		} return null;
 	}
 
 	render() {
-		if(!this.props.listing.isPosted) {
-			this.props.getAllListings();
-		}
-
 		var businessListings = [];
-		for(let listing of Object.values(this.props.listing.browseListing)) {
+		for(let listing of Object.values(this.state.browseListings)) {
 			businessListings.push(this.businessCard(listing));
 		}
 
 		return (
-			<div className="d-flex justify-content-center p-5">
-				<CardDeck>{businessListings}</CardDeck>
+			<div className="d-flex flex-row m-5">
+				<div className="justify-content-right m-6">
+					<CardDeck>{businessListings}</CardDeck>
+				</div>
 			</div>
 		);
 	}
@@ -77,7 +103,6 @@ class Browse extends React.Component {
 }
 
 Browse.propTypes = {
-	getAllListings: PropTypes.func.isRequired,
 	listing: PropTypes.object.isRequired
 };
 
@@ -86,6 +111,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-	mapStateToProps,
-	{getAllListings}
+	mapStateToProps
 )(Browse); 
