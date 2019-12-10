@@ -1,11 +1,16 @@
 import React from 'react';
 import 'filepond/dist/filepond.min.css';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
-import "react-datepicker/dist/react-datepicker.css";
 import {Form, Col, Row } from 'react-bootstrap';
 import {createListing} from "../../actions/listing.actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+
+
+import 'rc-time-picker/assets/index.css';
+import moment from 'moment';
+import TimePicker from 'rc-time-picker';
+
 
 class CreateListing extends React.Component {
     constructor(props) {
@@ -14,6 +19,7 @@ class CreateListing extends React.Component {
         this.handleTimeChange=this.handleTimeChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.selectTime = this.selectTime.bind(this);
+		const now = moment().hour(0).minute(0);
         this.state = {
             listingTitle: '',
             listingDescription: '',
@@ -21,34 +27,34 @@ class CreateListing extends React.Component {
             listingCity: '',
             listingPhone: '',
             listingHours: {
-                Monday: {
-                    startTime: new Date(),
-                    endTime: new Date()
-                },
-                Tuesday: {
-                    startTime: new Date(),
-                    endTime: new Date()
-                },
-                Wednesday: {
-                    startTime: new Date(),
-                    endTime: new Date()
-                },
-                Thursday: {
-                    startTime: new Date(),
-                    endTime: new Date()
-                },
-                Friday: {
-                    startTime: new Date(),
-                    endTime: new Date()
-                },
-                Saturday: {
-                    startTime: new Date(),
-                    endTime: new Date()
-                },
-                Sunday: {
-                    startTime: new Date(),
-                    endTime: new Date()
-                }
+				Monday: {
+					o: now,
+					c: now
+				},
+				Tuesday: {
+					o: now,
+					c: now
+				},
+				Wednesday: {
+					o: now,
+					c: now
+				},
+				Thursday: {
+					o: now,
+					c: now
+				},
+				Friday: {
+					o: now,
+					c: now
+				},
+				Saturday: {
+					o: now,
+					c: now
+				},
+				Sunday: {
+					o: now,
+					c: now
+				}
             },
             listingImage: ''
         };
@@ -69,6 +75,7 @@ class CreateListing extends React.Component {
             image: this.state.listingImage
         };
 		console.log("Adding listing:", listing);
+		console.log(listing);
 		this.props.createListing(listing);
     };
     onChangeHandler (event) {
@@ -76,16 +83,25 @@ class CreateListing extends React.Component {
         let val = event.target.value;
         this.setState({[nam]: val});
     };
-    handleTimeChange = (day, open_close, time) => {
-        this.setState({
-            listingHours:
-                {...this.state.listingHours,
-                    [day]: {
-                        ...this.state.listingHours[day],
-                        [open_close]: time}}
-        });
+	handleTimeChange = (value, id) => {
+		var open_close = id[0];
+		var day = id.substring(1);
+		console.log(value);
+		var time = value.format('h:mm a');
+		console.log("time change detected");
+		console.log(open_close);
+		console.log(day);
+		console.log(time);
+		this.setState({
+			listingHours:
+				{...this.state.listingHours,
+					[day]: {
+						...this.state.listingHours[day],
+						[open_close]: time}}
+		});
 	};
 	selectTime(isOpenOrClose) {
+		console.log(isOpenOrClose);
 		var listOfDates = [];
 		var weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -94,11 +110,14 @@ class CreateListing extends React.Component {
 				<div>
 					<Form.Group as={Col}>
 					<Form.Label>{day}</Form.Label>
-					<Form.Control  
-						size='sm'
-						type="time"
-						onChange= { e => this.handleTimeChange({day}, {isOpenOrClose}, e) }
-						placeholder="09:30 AM" />
+					<TimePicker
+						defaultValue={this.state.listingHours[day][isOpenOrClose.isOpenOrClose]}
+						id = {isOpenOrClose.isOpenOrClose+day}
+						onChange={(value, id=isOpenOrClose.isOpenOrClose+day) => this.handleTimeChange(value, id)}
+						format='h:mm a'
+						use12Hours
+						showSecond={false}
+					/>
 					</Form.Group>
 				</div>
 			);
@@ -229,12 +248,11 @@ class CreateListing extends React.Component {
 				<Form.Row as={Col}>
 					<Form.Label>Open</Form.Label>
 					<Form.Group as={Row} controlId="formGridOpenHours">
-						<this.selectTime
-							isOpenOrClose="startTime" />
+						<this.selectTime isOpenOrClose="o" />
 					</Form.Group>
 					<Form.Label>Close</Form.Label>
 					<Form.Group as={Row} controlId="formGridCloseHours">
-						<this.selectTime isOpenOrClose="endTime" />
+						<this.selectTime isOpenOrClose="c" />
 					</Form.Group>
 				</Form.Row>
 				<Form.Row>
