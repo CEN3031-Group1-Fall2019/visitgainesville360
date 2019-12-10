@@ -76,7 +76,7 @@ html, body, .App {
 	width: 20rem;
     margin: 0 33% 0 0;
 	max-width: 40%;
-    position: fixed;
+    position: absolute;
 	height: 100%;
 	background-color: #264653;
 }
@@ -118,11 +118,26 @@ hr {
 	height: 5px;
 }
 .card {
+	padding: 5px;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .13);
+	border-radius: 4px;
+	display: flex;
+	flex-direction: row;
 	width: 30rem;
 	background-color: #ECECEC;
 	color: #363637;
 	border-color:#363637;
-	border-radius: 1rem;
+}
+.card-body {
+	flex: 1 0 auto;
+	align-items: flex-end;
+	justify-content: center;
+}
+.card-action {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 16px;
 }
 
 /*** FLEX ***/
@@ -152,6 +167,9 @@ hr {
 }
 .flex-bottom {
 	align-items: flex-end;
+}
+.flex-child {
+	flex: 1
 }
 
 /*** FORMS ***/

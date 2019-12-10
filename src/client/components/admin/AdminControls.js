@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import {updateListing} from "../../actions/admin.actions";
 import {connect} from "react-redux";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faThumbsUp, faThumbsDown, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import {faThumbsUp, faThumbsDown, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {Button} from "react-bootstrap";
-import {Link} from "react-router-dom";
 
 class AdminListings extends React.Component {
 	constructor(props) {
@@ -52,7 +51,7 @@ class AdminListings extends React.Component {
 		return (
 			<div>
 				<Button 
-					variant="danger"
+					variant="warning"
 					onClick={this.updateBusiness(updates).bind(this)}>
 					<FontAwesomeIcon icon={faThumbsDown}/>
 				</Button>
@@ -60,15 +59,18 @@ class AdminListings extends React.Component {
 		);
 	}
 
-	infoButton = () => {
-		console.log("Current listing: ", this.state.currentListing);
+	deleteButton = () => {
+		var updates = {
+			isApproved: false,
+			isDenied: true
+		};
 		return (
 			<div>
-				<Link to={`/listing/${this.state.currentListing._id}`}>
-				<Button variant="info">
-					<FontAwesomeIcon icon={faInfoCircle}/>
+				<Button 
+					variant="danger"
+					onClick={this.updateBusiness(updates).bind(this)}>
+					<FontAwesomeIcon icon={faTimes}/>
 				</Button>
-				</Link>
         	</div>
 		);
 	}
@@ -84,13 +86,16 @@ class AdminListings extends React.Component {
 			});
 		}
 
-		return (
-			<div className="flex-center flex-bottom row">
-				<div className="col-1">{this.approveButton()}</div>
-				<div className="col-1">{this.denyButton()}</div>
-				<div className="col-1">{this.infoButton()}</div>
-			</div>
-		);
+		if(this.state.stateSet) {
+			return (
+				<div className="row">
+					<div className="col-1">{this.approveButton()}</div>
+					<div className="col-1">{this.denyButton()}</div>
+					<div className="col-1">{this.deleteButton()}</div>
+				</div>
+			);
+		}
+		return null;
 	}
 }
 

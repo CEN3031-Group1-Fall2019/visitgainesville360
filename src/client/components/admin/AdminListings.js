@@ -5,6 +5,7 @@ import {updateListing} from "../../actions/admin.actions";
 import {connect} from "react-redux";
 import {CardDeck, Card} from "react-bootstrap";
 import AdminControls from './AdminControls';
+import InfoControl from '../listing/InfoControl';
 
 class AdminListings extends React.Component {
 	constructor(props) {
@@ -17,19 +18,24 @@ class AdminListings extends React.Component {
 	businessCard = listing => {
 		if(!listing.isApproved && !listing.isDenied) {
 			return(
-				<div className="flex flex-row flex-children m-4">
+				<div className="flex flex-row flex-children m-2">
 				<Card border="dark">
 				<Card.Img variant="top" src={listing.image} />
+				<div className="card-body">
 				<Card.Body>
 					<Card.Title>{listing.title}</Card.Title>
 					<Card.Text>{listing.phone}</Card.Text>
 					<Card.Text>{listing.address}<br />
 					{listing.city}, {listing.state} {listing.zip}</Card.Text>
 					<Card.Text>{listing.description}</Card.Text>
+					<div  className="card-action">
 					<AdminControls
 						{...this.props}
 						currentListing={listing} />
-				</Card.Body>
+					<InfoControl
+						{...this.props}
+						currentListing={listing} /></div>
+				</Card.Body></div>
 				</Card>
 				</div>
 			)

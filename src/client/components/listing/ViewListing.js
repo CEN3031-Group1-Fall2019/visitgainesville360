@@ -10,7 +10,7 @@ class ViewListing extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			listing: []
+			currentListing: []
 		};
 	}
 
@@ -25,6 +25,9 @@ class ViewListing extends React.Component {
 	}
 
 	render() {
+		console.log("Has current listing?");
+		var {currentListing} = this.props;
+		console.log("this is it", currentListing);
 		return (
 			<div className="flex flex-center flex-children">
 				<p className="page-header">{this.state.listing.title}</p>
