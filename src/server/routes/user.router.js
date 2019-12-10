@@ -16,11 +16,6 @@ router.post("/register", function(req, res) {
 		};
 
 		console.log("User doesn't exist. Adding user to database.");
-<<<<<<< HEAD
-		login.createNewUser(req, function(err) {
-			if (err) throw err;
-		})
-=======
 		login.createNewUser(req, function() {
 			console.log("Logging in the user");
 			login.findUser(req, function(user) {
@@ -38,7 +33,7 @@ router.post("/register", function(req, res) {
 						
 						jwt.sign(
 							payload,
-							config.keys,
+							process.env.PROD_KEYS,
 							{expiresIn: 10 * 60 * 60},
 							(err, token) => {res.json({success: true, token: "Bearer " + token});}
 						);
@@ -48,7 +43,6 @@ router.post("/register", function(req, res) {
 				});
 			});
 		});
->>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6
 	});
 });
 
@@ -64,12 +58,8 @@ router.post("/login", function(req, res) {
 				const payload = {
 					id: user.id,
 					name: user.name,
-<<<<<<< HEAD
-					email: user.email
-=======
 					email: user.email,
 					isAdmin: user.isAdmin
->>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6
 				};
 				
 				jwt.sign(

@@ -70,9 +70,6 @@
       "last 1 safari version"
     ]
   },
-<<<<<<< HEAD
-  "devDependencies": {},
-=======
   "description": "### How To Run",
   "main": "index.js",
   "proxy": "http://localhost:5050",
@@ -80,7 +77,6 @@
     "@fortawesome/fontawesome-free": "^5.11.2",
     "react-bootstrap": "^1.0.0-beta.16"
   },
->>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CEN3031-Group1-Fall2019/visitgainesville360.git"

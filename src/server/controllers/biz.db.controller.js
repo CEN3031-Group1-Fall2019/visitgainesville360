@@ -28,28 +28,11 @@ exports.findBiz = function(req, cb) {
 // ---------------------------------------------------------------- //
 
 exports.createBiz = function(req, cb) {
-<<<<<<< HEAD
-	console.log("creating biz1");
-	var newListing = new Biz(req.body);
-	console.log("creating biz2", newListing);
-
-	newListing.save(function(err) {
-		if(err) throw err;
-		console.log('This listing was added to the database: ');
-		console.log("3");
-=======
 	var newListing = new Biz(req.body);
 	console.log("creating biz", newListing);
 
-	/*cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
-		if (err) throw err;
-		req.body.image = result.secure_url; 
-		req.body.imageId = result.public_id; 
-	});*/
-
 	newListing.save(function(err) {
 		if(err) return cb(err);
->>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6
 	});
 };
 
@@ -130,15 +113,6 @@ exports.updateBiz = function(req, updates, cb) {
 // ---------------------------------------------------------------- //
 
 exports.findAll = function(req, cb) {
-<<<<<<< HEAD
-	console.log("Entering findAll");
-	Biz.find({}, function(err, listings) {
-		if (err) throw err;
-		console.log("Successfully found all listings. Returning to router.");
-		cb(null, listings);
-	});
-};
-=======
 	Biz.find({}, function(err, listings) {
 		if (err) throw err;
 		cb(null, listings);
@@ -184,4 +158,3 @@ exports.countAll = function(req, cb) {
 		return cb(res.length);
 	})
 }
->>>>>>> d42cf3f7e16d23594dbff93c15dd964523fa84e6
