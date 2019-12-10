@@ -4,20 +4,17 @@ import {connect} from 'react-redux';
 import {getNotifications} from "../../actions/admin.actions";
 import {Nav} from 'react-bootstrap';
 import {Link} from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartPie, faUser, faBookOpen, faColumns } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faChartPie, faUser, faBookOpen, faColumns} from '@fortawesome/free-solid-svg-icons';
 
 class AdminMenu extends React.Component {
 	renderNewListingNotification = count => {
-		console.log("Rendering notifications");
-		console.log("Count: ", count);
 		if (count > 0) {
 			return (
 				<span className="badge admin-notification">{count}</span>
 			);
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	render() {
@@ -54,7 +51,6 @@ class AdminMenu extends React.Component {
 						<Link to="/admin-users" className="admin-menu">
 							<FontAwesomeIcon className="admin-icon" icon={faUser}/>
 							Users
-							<span className="badge admin-notification">4</span>
 						</Link>
 						<Link to="/admin-stats" className="admin-menu">
 							<FontAwesomeIcon className="admin-icon" icon={faChartPie}/>

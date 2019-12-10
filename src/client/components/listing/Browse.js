@@ -16,7 +16,7 @@ class Browse extends React.Component {
 	businessCard = listing => {
 		if(listing.isApproved) {
 			return (
-				<Card border='dark' style={{ width: '30rem' }}>
+				<Card>
 				<Card.Img variant="top" src={listing.image} />
 				<Card.Body>
 					<Card.Title>{listing.title}</Card.Title>
@@ -44,6 +44,19 @@ class Browse extends React.Component {
 	}
 
 	renderHours = (hours) => {
+		if(hours !== undefined) {
+			var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+			var displayHours = [];
+	
+			for(let day of daysOfWeek) {
+				if(hours.day !== undefined) {
+					displayHours.push(<div>{day}: {moment(hours.day.startTime).format('hh:mm a')} - {moment(hours.day.endTime).format('hh:mm a')} <br /></div>);
+				}
+			}
+			
+			return displayHours;
+		} return null;
+		/*
 		return (
 			<div>
 				Monday: {moment(hours.Monday.startTime).format('hh:mm a')} - {moment(hours.Monday.endTime).format('hh:mm a')} <br />
@@ -54,7 +67,7 @@ class Browse extends React.Component {
 				Saturday: {moment(hours.Saturday.startTime).format('hh:mm a')} - {moment(hours.Saturday.endTime).format('hh:mm a')} <br />
 				Sunday: {moment(hours.Sunday.startTime).format('hh:mm a')} - {moment(hours.Sunday.endTime).format('hh:mm a')}
 			</div>
-		);
+		);*/
 	}
 
 	render() {

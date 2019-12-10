@@ -6,9 +6,9 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faThumbsUp, faThumbsDown, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import {Button, Image} from "react-bootstrap";
 
-class AdminListingInfo extends React.Component {
-	constructor() {
-		super();
+class ViewListing extends React.Component {
+	constructor(props) {
+		super(props);
 		this.state = {
 			listing: []
 		};
@@ -18,25 +18,26 @@ class AdminListingInfo extends React.Component {
 		this.setState({listing: setListing});
 	}
 
-	render() {
-		if (!this.props.login.user.isAdmin) {
-			console.log("Does not have authentication");
-			this.props.history.push("/login");
+	adminControls() {
+		if (this.props.login.user.isAdmin) {
+			
 		}
+	}
 
+	render() {
 		return (
-			<div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+			<div className="flex flex-center flex-children">
 				<p className="page-header">{this.state.listing.title}</p>
 				<Image src={this.state.listing.image} rounded='true' />
-				<Button style={{flex:'1'}} variant="success"><FontAwesomeIcon icon={faThumbsUp}/></Button>
-				<Button style={{flex:'1'}} variant="danger"><FontAwesomeIcon icon={faThumbsDown}/></Button>
-				<Button style={{flex:'1'}} variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
+				<Button variant="success"><FontAwesomeIcon icon={faThumbsUp}/></Button>
+				<Button variant="danger"><FontAwesomeIcon icon={faThumbsDown}/></Button>
+				<Button variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button>
 			</div>
 		);
 	}
 }
 
-AdminListingInfo.propTypes = {
+ViewListing.propTypes = {
 	getAllListings: PropTypes.func.isRequired,
 	listing: PropTypes.object.isRequired
 };
@@ -49,4 +50,4 @@ const mapStateToProps = state => ({
 export default connect(
 	mapStateToProps,
 	{getAllListings}
-)(AdminListingInfo);
+)(ViewListing);

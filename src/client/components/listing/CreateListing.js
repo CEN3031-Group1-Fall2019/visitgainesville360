@@ -115,10 +115,11 @@ class CreateListing extends React.Component {
         return (
 			<div>
 			<p className="page-header">Add a Listing</p>
-			<div style={{ display: 'flex', width: '100%'}}>
+			<div className="flex">
 
-				<div style={{ width: '50%', margin: 'auto' }}>
+				<div className="container">
 			<Form onSubmit={this.handleSubmit}>	
+				<div className="Row">
 				<Form.Group controlId="formGridAddress1">
 					<Form.Label>Business Name</Form.Label>
 					<Form.Control
@@ -127,6 +128,8 @@ class CreateListing extends React.Component {
 						value =  {this.state.listingTitle}
 						placeholder="Your Businesses' Name" />
 				</Form.Group>
+				</div>
+				<div className="Row">
 				<Form.Group controlId="formGridAddress">
 					<Form.Label>Address</Form.Label>
 					<Form.Control
@@ -135,6 +138,8 @@ class CreateListing extends React.Component {
 						value =  {this.state.listingAddress}
 						placeholder="1234 Main St" />
 				</Form.Group>
+				</div>
+				<div className="Row">
 				<Form.Group controlId="formGridPhone">
 					<Form.Label>Phone</Form.Label>
 					<Form.Control
@@ -144,6 +149,8 @@ class CreateListing extends React.Component {
 						value =  {this.state.listingPhone}
 						placeholder="123-456-7890" />
 				</Form.Group>
+				</div>
+				<div className="Row">
 				<Form.Row>
 					<Form.Group as={Col} controlId="formGridCity">
 						<Form.Label>City</Form.Label>
@@ -225,7 +232,10 @@ class CreateListing extends React.Component {
 							placeholder="32601"  />
 					</Form.Group>
 				</Form.Row>
+				</div>
+				<div className="row">
 				<Form.Label>Business Hours</Form.Label>
+				</div>
 				<Form.Row as={Col}>
 					<Form.Label>Open</Form.Label>
 					<Form.Group as={Row} controlId="formGridOpenHours">

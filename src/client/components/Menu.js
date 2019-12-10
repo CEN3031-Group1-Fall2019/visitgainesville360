@@ -19,7 +19,7 @@ class Menu extends React.Component {
 		
 		if (loggedInState) {
 			return  (
-				<div className="menu-login">
+				<div className="flex-right">
 					<Link className="menu-link" to="/create-listing">Create</Link>
 					<Link className="menu-link" to="/create-tags">Tag</Link>
 					<Link className="menu-link" to="/samplepage">Listings</Link>
@@ -31,12 +31,12 @@ class Menu extends React.Component {
 		}
 
 		return (
-			<div className="menu-login">
+			<div className="flex-left">
 				<Link to="/register">
-					<button className="button menu-button button-background">Register</button>
+					<button className="button">Register</button>
 				</Link>
 				<Link to="/login">
-					<button type="button" className="button menu-button button-outline-gray">Login</button>
+					<button type="button" className="button button-transparent ml-3">Login</button>
 				</Link>
 			</div>
 		);
@@ -44,7 +44,7 @@ class Menu extends React.Component {
 
 	render() {
 		return (
-			<div className="menu">
+			<div className="menu flex flex-row flex-children">
 				<nav className="navbar">
 					<div className="menu-row">
 						<Link className="menu-link" to="/"><FontAwesomeIcon icon={faHome}/></Link>

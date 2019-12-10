@@ -3,66 +3,22 @@ import PropTypes from "prop-types";
 import {getAllListings} from "../../actions/listing.actions";
 import {updateListing} from "../../actions/admin.actions";
 import {connect} from "react-redux";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faThumbsDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import {CardDeck, Card, Button} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {CardDeck, Card} from "react-bootstrap";
+import AdminControls from './AdminControls';
 
 class AdminListings extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			hasListings: false
 		};
 	}
 
-	updateBusiness = (listing, updates)  => {
-		return function(){
-			var updateData = {
-				listing: listing,
-				updates: updates
-			}
-			this.props.updateListing(updateData);
-		}
-	}
-
-	approveButton = listing => {
-		var updates = {
-			isApproved: true
-		};
-
-		return (
-			<div>
-				<Button 
-					variant="success"
-					onClick={this.updateBusiness(listing, updates).bind(this)}>
-					<FontAwesomeIcon icon={faThumbsUp}/>
-				</Button>
-        	</div>
-		);
-	}
-
-	denyButton = listing => {
-		var updates = {
-			isApproved: false,
-			isDenied: true
-		};
-
-		return (
-			<div>
-				<Button 
-					variant="danger"
-					onClick={this.updateBusiness(listing, updates).bind(this)}>
-					<FontAwesomeIcon icon={faThumbsDown}/>
-				</Button>
-        	</div>
-		);
-	}
-
-	businessCard = (listing) => {
+	businessCard = listing => {
 		if(!listing.isApproved && !listing.isDenied) {
 			return(
-				<Card border="dark" style={{ width: '12rem', }}>
+				<div className="flex flex-row flex-children m-4">
+				<Card border="dark">
 				<Card.Img variant="top" src={listing.image} />
 				<Card.Body>
 					<Card.Title>{listing.title}</Card.Title>
@@ -70,13 +26,12 @@ class AdminListings extends React.Component {
 					<Card.Text>{listing.address}<br />
 					{listing.city}, {listing.state} {listing.zip}</Card.Text>
 					<Card.Text>{listing.description}</Card.Text>
-					<div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-						{this.approveButton(listing)}
-						{this.denyButton(listing)}
-						<Link to='/view'><Button style={{flex:'1'}}variant="info"><FontAwesomeIcon icon={faInfoCircle}/></Button></Link>
-					</div>
+					<AdminControls
+						{...this.props}
+						currentListing={listing} />
 				</Card.Body>
 				</Card>
+				</div>
 			)
 		} else return null;
 	}
@@ -97,11 +52,11 @@ class AdminListings extends React.Component {
 		}
 
 		return (
-			<div className="container">
+			<div className="container listings">
 				<p className="page-header">Overview of Recent Acitity</p>
 				<hr />
 				<p className="sub-header">Listing Requests</p>
-				<CardDeck>{businessListings}</CardDeck>
+				<CardDeck className="row">{businessListings}</CardDeck>
         	</div>
 		);
 	}

@@ -2,35 +2,32 @@ html, body, .App {
 	background-color: #363637;
 	color: #ECECEC;
 }
-
-/** COLORS
-	#008B8B
-	#264653
-	#CCAC5B
-	#363637
-	#ECECEC
-**/
+.min-100, .App {
+	height: 100%;
+	width: 100%;
+	min-width: 100% !important;
+	min-height: 100% !important;
+}
 
 /*** GENERAL ***/
 .link {
 	color: #008B8B;
 }
 .link:hover {
-	color: #363637;
+	color: #CCAC5B;
+	text-decoration: none;
 }
 .button {
 	width: 125px;
 	border-radius: .25rem;
 	margin: 0px;
-	color: #264653;
 	border-color: #264653;
-}
-.button-background {
 	background-color: #008B8B;
 	color: #ECECEC;
 }
-.button-outline-gray {
+.button-transparent {
 	background-color: transparent;
+	color: #264653;
 }
 .button:hover {
 	border-radius: .25rem;
@@ -53,29 +50,18 @@ html, body, .App {
 	font-size: 2rem;
 	font-weight: normal bold; 
 }
+.listings {
+	padding-left: 25rem;
+}
 
 /*** MENU ***/
 .menu {
-	display: flex;
-	align-self: stretch;
-	flex-flow: row wrap;
 	background-color: #ECECEC;
 	padding: 1rem;
 }
-.menu > * {
-	flex-grow: 1;
-}
-.menu-row {
-	justify-content: flex-start center;
-}
-.menu-login {
-	justify-content: flex-end center;
-}
 .menu-link {
-	flex: 1;
 	padding-left: 1rem;
 	padding-right: 1rem;
-	align-self: center;
 	font-size: 2rem;
 	font-weight: bold;
 	color: #363637;
@@ -84,17 +70,13 @@ html, body, .App {
 	color: #CCAC5B;
 	text-decoration: none;
 }
-.menu-button {
-	align-self: center;
-	justify-content: space-evenly;
-	margin-left: 2rem;
-}
 
 /*** ADMIN-MENU ***/
 .admin-menu-container {
 	width: 20rem;
+    margin: 0 33% 0 0;
 	max-width: 40%;
-    position: absolute;
+    position: fixed;
 	height: 100%;
 	background-color: #264653;
 }
@@ -139,6 +121,37 @@ hr {
 	width: 30rem;
 	background-color: #ECECEC;
 	color: #363637;
+	border-color:#363637;
+	border-radius: 1rem;
+}
+
+/*** FLEX ***/
+.flex {
+	display: flex;
+}
+.flex-row {
+	flex-flow: row wrap;
+}
+.flex-col {
+	flex-flow: column wrap;
+}
+.flex-children > * {
+	flex-grow: 1;
+}
+.flex-left {
+	justify-content: flex-start;
+}
+.flex-right {
+	justify-content: flex-end;
+}
+.flex-center {
+	justify-content: center stretch;
+}
+.flex-middle {
+	align-items: center;
+}
+.flex-bottom {
+	align-items: flex-end;
 }
 
 /*** FORMS ***/
