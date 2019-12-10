@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {Provider} from "react-redux";
 import Login from './components/login/Login';
-import Browse from './components/listings/Browse';
+import Browse from './components/listing/Browse';
 import Register from './components/login/Register';
 import DashboardPlaceholder from './components/dashboard/DashboardPlaceholder';
 import Menu from './components/Menu';
@@ -12,7 +12,6 @@ import AdminDashboard from './components/admin/AdminDashboard';
 import AdminMenu from './components/admin/AdminMenu';
 import CreateListing from './components/listing/CreateListing';
 import CreateTags from './components/listing/CreateTags';
-import Browse from './components/listing/Browse';
 import ViewListing from './components/listing/ViewListing';
 import AdminListings from './components/admin/AdminListings';
 
