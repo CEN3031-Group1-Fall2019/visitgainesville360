@@ -51,11 +51,12 @@ class AdminListings extends React.Component {
 				<Card.Img variant="top" src={listing.image}  className="card-img"/>
 				<div className="card-body">
 				<Card.Body>
-					<Card.Title>{listing.title}</Card.Title>
-					<Card.Text>{listing.phone}</Card.Text>
-					<Card.Text>{listing.address}<br />
-					{listing.city}, {listing.state} {listing.zip}</Card.Text>
-					<Card.Text>{listing.description}</Card.Text>
+						<Card.Title>{listing.title ? listing.title : ''}</Card.Title>
+						<Card.Text>{listing.phone ? listing.phone : ''}</Card.Text>
+						<Card.Text>{listing.address ? listing.address : ''}<br />
+						{listing.city ? listing.city+', ' : ''}
+						{listing.state ? listing.state : ''}{' '}
+						 {listing.zip ? listing.zip : ''}</Card.Text>
 					<div className="d-flex flex-row justify-content-center align-items-end">
 					<AdminControls
 						{...this.props}

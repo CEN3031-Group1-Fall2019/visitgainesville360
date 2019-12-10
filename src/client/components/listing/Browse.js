@@ -42,13 +42,15 @@ class Browse extends React.Component {
 				<Card>
 				<Card.Img variant="top" src={listing.image} />
 				<Card.Body>
-					<Card.Title>{listing.title}</Card.Title>
-					<Card.Text>{listing.phone}</Card.Text>
-					<Card.Text>{listing.address}<br />
-					{listing.city}, {listing.state} {listing.zip}</Card.Text>
-					<Card.Text>{listing.description}</Card.Text>
+						<Card.Title>{listing.title ? listing.title : ''}</Card.Title>
+						<Card.Text>{listing.phone ? listing.phone : ''}</Card.Text>
+						<Card.Text>{listing.address ? listing.address : ''}<br />
+						{listing.city ? listing.city+', ' : ''}
+						{listing.state ? listing.state : ''}{' '}
+						 {listing.zip ? listing.zip : ''}</Card.Text>
+						<Card.Text>{listing.description ? listing.description : ''}</Card.Text>
 					<Card.Text>{this.renderTags(listing)}</Card.Text>
-					<Card.Body>{this.renderHours(listing.hours)}</Card.Body>
+					<Card.Text>{this.renderHours(listing.hours)}</Card.Text>
 					<div className="d-flex justify-content-center">
 					<InfoControl
 						{...this.props}
