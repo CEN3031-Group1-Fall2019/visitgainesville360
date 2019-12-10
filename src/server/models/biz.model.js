@@ -6,11 +6,11 @@ var bizSchema = new Schema({
 	title: { type: String, required: true },
 	email: { type: String, required: true },
 	isApproved: {type: Boolean, default: false},
+	isDenied: {type: Boolean, default: false},
 	address: String,
 	phone: String,
 	state: String,
 	zip: String,
-	isPosted: {type: Boolean, default: false},
 	image: String,
 	imageId: String,
 	hours: {
@@ -52,7 +52,6 @@ var bizSchema = new Schema({
 // Saves update/creation date/time to database listing
 bizSchema.pre('save', function(next) {
 	var currDate = new Date();
-
 	this.updated_at = currDate;	
 
 	if (!this.created_at)
