@@ -7,6 +7,10 @@ import {createListing} from "../../actions/listing.actions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
+import ReactS3 from 'react-s3';
+
+const s3Key = require('./keys.js').s3Key;
+
 class CreateListing extends React.Component {
     constructor(props) {
         super(props);
@@ -85,6 +89,13 @@ class CreateListing extends React.Component {
                         [open_close]: time}}
         });
 	};
+    handleUpload(e) {
+    	console.log(e.target.files[0]);
+    	ReactS3.uploadFile(e.target.files[0], s3Key)
+			.then((data)=>{
+				console.log(data);
+			})
+	}
 	selectTime(isOpenOrClose) {
 		var listOfDates = [];
 		var weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -266,8 +277,7 @@ class CreateListing extends React.Component {
 							style={{backgroundColor:"#FFF", color:"#000"}}
 							type="file"
 							name='listingImage'
-							onChange={this.onChangeHandler}
-							value = {this.state.listingImage} />
+							onChange={this.handleUpload} />
 					</Form.Group>
 				</Form.Row>
 				<button className="button button-background">Submit</button>

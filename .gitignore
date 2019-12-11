@@ -26,6 +26,8 @@ yarn-error.log*
 # config file
 src/server/config/testConfig.js
 src/server/config/config.js
+src/server/config/keys.js
+
 
 # naughty file
 package-lock.json
