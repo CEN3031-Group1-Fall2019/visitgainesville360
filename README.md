@@ -1,57 +1,60 @@
 # Visit Gainesville 360
 
-### Get Started
+## Deployment
+[visitgainesville360.herokuapp.com/](visitgainesville360.herokuapp.com/)
 
-* Clone the repo then run 'npm install'
+## Project Features
+* Login
+* Register
+* Create new listings
+* Tag listings
+* Browse listings
+* View individual listing
+* Admin console
+* Admin approve and deny new listings
 
-#### Dependencies
+## Get Started
 
-Use `npm install`
-
-If broken try `npm install -g nodemon`
-Or try deleting package-lock.json
-
-* `axios` - Fetch resources and make HTTP requests
-* `bcryptjs`- Allows for password hashing
-* `body-parser`- Middleware allowing to extract the body of an incoming request
-* `bootstrap`- Interface improvement
-* `classnames` - Allows for joining of class names
-* `concurrently` - Used to run server and client concurrently
-* `datepicker` - `npm install react-datepicker --save` - Hours of op selectors
-* `express`
-* `filepond` - `npm install react-filepond filepond --save` - file upload
-* `npm i --save @fortawesome/fontawesome-svg-core  @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome`
-* `is-empty`
-* `jquery`
-* `jwt-decode` - Decodes web tokens
-* `milligram` - Stylesheet
-* `mongoose` - NodeJS modeling for MongoDB
-* `morgan` - Middleware that allows for logging
-* `passport` - Authentication middleware
-* `react`
-* `react-dom`
-* `react-redux`
-* `react-router-dom`
-* `redux` - State container
-* `redux-thunk`
-* `request` - Make HTTP calls
-* `typescript`
-* `validator` - validates input
+* Clone the repo then run 'npm install' for the dependencies
 
 ### How To Run
+
+#### Locally
 
 * **Frontend and backend** `npm run dev`
 * **Frontend** `npm run client`
 * **Backend** `npm run server`
 
-#### Include your config file
+#### Heroku
+
+1. Change to Heroku branch
+2. Log in to Heroku `heroku login`
+3. Comit any changes
+4. `git push -u heroku heroku`
+
+### Include your config file
 
 Within `src/server/config` include the following:
 
-```module.exports = {
+``module.exports = {
 	db: {
 	  	uri: "{YOUR_URI_HERE}"
 	},
 	port: {YOUR_PORT_HERE},
 	keys: "{YOUR_KEYS_HERE}"
-};```
+};``
+
+## How to update database and server connections
+
+To be determined
+
+## Credit
+
+* Bootstrap
+* Font Awesome
+* Axios
+* bcryptjs
+* milligram
+* normalize
+* materialize
+* other??
