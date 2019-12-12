@@ -27,10 +27,6 @@ class Login extends React.Component {
 		}
 	}
 
-	/*UNSAFE_componentWillReceiveProps(nextProps) {
-		this.routeUser(nextProps);
-	}*/
-
 	handleChange(e) {
 		this.setState({ 
 			[e.target.id]: e.target.value 

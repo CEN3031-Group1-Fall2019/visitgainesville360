@@ -1,16 +1,11 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 import {Nav} from 'react-bootstrap';
 import {Link} from "react-router-dom";
-import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faChartPie, faUser, faBookOpen, faColumns} from '@fortawesome/free-solid-svg-icons';
-import Axios from "axios";
-
-
-const newListingCriteria = {
-	isApproved: false,
-	isDenied: false
-}
+import {gatherListings, foundListings} from "../../actions/listing.actions";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faChartPie, faUser, faBookOpen, faColumns, faTrash} from '@fortawesome/free-solid-svg-icons';
 
 class AdminMenu extends React.Component {
 	constructor(props) {
@@ -21,15 +16,14 @@ class AdminMenu extends React.Component {
 	}
 
 	componentDidMount() {
-		Axios
-		.post("/admin/notification", newListingCriteria)
+		this.props.gatherListings({isApproved: false, isDenied: false})
 		.then(res => {
 			this.setState({
-				newListings: res.data
-			});
+				browseListings: foundListings
+			})
 		})
 		.catch(err => {
-			console.log("Error while getting notifications: ", newListingCriteria);
+			console.log("Error while getting the listings");
 			console.log(err);
 		});
 	}
@@ -61,6 +55,10 @@ class AdminMenu extends React.Component {
 							New Listings
 							{this.renderNewListingNotification()}
 						</Link>
+						<Link to="/admin-denied" className="admin-menu">
+							<FontAwesomeIcon className="admin-icon" icon={faTrash}/>
+							Denied Listings
+						</Link>
 						<Link to="/admin-users" className="admin-menu">
 							<FontAwesomeIcon className="admin-icon" icon={faUser}/>
 							Users
@@ -77,10 +75,15 @@ class AdminMenu extends React.Component {
 	}
 }
 
+AdminMenu.propTypes = {
+	gatherListings: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
 	login: state.login
 });
 
 export default connect(
-	mapStateToProps
+	mapStateToProps,
+	{gatherListings}
 )(AdminMenu);

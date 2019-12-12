@@ -3,20 +3,18 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {CardDeck, Card} from "react-bootstrap";
 import {gatherListings, foundListings} from "../../actions/listing.actions";
-import AdminControls from './AdminControls';
-import InfoControl from '../listing/InfoControl';
 import ListingCard from '../listing/ListingCard';
 
-class AdminListings extends React.Component {
+class AdminDenied extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			browseListings: []
+			browseListings: ''
 		};
 	}
 
 	componentDidMount() {
-		this.props.gatherListings({isApproved: false, isDenied: false})
+		this.props.gatherListings({isDenied: true})
 		.then(res => {
 			this.setState({
 				browseListings: foundListings
@@ -31,7 +29,7 @@ class AdminListings extends React.Component {
 	componentDidUpdate(prevState) {
 		if (this.state.browseListing !== undefined
 			&& prevState.browseListings !== this.state.browseListings) {
-			this.props.gatherListings({isApproved: false, isDenied: false})
+			this.props.gatherListings({isDenied: true})
 			.then(res => {
 				this.setState({
 					browseListings: foundListings
@@ -52,7 +50,7 @@ class AdminListings extends React.Component {
 
 		var businessListings = [];
 		for(let listing of Object.values(this.state.browseListings)) {
-			if(!listing.isApproved && !listing.isDenied) {
+			if(listing.isDenied) {
 				businessListings.push(<ListingCard 
 					currentListing={listing} />);
 			}
@@ -60,16 +58,14 @@ class AdminListings extends React.Component {
 
 		return (
 			<div className="container listings">
-				<p className="page-header">Overview of Recent Acitity</p>
-				<hr />
-				<p className="sub-header">Listing Requests</p>
+				<p className="sub-header">Overview of Denied Listings</p>
 				<CardDeck className="row">{businessListings}</CardDeck>
         	</div>
 		);
 	}
 }
 
-AdminListings.propTypes = {
+AdminDenied.propTypes = {
 	gatherListings: PropTypes.func.isRequired
 };
 
@@ -80,4 +76,4 @@ const mapStateToProps = state => ({
 export default connect(
 	mapStateToProps,
 	{gatherListings}
-)(AdminListings);
+)(AdminDenied);

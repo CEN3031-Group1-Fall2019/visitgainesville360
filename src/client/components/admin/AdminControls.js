@@ -11,7 +11,7 @@ class AdminListings extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentListing: '',
+			currentListing: {},
 			stateSet: false
 		};
 	}
