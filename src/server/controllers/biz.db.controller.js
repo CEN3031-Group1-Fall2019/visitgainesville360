@@ -42,29 +42,42 @@ exports.createBiz = function(req, cb) {
 	});
 };
 
+
+exports.createBizNode = function(req, cb) {
+	var newListing = new Biz(req);
+	console.log("creating biz", newListing);
+	newListing.save(function(err) {
+		if(err) console.log(err);
+	});
+};
+
 // ---------------------------------------------------------------- //
 
-exports.deleteBiz = function(req, cb) {	
 
+// !!!!!!!!!!!!! 
+exports.deleteBiz = function(req, cb) {	
+	var findThis = { 
+		email: req.body.email,
+		title: req.body.name
+	};
+
+	console.log("deleting this: " + req.body);
+	Biz.findOneAndDelete(findThis, function (err) {
+		if (err) return cb(err);
+	});
+/*
 	this.findListing(req, function(found) {
 //		var id = found[0]._id;
 		var id = found._id;
 		var param = { _id: id };	
 		
 		Biz.findByIdAndDelete(param, function (err) {
-			if (err)
-			{
-				throw err;
-				console.log(err);
-			}
-			console.log('This listing was deleted:');
-			console.log(found);
+			if (err) return cb(err);
 		});
-		
-		cb(found);
 	});
-
+*/
 };
+
 
 // ---------------------------------------------------------------- //
 

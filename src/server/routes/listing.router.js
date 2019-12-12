@@ -17,6 +17,13 @@ router.post("/tag", function(req) {
 	});
 });
 
+router.post("/delete", function(req) {
+	console.log("Routing to delete listing");
+	biz.deleteBiz(req, function(err) {
+		if (err) throw err;
+	});
+});
+
 router.post("/get", function(req, res) {
 	console.log("Routing to get a listing", req.body);
 	var findById = {
