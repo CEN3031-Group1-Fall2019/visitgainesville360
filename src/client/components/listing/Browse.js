@@ -40,7 +40,8 @@ class Browse extends React.Component {
 				<Card.Img variant="top" src={listing.image} />
 				<Card.Body>
 						<Card.Title>{listing.title ? listing.title : ''}</Card.Title>
-						<Card.Text>{listing.phone ? listing.phone : ''}</Card.Text>
+						<Card.Text>{listing.phone ? listing.phone : ''}
+							{this.renderEmail(listing)}</Card.Text>
 						<Card.Text>{listing.address ? listing.address : ''}<br />
 						{listing.city ? listing.city+', ' : ''}
 						{listing.state ? listing.state : ''}{' '}
@@ -65,6 +66,16 @@ class Browse extends React.Component {
 				<div>
 					Tags: {listing.typetag} {listing.loctag}
 				</div>
+			);
+		}
+	}
+	
+	renderEmail = (listing) => {
+		if (listing.hasOwnProperty('bizemail'))
+		{
+			var stry = "mailto:" + listing.bizemail;
+			return (
+				<div><a href={stry}>{listing.bizemail}</a></div>
 			);
 		}
 	}
