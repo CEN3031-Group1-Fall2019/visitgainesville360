@@ -119,9 +119,9 @@ exports.updateBiz = function(req, updates, cb) {
 // ---------------------------------------------------------------- //
 
 exports.findAll = function(req, cb) {
-	Biz.find({}, function(err, listings) {
+	Biz.find(req, function(err, listings) {
 		if (err) throw err;
-		cb(null, listings);
+		return cb(null, listings);
 	});
 };
 

@@ -7,11 +7,10 @@ import AdminControls from './AdminControls';
 import InfoControl from '../listing/InfoControl';
 
 const query = {
-	isApproved: false,
-	isDenied: false
+	isDenied: true
 }
 
-class AdminListings extends React.Component {
+class AdminDenied extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -79,16 +78,14 @@ class AdminListings extends React.Component {
 
 		return (
 			<div className="container listings">
-				<p className="page-header">Overview of Recent Acitity</p>
-				<hr />
-				<p className="sub-header">Listing Requests</p>
+				<p className="sub-header">Overview of Denied Listings</p>
 				<CardDeck className="row">{businessListings}</CardDeck>
         	</div>
 		);
 	}
 }
 
-AdminListings.propTypes = {
+AdminDenied.propTypes = {
 	gatherListings: PropTypes.func.isRequired
 };
 
@@ -99,4 +96,4 @@ const mapStateToProps = state => ({
 export default connect(
 	mapStateToProps,
 	{gatherListings}
-)(AdminListings);
+)(AdminDenied);
