@@ -4,10 +4,9 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css
 import "react-datepicker/dist/react-datepicker.css";
 import {Form, Col } from 'react-bootstrap';
 import {createTags} from "../../actions/listing.actions";
+import Axios from "axios";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-
-// typetag, loctag
 
 class CreateTags extends React.Component {
 
@@ -19,6 +18,7 @@ class CreateTags extends React.Component {
             bizName: '',
             bizTypeTag: '',
             bizLocTag: '',
+            browseListings: ''
         };
     }
 
@@ -41,11 +41,43 @@ class CreateTags extends React.Component {
         this.setState({[nam]: val});
     };
 
+	componentDidMount() {
+		Axios
+		.post("/listings/browse")
+		.then(res => {
+			this.setState({
+				browseListings: res.data
+			});
+		})
+		.catch(err => {
+			console.log("Error getting all listings");
+			console.log(err);
+		});
+	}
+
+	businessCard = listing => {
+		if(listing.email == this.props.login.user.email) {
+			console.log('found match: ' + listing.title);
+//              return(<div>{listing.title}</div>);
+              return(<option value={listing.title}>{listing.title}</option>);
+        }
+    }
+
     render() {
 		if (!this.props.login.isLoggedIn) {
 			console.log("Does not have authentication");
 			this.props.history.push("/login");
 		}
+		
+//		console.log("THIS YO EMAIL: " + this.props.login.user.email);
+
+		var businessListings = [];
+
+		for(let listing of Object.values(this.state.browseListings)) 
+		{
+			businessListings.push(this.businessCard(listing));
+		}
+		console.log("businessListings = " + businessListings);
 
         return (
 			<div>
@@ -53,13 +85,15 @@ class CreateTags extends React.Component {
 			<div style={{ display: 'flex', width: '100%'}}>
 			<div style={{ width: '50%', margin: 'auto' }}>
 			<Form onSubmit={this.handleSubmit}>	
-				<Form.Group controlId="formName">
-					<Form.Label>Business Name</Form.Label>
+				<Form.Group controlId="formTitleDropDown">
+					<Form.Label>Select Business</Form.Label>
 					<Form.Control
+						as="select"
 						name='bizName'
 						onChange={this.onChangeHandler}
-						value =  {this.state.bizName}
-						placeholder="Your Businesses' Name" />
+						value =  {this.state.bizName}>
+							{businessListings}
+					</Form.Control>
 				</Form.Group>
 				<Form.Row>	
 					<Form.Group as={Col} controlId="formTags">

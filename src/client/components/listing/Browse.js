@@ -14,9 +14,6 @@ class Browse extends React.Component {
 		};
 	}
 
-	//	typetag: {type: String},
-	//	loctag: {type: String},
-
 	componentDidMount() {
 		var pathname = this.props.location.pathname;
 		var listingId = pathname.substring(pathname.lastIndexOf("/") + 1);;
