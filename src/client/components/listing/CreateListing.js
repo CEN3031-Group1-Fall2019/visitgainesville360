@@ -17,6 +17,9 @@ class CreateListing extends React.Component {
         this.state = {
             listingTitle: '',
             listingDescription: '',
+            listingEmail: '',
+            listingTypeTag: '',
+            listingLocTag: '',
             listingAddress: '',
             listingCity: '',
             listingPhone: '',
@@ -59,6 +62,9 @@ class CreateListing extends React.Component {
         const listing = {
 			email: this.props.login.user.email,
             title: this.state.listingTitle,
+            bizemail: this.state.listingEmail,
+            typetag: this.state.listingTypeTag,
+            loctag: this.state.listingLocTag,
             description: this.state.listingDescription,
 			address: this.state.listingAddress,
 			city: this.state.listingCity,
@@ -127,6 +133,16 @@ class CreateListing extends React.Component {
 						onChange={this.onChangeHandler}
 						value =  {this.state.listingTitle}
 						placeholder="Your Businesses' Name" />
+				</Form.Group>
+				</div>
+				<div className="Row">
+				<Form.Group controlId="formBizMail">
+					<Form.Label>Business Email (Public)</Form.Label>
+					<Form.Control
+						name='listingEmail'
+						onChange={this.onChangeHandler}
+						value =  {this.state.listingEmail}
+						placeholder="Businesses' Public Email Address" />
 				</Form.Group>
 				</div>
 				<div className="Row">
@@ -230,6 +246,26 @@ class CreateListing extends React.Component {
 							onChange={this.onChangeHandler}
 							value =  {this.state.listingZip}
 							placeholder="32601"  />
+					</Form.Group>
+				</Form.Row>
+				</div>
+				<div className="Row">
+				<Form.Row>	
+					<Form.Group as={Col} controlId="formTags">
+						<Form.Label>Business Type Tag</Form.Label>
+						<Form.Control
+							name='listingTypeTag'
+							onChange={this.onChangeHandler}
+							value =  {this.state.listingTypeTag}
+							placeholder="Restaurant/Bank/etc." />
+					</Form.Group>
+					<Form.Group as={Col} controlId="formTags">
+						<Form.Label>Business Location Tag</Form.Label>
+						<Form.Control
+							name='listingLocTag'
+							onChange={this.onChangeHandler}
+							value =  {this.state.listingLocTag}
+							placeholder="Downtown/Butler Plaza/etc." />
 					</Form.Group>
 				</Form.Row>
 				</div>
