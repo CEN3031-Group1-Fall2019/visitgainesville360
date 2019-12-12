@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {CardDeck, Card} from "react-bootstrap";
 import {gatherListings, foundListings} from "../../actions/listing.actions";
-import AdminControls from './AdminControls';
-import InfoControl from '../listing/InfoControl';
+import ListingCard from '../listing/ListingCard';
 
 class AdminDenied extends React.Component {
 	constructor(props) {
@@ -43,35 +42,6 @@ class AdminDenied extends React.Component {
 		}
 	}
 
-	businessCard = listing => {
-		if(listing.isDenied) {
-			return(
-				<div className="m-2 card-browse">
-				<Card>
-				<Card.Img variant="top" src={listing.image}  className="card-img"/>
-				<div className="card-body">
-				<Card.Body>
-						<Card.Title>{listing.title ? listing.title : ''}</Card.Title>
-						<Card.Text>{listing.phone ? listing.phone : ''}</Card.Text>
-						<Card.Text>{listing.address ? listing.address : ''}<br />
-						{listing.city ? listing.city+', ' : ''}
-						{listing.state ? listing.state : ''}{' '}
-						 {listing.zip ? listing.zip : ''}</Card.Text>
-					<div className="d-flex flex-row justify-content-center align-items-end">
-					<AdminControls
-						{...this.props}
-						currentListing={listing} />
-					<InfoControl
-						{...this.props}
-						currentListing={listing} />
-					</div>
-				</Card.Body></div>
-				</Card>
-				</div>
-			)
-		} else return null;
-	}
-
 	render() {
 		if (!this.props.login.user.isAdmin) {
 			console.log("Does not have authentication");
@@ -80,7 +50,10 @@ class AdminDenied extends React.Component {
 
 		var businessListings = [];
 		for(let listing of Object.values(this.state.browseListings)) {
-			businessListings.push(this.businessCard(listing));
+			if(listing.isDenied) {
+				businessListings.push(<ListingCard 
+					currentListing={listing} />);
+			}
 		}
 
 		return (
