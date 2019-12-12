@@ -2,37 +2,43 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {CardDeck, Card} from "react-bootstrap";
-import {gatherListings} from "../../actions/listing.actions";
+import {gatherListings, foundListings} from "../../actions/listing.actions";
 import AdminControls from './AdminControls';
 import InfoControl from '../listing/InfoControl';
-
-const query = {
-	isApproved: false,
-	isDenied: false
-}
 
 class AdminListings extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			browseListings: ''
+			browseListings: []
 		};
 	}
 
 	componentDidMount() {
-		this.props.gatherListings(query, function(res) {
+		this.props.gatherListings({isApproved: false, isDenied: false})
+		.then(res => {
 			this.setState({
-				browseListings: res.data
-			});
+				browseListings: foundListings
+			})
+		})
+		.catch(err => {
+			console.log("Error while getting the listings");
+			console.log(err);
 		});
 	}
 
 	componentDidUpdate(prevState) {
-		if (prevState.browseListings !== this.state.browseListings) {
-			this.props.gatherListings(query, function(res) {
+		if (this.state.browseListing !== undefined
+			&& prevState.browseListings !== this.state.browseListings) {
+			this.props.gatherListings({isApproved: false, isDenied: false})
+			.then(res => {
 				this.setState({
-					browseListings: res.data
-				});
+					browseListings: foundListings
+				})
+			})
+			.catch(err => {
+				console.log("Error while getting the listings");
+				console.log(err);
 			});
 		}
 	}

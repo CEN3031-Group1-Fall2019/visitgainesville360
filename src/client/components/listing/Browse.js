@@ -2,29 +2,29 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {CardDeck, Card} from "react-bootstrap";
-import {gatherListings} from "../../actions/listing.actions";
+import {gatherListings, foundListings} from "../../actions/listing.actions";
 import moment from 'moment';
 import InfoControl from './InfoControl';
 
-const query = {
-	isApproved: true,
-	isDenied: false
-}
 
 class Browse extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			browseListings: ''
+			browseListings: []
 		};
 	}
 
 	componentDidMount() {
-		console.log("Fetching the listings");
-		this.props.gatherListings(query, function(res) {
+		this.props.gatherListings({isApproved: true, isDenied: false})
+		.then(res => {
 			this.setState({
-				browseListings: res.data
-			});
+				browseListings: foundListings
+			})
+		})
+		.catch(err => {
+			console.log("Error while getting the listings");
+			console.log(err);
 		});
 	}
 
@@ -101,7 +101,11 @@ Browse.propTypes = {
 	gatherListings: PropTypes.func.isRequired
 };
 
+const mapStateToProps = state => ({
+	login: state.login
+});
 
 export default connect(
+	mapStateToProps,
 	{gatherListings}
 )(Browse);
