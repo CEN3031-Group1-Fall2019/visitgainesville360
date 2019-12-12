@@ -1,5 +1,7 @@
 import Axios from "axios";
 
+export var foundListings;
+
 export const createListing = (listingData) => () => {
 	Axios
 	.post("/listings/create", listingData)
@@ -27,11 +29,12 @@ export const deleteListing = (listingData) => () => {
 	});
 };
 
-export const gatherListings = (query) => (listings) => {
-	Axios
+export const gatherListings = (query) => (res) => {
+	return Axios
 	.post("/listings/browse", query)
 	.then(res => {
-		return listings(res.data);
+		console.log("Found ", res.data)
+		foundListings = res.data;
 	})
 	.catch(err => {
 		console.log("Error while getting the listings");
