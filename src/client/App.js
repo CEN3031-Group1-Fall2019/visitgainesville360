@@ -15,6 +15,7 @@ import DeleteListing from './components/listing/DeleteListing';
 import Browse from './components/listing/Browse';
 import ViewListing from './components/listing/ViewListing';
 import AdminListings from './components/admin/AdminListings';
+import AdminDenied from './components/admin/AdminDenied';
 
 class App extends React.Component {
 	render() {
@@ -29,6 +30,7 @@ class App extends React.Component {
 						<Route exact path="/admin-dashboard" component={AdminDashboard} />
 						<Route exact path="/listing/:listingId" component={ViewListing} />
 						<Route exact path="/admin-listings" component={AdminListings} />
+						<Route exact path="/admin-denied" component={AdminDenied} />
 						<Route exact path="/browse" component={Browse} />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/login" component={Login} />

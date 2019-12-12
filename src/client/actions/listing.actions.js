@@ -1,20 +1,4 @@
-import {ADD_IMAGE} from "./types";
 import Axios from "axios";
-
-export const addImage = imageData => dispatch => {
-	Axios
-		.post("/listings/image", imageData)
-    	.then(res => dispatch({
-				type: ADD_IMAGE,
-				payload: res.data
-			}).catch(err => {
-				console.log("Error while adding image", err);
-			})
-		)
-		.catch(err => {
-			console.log(err);
-		});
-};
 
 export const createListing = (listingData) => () => {
 	Axios
@@ -39,6 +23,18 @@ export const deleteListing = (listingData) => () => {
 	.post("/listings/delete", listingData)
 	.catch(err => {
 		console.log("Error during listing deletion: ", listingData);
+		console.log(err);
+	});
+};
+
+export const gatherListings = (query) => (listings) => {
+	Axios
+	.post("/listings/browse", query)
+	.then(res => {
+		return listings(res.data);
+	})
+	.catch(err => {
+		console.log("Error while getting the listings");
 		console.log(err);
 	});
 };

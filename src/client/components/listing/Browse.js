@@ -2,9 +2,14 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {CardDeck, Card} from "react-bootstrap";
+import {gatherListings} from "../../actions/listing.actions";
 import moment from 'moment';
-import Axios from "axios";
 import InfoControl from './InfoControl';
+
+const query = {
+	isApproved: true,
+	isDenied: false
+}
 
 class Browse extends React.Component {
 	constructor(props) {
@@ -15,20 +20,11 @@ class Browse extends React.Component {
 	}
 
 	componentDidMount() {
-		var pathname = this.props.location.pathname;
-		var listingId = pathname.substring(pathname.lastIndexOf("/") + 1);;
-		console.log("this is it", listingId);
-
-		Axios
-		.post("/listings/browse")
-		.then(res => {
+		console.log("Fetching the listings");
+		this.props.gatherListings(query, function(res) {
 			this.setState({
 				browseListings: res.data
 			});
-		})
-		.catch(err => {
-			console.log("Error getting all listings");
-			console.log(err);
 		});
 	}
 
@@ -113,13 +109,10 @@ class Browse extends React.Component {
 }
 
 Browse.propTypes = {
-	listing: PropTypes.object.isRequired
+	gatherListings: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-	listing: state.listing
-});
 
 export default connect(
-	mapStateToProps
-)(Browse); 
+	{gatherListings}
+)(Browse);

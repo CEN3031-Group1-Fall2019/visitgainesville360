@@ -40,7 +40,7 @@ router.post("/get", function(req, res) {
 router.post("/browse", function(req, res) {
 	console.log("Routing to browse listings");
 
-	biz.findAll(req, function(err, listings) {
+	biz.findAll(req.body, function(err, listings) {
 		if (err) throw err;
 		console.log("Found all within router. Returning a json");
 		return res.json(listings);

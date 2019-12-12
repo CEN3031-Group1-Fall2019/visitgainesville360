@@ -10,8 +10,7 @@ class Login extends React.Component {
 		super();
 		this.state = {
 			email: '',
-			password: '',
-			errors: {}
+			password: ''
 		};
 	}
 
@@ -26,10 +25,6 @@ class Login extends React.Component {
 			}
 		}
 	}
-
-	/*UNSAFE_componentWillReceiveProps(nextProps) {
-		this.routeUser(nextProps);
-	}*/
 
 	handleChange(e) {
 		this.setState({ 
