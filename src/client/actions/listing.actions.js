@@ -33,3 +33,12 @@ export const createTags = (tagData) => () => {
 		console.log(err);
 	});
 };
+
+export const deleteListing = (listingData) => () => {
+	Axios
+	.post("/listings/delete", listingData)
+	.catch(err => {
+		console.log("Error during listing deletion: ", listingData);
+		console.log(err);
+	});
+};

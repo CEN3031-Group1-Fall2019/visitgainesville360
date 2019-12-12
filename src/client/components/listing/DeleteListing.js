@@ -2,13 +2,13 @@ import React from 'react';
 import 'filepond/dist/filepond.min.css';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
 import "react-datepicker/dist/react-datepicker.css";
-import {Form, Col } from 'react-bootstrap';
-import {createTags} from "../../actions/listing.actions";
+import {Form} from 'react-bootstrap';
+import {deleteListing} from "../../actions/listing.actions";
 import Axios from "axios";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 
-class CreateTags extends React.Component {
+class DeleteListing extends React.Component {
 
     constructor(props) {
         super(props);
@@ -16,8 +16,6 @@ class CreateTags extends React.Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             bizName: '',
-            bizTypeTag: '',
-            bizLocTag: '',
             browseListings: ''
         };
     }
@@ -25,14 +23,12 @@ class CreateTags extends React.Component {
     handleSubmit (event) {
 		event.preventDefault();
 		console.log("You are: ", this.props.login.user);
-        const tagging = {
+        const listy = {
 			email: this.props.login.user.email,
-            name: this.state.bizName,
-            typetag: this.state.bizTypeTag,
-            loctag: this.state.bizLocTag
+            name: this.state.bizName
         };
-		console.log("Adding tags:", tagging);
-		this.props.createTags(tagging);
+		console.log("Deleting biz:", listy);
+		this.props.deleteListing(listy);
     };
 
     onChangeHandler (event) {
@@ -76,7 +72,7 @@ class CreateTags extends React.Component {
 
         return (
 			<div>
-			<p className="page-header">Add Tags</p>
+			<p className="page-header">Delete A Listing</p>
 			<div style={{ display: 'flex', width: '100%'}}>
 			<div style={{ width: '50%', margin: 'auto' }}>
 			<Form onSubmit={this.handleSubmit}>	
@@ -90,26 +86,8 @@ class CreateTags extends React.Component {
 							{businessListings}
 					</Form.Control>
 				</Form.Group>
-				<Form.Row>	
-					<Form.Group as={Col} controlId="formTags">
-						<Form.Label>Business Type Tag</Form.Label>
-						<Form.Control
-							name='bizTypeTag'
-							onChange={this.onChangeHandler}
-							value =  {this.state.bizTypeTag}
-							placeholder="Restaurant/Bank/etc." />
-					</Form.Group>
-					<Form.Group as={Col} controlId="formTags">
-						<Form.Label>Business Location Tag</Form.Label>
-						<Form.Control
-							name='bizLocTag'
-							onChange={this.onChangeHandler}
-							value =  {this.state.bizLocTag}
-							placeholder="Downtown/Butler Plaza/etc." />
-					</Form.Group>
-				</Form.Row>
 					
-				<button className="button button-background">Submit</button>
+				<button className="button button-background">Delete</button>
 			</Form>
 			</div>
 			</div>
@@ -117,8 +95,8 @@ class CreateTags extends React.Component {
     }
 }
 
-CreateTags.propTypes = {
-	createTags: PropTypes.func.isRequired
+DeleteListing.propTypes = {
+	deleteListing: PropTypes.func.isRequired
 };
   
 const mapStateToProps = state => ({
@@ -127,5 +105,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{createTags}
-)(CreateTags);
+	{deleteListing}
+)(DeleteListing);

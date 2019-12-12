@@ -1,3 +1,7 @@
+/*
+This is an outdated version that is no longer in use
+can safely ignore/delete
+
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
@@ -26,3 +30,4 @@ tagSchema.pre('save', function(next) {
 var Tag = mongoose.model('Tag', tagSchema);
 
 module.exports = Tag;
+*/
