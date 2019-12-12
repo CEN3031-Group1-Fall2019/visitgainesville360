@@ -6,13 +6,6 @@ import {Link} from "react-router-dom";
 import {gatherListings, foundListings} from "../../actions/listing.actions";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChartPie, faUser, faBookOpen, faColumns, faTrash} from '@fortawesome/free-solid-svg-icons';
-import Axios from "axios";
-
-
-const newListingCriteria = {
-	isApproved: false,
-	isDenied: false
-}
 
 class AdminMenu extends React.Component {
 	constructor(props) {

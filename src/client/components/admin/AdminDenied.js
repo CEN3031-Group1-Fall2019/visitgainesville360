@@ -6,10 +6,6 @@ import {gatherListings, foundListings} from "../../actions/listing.actions";
 import AdminControls from './AdminControls';
 import InfoControl from '../listing/InfoControl';
 
-const query = {
-	isDenied: true
-}
-
 class AdminDenied extends React.Component {
 	constructor(props) {
 		super(props);
@@ -19,7 +15,7 @@ class AdminDenied extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.gatherListings({isApproved: false, isDenied: true})
+		this.props.gatherListings({isDenied: true})
 		.then(res => {
 			this.setState({
 				browseListings: foundListings
@@ -34,7 +30,7 @@ class AdminDenied extends React.Component {
 	componentDidUpdate(prevState) {
 		if (this.state.browseListing !== undefined
 			&& prevState.browseListings !== this.state.browseListings) {
-			this.props.gatherListings({isApproved: false, isDenied: true})
+			this.props.gatherListings({isDenied: true})
 			.then(res => {
 				this.setState({
 					browseListings: foundListings
@@ -48,7 +44,7 @@ class AdminDenied extends React.Component {
 	}
 
 	businessCard = listing => {
-		if(!listing.isApproved && !listing.isDenied) {
+		if(listing.isDenied) {
 			return(
 				<div className="m-2 card-browse">
 				<Card>
