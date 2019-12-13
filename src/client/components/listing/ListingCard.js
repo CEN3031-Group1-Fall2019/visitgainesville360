@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {Card} from "react-bootstrap";
+import {Link} from "react-router-dom";
 import AdminControls from '../admin/AdminControls';
 import InfoControl from '../listing/InfoControl';
 import moment from 'moment';
@@ -18,7 +19,8 @@ class ListingCard extends React.Component {
 	adminControls() {
 		if (this.props.login.user.isAdmin) {
 			return (
-				<div className="flex-row justify-content-center">	
+				//<div className="flex-row justify-content-center">	
+				<div>
 						<AdminControls
 							{...this.props}
 							currentListing={this.state.currentListing} />
@@ -64,9 +66,16 @@ class ListingCard extends React.Component {
 
 		if(this.state.stateSet) {
 			return (
-				<div className="card-browse">
-				<Card>
-				<Card.Img variant="top" src={this.state.currentListing.image} className="card-img"/>
+				//<div className="card-browse">
+				<div>
+				<Card className="preview-card">
+				<Link
+				to={`/listing/${this.state.currentListing._id}`}>
+					<Card.Img 
+						variant="top" 
+						src={this.state.currentListing.image} 
+						className="preview-img" />
+				</Link>
 				<Card.Body>
 						<Card.Title>{this.state.currentListing.title ? this.state.currentListing.title : ''}</Card.Title>
 						<Card.Text>{this.state.currentListing.phone ? this.state.currentListing.phone : ''}</Card.Text>
@@ -81,9 +90,7 @@ class ListingCard extends React.Component {
 					<AdminControls
 						{...this.props}
 						currentListing={this.state.currentListing} />
-					<InfoControl
-						{...this.props}
-						currentListing={this.state.currentListing} /></div>
+					</div>
 				</Card.Body>
 				</Card>
 				</div>);

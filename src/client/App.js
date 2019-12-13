@@ -27,7 +27,7 @@ class App extends React.Component {
 		return (
 			<Provider store={store}>
 				<Router>
-				<div className="App container min-100">
+				<div className="App">
 					<Menu />
 					<AdminMenu />
 					<Switch>

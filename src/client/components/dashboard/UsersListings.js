@@ -90,10 +90,9 @@ class UsersListings extends React.Component {
 		} else {
 			var businessListings = [];
 			for(let listing of Object.values(this.state.browseListings)) {
-				if(listing.email == this.state.currentUser.email) {
-					businessListings.push(<div><ListingCard 
-						currentListing={listing} />
-						<p>Approved: {listing.isApproved}</p></div>);
+				if(listing.email === this.state.currentUser.email) {
+					businessListings.push(<ListingCard 
+						currentListing={listing} />);
 				}
 			}
 	
