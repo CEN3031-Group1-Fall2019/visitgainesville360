@@ -24,8 +24,12 @@ class Menu extends React.Component {
 					<Link className="menu-link" to="/create-tags">Tag</Link>
 					<Link className="menu-link" to="/delete-listing">Delete</Link>
 					<Link className="menu-link" to="/edit-listing">Edit</Link>
+<<<<<<< HEAD
 					<Link className="menu-link" to="/edit-login">My Account</Link>
 					<Link className="menu-link" to={`/account/listings/${this.props.login.user.id}`}>Listings</Link>
+=======
+					<Link className="menu-link" to={`/account/listings/${this.props.login.user.id}`}>Your Listings</Link>
+>>>>>>> Changes menu name from Listings to Your Listings
 					<Link className="menu-link" onClick={this.logoutUser.bind(this)} to="/">
 						<FontAwesomeIcon icon={faSignOutAlt}/>
 					</Link>
