@@ -1,18 +1,5 @@
 var Biz = require('../models/biz.model.js');
 
-/*
-exports.userExists = function(req, cb) {
-	var email = req.email;
-	console.log("Checking if userExists", email);
-
-	User.exists({email}, function(err, exists) {
-		if (err) return cb(err);
-		console.log("Result: ", exists);
-		return cb(exists);
-	});
-}
-*/
-
 // ---------------------------------------------------------------- //
 
 exports.findBiz = function(req, cb) {
@@ -197,7 +184,7 @@ exports.findAll = function(req, cb) {
 
 exports.adminUpdate = function(req, updates, cb) {
 	console.log("Attempting to update: ", req, " with: ", updates);
-	Biz.findOneAndUpdate(req, updates,{upsert: true}, function(err) {
+	Biz.findOneAndUpdate(req, updates, {upsert: true}, function(err) {
 		if (err) return cb(err);
 		console.log("Successfully updated: ", req, "with", updates);
 	});

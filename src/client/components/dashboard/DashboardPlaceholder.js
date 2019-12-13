@@ -14,6 +14,8 @@ class DashboardPlaceholder extends React.Component {
 			console.log("Does not have authentication");
 			this.props.history.push("/login");
 		}
+		
+		console.log("The logged in user is", this.props.login.user);
 
 		return (
 			<div className="container">

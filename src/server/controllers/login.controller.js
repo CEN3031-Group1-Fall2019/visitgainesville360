@@ -18,3 +18,9 @@ exports.findUsers = function(req, cb) {
 		return cb(found);
 	});
 }
+
+exports.modify = function(user, update, cb) {	
+	userFunct.modifyUser(user, update, function(err) {
+		if(err) throw err;
+	});
+}
