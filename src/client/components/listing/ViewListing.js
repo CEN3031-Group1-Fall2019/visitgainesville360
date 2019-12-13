@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Card} from "react-bootstrap";
+import {gatherListings, foundListings} from "../../actions/listing.actions";
 import AdminControls from '../admin/AdminControls';
-import Axios from "axios";
 import moment from 'moment';
 
 class ViewListing extends React.Component {
@@ -10,6 +11,7 @@ class ViewListing extends React.Component {
 		super(props);
 		this.state = {
 			currentListing: '',
+			stateSet: false,
 			isAdmin: false
 		};
 	}
@@ -20,18 +22,17 @@ class ViewListing extends React.Component {
 		})
 
 		var pathname = this.props.location.pathname;
-		var listingId = pathname.substring(pathname.lastIndexOf("/") + 1);;
-		console.log("this is it", listingId);
+		var listingId = pathname.substring(pathname.lastIndexOf("/") + 1);
 
-		Axios
-		.post("/listings/get", {id: listingId})
+		this.props.gatherListings({_id: listingId})
 		.then(res => {
 			this.setState({
-				currentListing: res.data
+				currentListing: foundListings[0],
+				stateSet: true
 			})
 		})
 		.catch(err => {
-			console.log("Error getting all listings");
+			console.log("Error while getting the listing", listingId);
 			console.log(err);
 		});
 	}
@@ -81,35 +82,43 @@ class ViewListing extends React.Component {
 
 	render() {
 		console.log("The current listing: ", this.state.currentListing);
-		return (
-			<div className="d-flex flex-row justify-content-center">
-				<div className="card-view m-4">
-					<Card>
-						{this.state.currentListing.image ? this.renderImg() : ''}
-					<div className="card-body">
-					<Card.Body>
-						<Card.Title>{this.state.currentListing.title ? this.state.currentListing.title : ''}</Card.Title>
-						<Card.Text>{this.state.currentListing.phone ? this.state.currentListing.phone : ''}</Card.Text>
-						<Card.Text>{this.state.currentListing.address ? this.state.currentListing.address : ''}<br />
-						{this.state.currentListing.city ? this.state.currentListing.city+', ' : ''}
-						{this.state.currentListing.state ? this.state.currentListing.state : ''}{' '}
-						 {this.state.currentListing.zip ? this.state.currentListing.zip : ''}</Card.Text>
-						<Card.Text>{this.state.currentListing.description ? this.state.currentListing.description : ''}</Card.Text>
-						<Card.Text>{this.renderTags()}</Card.Text>
-						<Card.Text>{this.renderHours(this.state.currentListing.hours)}</Card.Text>
-						{this.adminControls()}
-					</Card.Body></div>
-					</Card>
+		if(this.state.stateSet) {
+			return (
+				<div className="d-flex flex-row justify-content-center">
+					<div className="card-view m-4">
+						<Card>
+							{this.state.currentListing.image ? this.renderImg() : ''}
+						<div className="card-body">
+						<Card.Body>
+							<Card.Title>{this.state.currentListing.title ? this.state.currentListing.title : ''}</Card.Title>
+							<Card.Text>{this.state.currentListing.phone ? this.state.currentListing.phone : ''}</Card.Text>
+							<Card.Text>{this.state.currentListing.address ? this.state.currentListing.address : ''}<br />
+							{this.state.currentListing.city ? this.state.currentListing.city+', ' : ''}
+							{this.state.currentListing.state ? this.state.currentListing.state : ''}{' '}
+							 {this.state.currentListing.zip ? this.state.currentListing.zip : ''}</Card.Text>
+							<Card.Text>{this.state.currentListing.description ? this.state.currentListing.description : ''}</Card.Text>
+							<Card.Text>{this.renderTags()}</Card.Text>
+							<Card.Text>{this.renderHours(this.state.currentListing.hours)}</Card.Text>
+							{this.adminControls()}
+						</Card.Body></div>
+						</Card>
+					</div>
 				</div>
-			</div>
-		);
+			);
+		}
+		else return null;
 	}
 }
+
+ViewListing.propTypes = {
+	gatherListings: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
 	login: state.login
 });
 
 export default connect(
-	mapStateToProps
+	mapStateToProps,
+	{gatherListings}
 )(ViewListing);

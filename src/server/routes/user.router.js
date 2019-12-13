@@ -47,11 +47,14 @@ router.post("/register", function(req, res) {
 });
 
 router.post("/login", function(req, res) {
-	console.log("Finding user with email: ", req.email);
-	login.findUser(req, function(user) {
-		if (!user) return res.status(404).json({emailnotfound: "Email not found"});
-
+	console.log("Finding user with email: ", req.body.email);
+	var query = {email: req.body.email};
+	login.findUsers(query, function(users) {
+		if (!users) return res.status(404).json({emailnotfound: "Email not found"});
+		console.log("Found the user");
 		const password = req.body.password;
+		var user = users[0];
+
 		bcrypt.compare(password, user.password, function(err, isMatch) {
 			if (err) throw err;
 			if (isMatch) {
@@ -72,6 +75,15 @@ router.post("/login", function(req, res) {
 				return res.status(400).json({ passwordincorrect: "Password incorrect" });
 			}
 		});
+	});
+});
+
+router.post("/browse", function(req, res) {
+	console.log("Routing to browse users with query", req.body);
+
+	login.findUsers(req.body, function (users) {
+		console.log("Found a list of all users");
+		return res.json(users);
 	});
 });
 
