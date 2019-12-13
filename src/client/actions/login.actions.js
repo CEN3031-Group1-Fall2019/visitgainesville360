@@ -19,6 +19,32 @@ export const registerUser = userData => dispatch => {
 		});
 };
 
+/*
+export const editUser = (userData) => () => {
+	Axios
+	.post("/users/edit", tagData)
+	.catch(err => {
+		console.log("Error during login info edit: ", userData);
+		console.log(err);
+	});
+};
+*/
+export const editUser = userData => dispatch => {
+	Axios
+		.post("/users/edit", userData)
+    	.then(res => {
+      		const {token} = res.data;
+      		localStorage.setItem("jwtToken", token);
+      		setLoginToken(token);
+      		const decoded = jwt_decode(token);
+			dispatch(setUser(decoded));
+		})
+		.catch(err => {
+			console.log("Error during editing login info for for email: ", userData.email);
+			console.log(err);
+		});
+};
+
 export const loginUser = userData => dispatch => {
 	Axios
     	.post("/users/login", userData)

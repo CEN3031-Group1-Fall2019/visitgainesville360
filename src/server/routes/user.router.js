@@ -5,6 +5,60 @@ var express = require("express"),
 	login = require('../controllers/login.controller'),
 	config = require('../config/config');
 
+/*
+router.post("/edit", function(req) {
+	console.log("Routing to edit user");
+	login.updateLogin(req, function(err) {
+		if (err) throw err;
+	});
+});
+*/
+
+router.post("/edit", function(req, res) {
+	console.log("Routing to EDIT user");
+	
+	console.log(req.body.email);
+	login.userExists(req, function(err, userExists) {
+		if (err) throw err;
+
+		if (userExists) {
+			return res.status(400).json({email: "Email already exists"})
+		};
+		console.log("User doesn't exist. Editing to this email.");
+		login.updateLogin(req, function() {
+			console.log("Logging in the user");
+			var query = {email: req.body.email};
+			login.findUsers(query, function(foundUser) {
+				console.log("The user was found to be", foundUser);
+				var user = foundUser[0];
+				if (user) {
+					const payload = {
+						id: user.id,
+						name: user.name,
+						email: user.email,
+						isAdmin: user.isAdmin
+					};
+					console.log("We will be returning the payload", payload)
+					
+					jwt.sign(
+						payload,
+						config.keys,
+						{expiresIn: 10 * 60 * 60},
+						(err, token) => {res.json({success: true, token: "Bearer " + token});}
+					);
+				} else {
+					console.log("Error logging in for user during signup", user);
+					return res.status(404).json({emailnotfound: "Error during signup"});
+				} // if else
+			}); // findUsers
+		}); // updateLogin
+
+	}); // user exists
+});
+
+
+
+
 router.post("/register", function(req, res) {
 	console.log("Routing to register user");
 
@@ -43,6 +97,7 @@ router.post("/register", function(req, res) {
 		});
 	});
 });
+
 
 router.post("/login", function(req, res) {
 	console.log("Finding user with email: ", req.body.email);

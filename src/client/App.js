@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {Provider} from "react-redux";
 import Login from './components/login/Login';
 import Register from './components/login/Register';
+import EditLogin from './components/login/EditLogin';
 import DashboardPlaceholder from './components/dashboard/DashboardPlaceholder';
 import Menu from './components/Menu';
 import store from "./store";
@@ -44,6 +45,7 @@ class App extends React.Component {
 						<Route exact path="/create-listing" component={CreateListing} />
 						<Route exact path="/delete-listing" component={DeleteListing} />
 						<Route exact path="/edit-listing" component={EditListing} />
+						<Route exact path="/edit-login" component={EditLogin} />
 						<Route exact path="/create-tags" component={CreateTags} />
 					</Switch>
 				</div>
