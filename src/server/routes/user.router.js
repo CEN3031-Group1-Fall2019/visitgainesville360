@@ -18,29 +18,29 @@ router.post("/register", function(req, res) {
 		console.log("User doesn't exist. Adding user to database.");
 		login.createNewUser(req, function() {
 			console.log("Logging in the user");
-			login.findUser(req, function(user) {
-				if (!user) return res.status(404).json({emailnotfound: "Email not found"});
-				const password = req.body.password;
-				bcrypt.compare(password, user.password, function(err, isMatch) {
-					if (err) throw err;
-					if (isMatch) {
-						const payload = {
-							id: user.id,
-							name: user.name,
-							email: user.email,
-							isAdmin: user.isAdmin
-						};
-						
-						jwt.sign(
-							payload,
-							config.keys,
-							{expiresIn: 10 * 60 * 60},
-							(err, token) => {res.json({success: true, token: "Bearer " + token});}
-						);
-					} else {
-						return res.status(400).json({ passwordincorrect: "Password incorrect" });
-					}
-				});
+			var query = {email: req.body.email};
+			login.findUsers(query, function(foundUser) {
+				console.log("The user was found to be", foundUser);
+				var user = foundUser[0];
+				if (user) {
+					const payload = {
+						id: user.id,
+						name: user.name,
+						email: user.email,
+						isAdmin: user.isAdmin
+					};
+					console.log("We will be returning the payload", payload)
+					
+					jwt.sign(
+						payload,
+						config.keys,
+						{expiresIn: 10 * 60 * 60},
+						(err, token) => {res.json({success: true, token: "Bearer " + token});}
+					);
+				} else {
+					console.log("Error logging in for user during signup", user);
+					return res.status(404).json({emailnotfound: "Error during signup"});
+				}
 			});
 		});
 	});
@@ -134,6 +134,14 @@ router.post("/browse", function(req, res) {
 	login.findUsers(req.body, function (users) {
 		console.log("Found a list of all users");
 		return res.json(users);
+	});
+});
+
+router.post("/modify", function(req, res) {
+	console.log("Routing to modify user with query", req.body);
+
+	login.modify(req.body.email, req.body.updates, function (err) {
+		if (err) throw err;
 	});
 });
 
