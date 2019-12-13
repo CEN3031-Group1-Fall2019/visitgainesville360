@@ -73,7 +73,10 @@ class AdminUsers extends React.Component {
 						onClick={this.toggleAdmin(user, false).bind(this)}>
 							Remove Admin
 					</button>}
-				<button type="button" class="btn btn-info">Listings</button>
+				<Link
+					to={`/account/listings/${user._id}`}>
+					<button type="button" class="btn btn-info">Listings</button>
+				</Link>
 				</div>
 		  	</li>
 		);

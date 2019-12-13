@@ -19,6 +19,7 @@ import AdminListings from './components/admin/AdminListings';
 import AdminDenied from './components/admin/AdminDenied';
 import AdminUsers from './components/admin/AdminUsers';
 import LandingPage from './components/LandingPage';
+import UsersListings from './components/dashboard/UsersListings';
 
 class App extends React.Component {
 	render() {
@@ -33,6 +34,7 @@ class App extends React.Component {
 						<Route exact path="/samplepage" component={DashboardPlaceholder} />
 						<Route exact path="/admin-dashboard" component={AdminDashboard} />
 						<Route exact path="/listing/:listingId" component={ViewListing} />
+						<Route exact path="/account/listings/:userId" component={UsersListings} />
 						<Route exact path="/admin-listings" component={AdminListings} />
 						<Route exact path="/admin-users" component={AdminUsers} />
 						<Route exact path="/admin-denied" component={AdminDenied} />
