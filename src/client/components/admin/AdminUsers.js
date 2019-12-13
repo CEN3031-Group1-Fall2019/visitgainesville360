@@ -26,23 +26,17 @@ class AdminUsers extends React.Component {
 		});
 	}
 
-	componentDidUpdate(prevState) {
-		if (this.state.browseUsers !== undefined &&
-			prevState.browseUsers !== undefined &&
-			prevState.browseUsers !== this.state.browseUsers) {
-				console.log('This state browse users', this.state.browseUsers)
-				console.log('prev state browse users', prevState.browseUsers)
-				this.props.gatherUsers({})
-				.then(res => {
-					this.setState({
-						browseUsers: foundUsers
-					})
-				})
-				.catch(err => {
-					console.log("Error in componentDidUpdate while retrieving all users");
-					console.log(err);
-				});
-		}
+	update() {
+		this.props.gatherUsers({})
+		.then(res => {
+			this.setState({
+				browseUsers: foundUsers
+			})
+		})
+		.catch(err => {
+			console.log("Error in componentDidUpdate while retrieving all users");
+			console.log(err);
+		});
 	}
 
 	toggleAdmin = (user, state) => {
@@ -54,6 +48,7 @@ class AdminUsers extends React.Component {
 				}
 			}
 			this.props.modifyUser(query);
+			this.update();
 		}
 	}
 
@@ -64,20 +59,20 @@ class AdminUsers extends React.Component {
 
 				<div class="btn-group" role="group">
 				{!user.isAdmin ? 
-					<Link to="/admin-users">
 					<button
 						type="button" 
 						class="btn btn-primary btn-sm" 
+						to="/admin-users"
 						onClick={this.toggleAdmin(user, true).bind(this)}>
 							Make Admin
-					</button></Link> :
-					<Link to="/admin-users">
+					</button>:
 					<button 
 						type="button" 
 						class="btn btn-danger btn-sm"
+						to="/admin-users"
 						onClick={this.toggleAdmin(user, false).bind(this)}>
 							Remove Admin
-					</button></Link>}
+					</button>}
 				<button type="button" class="btn btn-info">Listings</button>
 				</div>
 		  	</li>
