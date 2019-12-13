@@ -65,3 +65,16 @@ export const getNotifications = (query) => () => {
 			console.log(err);
 		});
 }
+
+export const modifyUser = (query) => () => {
+	return Axios
+    	.post("/users/modify", query)
+		.then(res => {
+			console.log("Found ", res.data)
+			foundUsers = res.data;
+		})
+		.catch(err => {
+			console.log("Error while modifying user with the query", query);
+			console.log(err);
+		});
+}

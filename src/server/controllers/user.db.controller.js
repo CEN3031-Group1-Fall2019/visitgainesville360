@@ -110,3 +110,12 @@ exports.deleteUser = function(req, cb) {
 
 };
 
+// ---------------------------------------------------------------- //
+
+exports.modifyUser = function(user, update, cb) {
+	console.log("modifying user", user, "with the query", update)
+	User.findOneAndUpdate(user, update, function(err) {
+		if (err) return cb(err);
+	});
+}
+

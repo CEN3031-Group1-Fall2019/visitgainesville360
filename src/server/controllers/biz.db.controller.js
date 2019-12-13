@@ -1,18 +1,5 @@
 var Biz = require('../models/biz.model.js');
 
-/*
-exports.userExists = function(req, cb) {
-	var email = req.email;
-	console.log("Checking if userExists", email);
-
-	User.exists({email}, function(err, exists) {
-		if (err) return cb(err);
-		console.log("Result: ", exists);
-		return cb(exists);
-	});
-}
-*/
-
 // ---------------------------------------------------------------- //
 
 exports.findBiz = function(req, cb) {

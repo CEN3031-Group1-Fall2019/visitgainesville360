@@ -31,6 +31,7 @@ class AdminListings extends React.Component {
 	componentDidUpdate(prevState) {
 		if (this.state.browseListing !== undefined
 			&& prevState.browseListings !== this.state.browseListings) {
+				console.log("Admin listnigs is being called");
 			this.props.gatherListings({isApproved: false, isDenied: false})
 			.then(res => {
 				this.setState({
