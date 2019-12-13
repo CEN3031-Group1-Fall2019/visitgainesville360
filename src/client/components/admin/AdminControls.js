@@ -7,7 +7,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faThumbsUp, faThumbsDown} from '@fortawesome/free-solid-svg-icons';
 import {Button} from "react-bootstrap";
 
-class AdminListings extends React.Component {
+class AdminControls extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -78,8 +78,8 @@ class AdminListings extends React.Component {
 		if(this.state.stateSet) {
 			return (
 				<div className="d-flex justify-content-center align-items-bottom row">
-					<div className="col-1">{this.approveButton()}</div>
-					<div className="col-1">{this.denyButton()}</div>
+					<div class="btn-group" role="group" aria-label="Basic example">
+						{this.approveButton()}{this.denyButton()}</div>
 				</div>
 			);
 		}
@@ -87,7 +87,7 @@ class AdminListings extends React.Component {
 	}
 }
 
-AdminListings.propTypes = {
+AdminControls.propTypes = {
 	updateListing: PropTypes.func.isRequired,
 	listing: PropTypes.object.isRequired
 };
@@ -100,4 +100,4 @@ const mapStateToProps = state => ({
 export default connect(
 	mapStateToProps,
 	{updateListing}
-)(AdminListings);
+)(AdminControls);

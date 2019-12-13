@@ -58,7 +58,7 @@ class AdminDenied extends React.Component {
 
 		return (
 			<div className="container listings">
-				<p className="sub-header">Overview of Denied Listings</p>
+				<p className="page-header">Overview of Denied Listings</p>
 				<CardDeck className="row">{businessListings}</CardDeck>
         	</div>
 		);
