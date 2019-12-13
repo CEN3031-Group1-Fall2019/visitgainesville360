@@ -79,6 +79,9 @@
     "type": "git",
     "url": "git+https://github.com/CEN3031-Group1-Fall2019/visitgainesville360.git"
   },
+  "routes": {
+    "/**": "index.html"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
