@@ -45,30 +45,17 @@ class AdminUsers extends React.Component {
 		}
 	}
 
-	makeAdmin = (user) => {
+	toggleAdmin = (user, state) => {
 		return function() 
 			{var query = {
 				email: user.email,
 				updates: {
-					isAdmin: true
+					isAdmin: state
 				}
 			}
 			this.props.modifyUser(query);
 		}
 	}
-
-	removeAdmin = (user) => {
-		return function() 
-			{var query = {
-				email: user.email,
-				updates: {
-					isAdmin: false
-				}
-			}
-			this.props.modifyUser(query);
-		}
-	}
-
 
 	renderUsers(user){
 		return (
@@ -81,14 +68,14 @@ class AdminUsers extends React.Component {
 					<button
 						type="button" 
 						class="btn btn-primary btn-sm" 
-						onClick={this.makeAdmin(user).bind(this)}>
+						onClick={this.toggleAdmin(user, true).bind(this)}>
 							Make Admin
 					</button></Link> :
 					<Link to="/admin-users">
 					<button 
 						type="button" 
 						class="btn btn-danger btn-sm"
-						onClick={this.removeAdmin(user).bind(this)}>
+						onClick={this.toggleAdmin(user, false).bind(this)}>
 							Remove Admin
 					</button></Link>}
 				<button type="button" class="btn btn-info">Listings</button>

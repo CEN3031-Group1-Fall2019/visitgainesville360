@@ -20,7 +20,6 @@ router.post("/register", function(req, res) {
 			console.log("Logging in the user");
 			var query = {email: req.body.email};
 			login.findUsers(query, function(foundUser) {
-				console.log("The user was found to be", foundUser);
 				var user = foundUser[0];
 				if (user) {
 					const payload = {
@@ -29,7 +28,6 @@ router.post("/register", function(req, res) {
 						email: user.email,
 						isAdmin: user.isAdmin
 					};
-					console.log("We will be returning the payload", payload)
 					
 					jwt.sign(
 						payload,
@@ -89,8 +87,10 @@ router.post("/browse", function(req, res) {
 
 router.post("/modify", function(req, res) {
 	console.log("Routing to modify user with query", req.body);
+	var query = {'email': req.body.email};
+	var update = req.body.updates;
 
-	login.modify(req.body.email, req.body.updates, function (err) {
+	login.modify(query, update, function (err) {
 		if (err) throw err;
 	});
 });
