@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {CardDeck, Card} from "react-bootstrap";
+import {CardDeck} from "react-bootstrap";
 import {gatherListings, foundListings} from "../../actions/listing.actions";
-import AdminControls from './AdminControls';
-import InfoControl from '../listing/InfoControl';
 import ListingCard from '../listing/ListingCard';
 
 class AdminListings extends React.Component {

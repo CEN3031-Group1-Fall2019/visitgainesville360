@@ -19,7 +19,9 @@ router.post("/register", function(req, res) {
 		login.createNewUser(req, function() {
 			console.log("Logging in the user");
 			var query = {email: req.body.email};
-			login.findUsers(query, function(user) {
+			login.findUsers(query, function(foundUser) {
+				console.log("The user was found to be", foundUser);
+				var user = foundUser[0];
 				if (user) {
 					const payload = {
 						id: user.id,
@@ -27,6 +29,7 @@ router.post("/register", function(req, res) {
 						email: user.email,
 						isAdmin: user.isAdmin
 					};
+					console.log("We will be returning the payload", payload)
 					
 					jwt.sign(
 						payload,
