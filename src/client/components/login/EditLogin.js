@@ -39,6 +39,7 @@ class EditLogin extends React.Component {
 			if (isValid) {
 				console.log("Editing user: ", newUser.name, newUser.email);
 				this.props.editUser(newUser);
+				this.props.history.push("/");
 			} else {
 				this.setState ({
 					errors: errors
@@ -118,7 +119,7 @@ class EditLogin extends React.Component {
 						<button
 							type="submit"
 							className="button button-background">
-							Register
+							Update
 						</button>
 					</div>
 				</form>
