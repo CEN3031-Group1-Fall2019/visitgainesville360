@@ -24,6 +24,7 @@ class Menu extends React.Component {
 					<Link className="menu-link" to="/create-tags">Tag</Link>
 					<Link className="menu-link" to="/delete-listing">Delete</Link>
 					<Link className="menu-link" to="/edit-listing">Edit</Link>
+					<Link className="menu-link" to="/edit-login">My Account</Link>
 					<Link className="menu-link" to="/samplepage">Listings</Link>
 					<Link className="menu-link" onClick={this.logoutUser.bind(this)} to="/">
 						<FontAwesomeIcon icon={faSignOutAlt}/>

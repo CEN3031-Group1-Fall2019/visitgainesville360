@@ -46,6 +46,56 @@ router.post("/register", function(req, res) {
 	});
 });
 
+/*
+router.post("/edit", function(req) {
+	console.log("Routing to edit user info");
+	login.createNewUser(req, function(err) {
+		if (err) throw err;
+	});
+});
+*/
+
+router.post("/edit", function(req, res) {
+	console.log("Routing to edit user");
+
+	login.userExists(req, function(err, userExists) {
+		if (err) throw err;
+
+		if (userExists) {
+			return res.status(400).json({email: "Email already exists"})
+		};
+
+		console.log("User doesn't exist. Adding user to database.");
+		login.createNewUser(req, function() {
+			console.log("Logging in the user");
+			login.findUsers(req, function(user) {
+				if (!user) return res.status(404).json({emailnotfound: "Email not found"});
+				const password = req.body.password;
+				bcrypt.compare(password, user.password, function(err, isMatch) {
+					if (err) throw err;
+					if (isMatch) {
+						const payload = {
+							id: user.id,
+							name: user.name,
+							email: user.email,
+							isAdmin: user.isAdmin
+						};
+						
+						jwt.sign(
+							payload,
+							config.keys,
+							{expiresIn: 10 * 60 * 60},
+							(err, token) => {res.json({success: true, token: "Bearer " + token});}
+						);
+					} else {
+						return res.status(400).json({ passwordincorrect: "Password incorrect" });
+					}
+				});
+			});
+		});
+	});
+});
+
 router.post("/login", function(req, res) {
 	console.log("Finding user with email: ", req.body.email);
 	var query = {email: req.body.email};
