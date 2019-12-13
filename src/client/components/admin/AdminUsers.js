@@ -31,7 +31,13 @@ class AdminUsers extends React.Component {
 	renderUsers(user){
 		return (
 			<li class="list-group-item d-flex justify-content-between align-items-center text-dark">
-				{user.name} - {user.email}
+				{user.name} - {user.email} {user.isAdmin ? '     [ADMIN]' : ''}
+
+				<div class="btn-group" role="group">
+				<button type="button" class="btn btn-primary btn-sm">Make Admin</button>
+				<button type="button" class="btn btn-info">Listings</button>
+				<button type="button" class="btn btn-danger">Ban</button>
+				</div>
 		  	</li>
 		);
 	}
@@ -55,9 +61,6 @@ class AdminUsers extends React.Component {
 					<ul class="list-group">
 					<p>{users}</p>
 					<p>
-					<button type="button" class="btn btn-primary btn-sm">Make Admin</button>
-					<button type="button" class="btn btn-info">Listings</button>
-					<button type="button" class="btn btn-danger">Ban</button>
 					</p>
 					</ul>
 				</div>
