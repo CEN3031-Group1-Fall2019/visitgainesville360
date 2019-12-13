@@ -78,6 +78,9 @@ class ListingCard extends React.Component {
 					<Card.Text>{this.renderTags()}</Card.Text>
 					<Card.Text>{this.renderHours(this.state.currentListing.hours)}</Card.Text>
 					<div className="d-flex justify-content-center">
+					<AdminControls
+						{...this.props}
+						currentListing={this.state.currentListing} />
 					<InfoControl
 						{...this.props}
 						currentListing={this.state.currentListing} /></div>
