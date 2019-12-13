@@ -56,6 +56,7 @@ class CreateListing extends React.Component {
             listingImage: ''
         };
     }
+
     handleSubmit (event) {
 		event.preventDefault();
 		console.log("You are: ", this.props.login.user);

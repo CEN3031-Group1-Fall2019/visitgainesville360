@@ -53,8 +53,53 @@ exports.createBizNode = function(req, cb) {
 
 // ---------------------------------------------------------------- //
 
+exports.updateListing = function(req, cb) {	
+	var findThis = { 
+		email: req.body.email,
+		title: req.body.oldtitle
+	};
+	var updates = {
+		title: req.body.title,
+		bizemail: req.body.bizemail,
+		typetag: req.body.typetag,
+		loctag: req.body.loctag,
+		description: req.body.description,
+		address: req.body.address,
+		city: req.body.city,
+		phone: req.body.phone,
+		state: req.body.phone,
+		zip: req.body.zip,
+		hours: req.body.hours,
+		image: req.body.image		
+	};
+		
+	var nowDate = new Date();
+	updates.updated_at = nowDate;
 
-// !!!!!!!!!!!!! 
+	Biz.findOneAndUpdate(findThis, updates, function(err) {
+		if (err) return cb(err);
+	});
+};
+
+
+/*
+			email: this.props.login.user.email,
+            oldtitle: this.state.oldListingTitle,
+            title: this.state.listingTitle,
+            bizemail: this.state.listingEmail,
+            typetag: this.state.listingTypeTag,
+            loctag: this.state.listingLocTag,
+            description: this.state.listingDescription,
+			address: this.state.listingAddress,
+			city: this.state.listingCity,
+			phone: this.state.listingPhone,
+			state: this.state.listingState,
+			zip: this.state.listingZip,
+            hours: this.state.listingHours,
+            image: this.state.listingImage
+*/
+// ---------------------------------------------------------------- //
+
 exports.deleteBiz = function(req, cb) {	
 	var findThis = { 
 		email: req.body.email,
