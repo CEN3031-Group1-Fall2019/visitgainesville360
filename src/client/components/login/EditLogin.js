@@ -27,6 +27,8 @@ class EditLogin extends React.Component {
 		e.preventDefault();
 
 		const newUser = {
+			oldname: this.props.login.user.name,
+			oldemail: this.props.login.user.email,
 			name: this.state.name,
 			email: this.state.email,
 			password: this.state.password,
@@ -52,6 +54,11 @@ class EditLogin extends React.Component {
 
 		return (
 			<div className="container">
+				<p className="page-header">Account Information</p>
+					<div className="row d-flex justify-content-center p-3">
+						<p>Name: {this.props.login.user.name}<br />
+						Email: {this.props.login.user.email}</p>
+					</div>
 				<p className="page-header">Edit Account Information</p>
 				<form noValidate onSubmit={this.onSubmit.bind(this)}>
 					<div className="row d-flex justify-content-center p-3">
