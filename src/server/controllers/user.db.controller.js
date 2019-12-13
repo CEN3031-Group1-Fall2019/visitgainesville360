@@ -16,14 +16,11 @@ exports.userExists = function(req, cb) {
 // ---------------------------------------------------------------- //
 
 exports.findUser = function(req, cb) {
-	console.log("Looking for user", req.body.email);
-	const email = req.body.email;
+	console.log("Looking for users with request", req);
 
-	User.findOne({email: email}, function(err, found) {
-		if (err)
-			throw err;
-		else
-			cb(found);
+	User.find(req, function(err, found) {
+		if (err) throw err;
+		cb(found);
 	});
 };
 
