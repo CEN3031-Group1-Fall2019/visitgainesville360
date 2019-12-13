@@ -77,6 +77,7 @@ class CreateListing extends React.Component {
         };
 		console.log("Adding listing:", listing);
 		this.props.createListing(listing);
+		this.props.history.push("/");
     };
     onChangeHandler (event) {
         let nam = event.target.name;

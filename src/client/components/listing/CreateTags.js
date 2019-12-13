@@ -33,6 +33,7 @@ class CreateTags extends React.Component {
         };
 		console.log("Adding tags:", tagging);
 		this.props.createTags(tagging);
+		this.props.history.push("/");
     };
 
     onChangeHandler (event) {

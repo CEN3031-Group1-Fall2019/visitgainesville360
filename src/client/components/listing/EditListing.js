@@ -82,6 +82,7 @@ class EditListing extends React.Component {
         };
 		console.log("Editing to:", listing);
 		this.props.editListing(listing);
+		this.props.history.push("/");
     };
 
 

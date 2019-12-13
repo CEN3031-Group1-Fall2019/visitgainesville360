@@ -29,6 +29,7 @@ class DeleteListing extends React.Component {
         };
 		console.log("Deleting biz:", listy);
 		this.props.deleteListing(listy);
+		this.props.history.push("/");
     };
 
     onChangeHandler (event) {
