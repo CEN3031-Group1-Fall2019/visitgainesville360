@@ -20,6 +20,15 @@ export const createTags = (tagData) => () => {
 	});
 };
 
+export const editListing = (listData) => () => {
+	Axios
+	.post("/listings/edit", listData)
+	.catch(err => {
+		console.log("Error during listing creation: ", listData);
+		console.log(err);
+	});
+};
+
 export const deleteListing = (listingData) => () => {
 	Axios
 	.post("/listings/delete", listingData)

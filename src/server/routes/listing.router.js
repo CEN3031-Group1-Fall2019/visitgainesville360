@@ -17,6 +17,13 @@ router.post("/tag", function(req) {
 	});
 });
 
+router.post("/edit", function(req) {
+	console.log("Routing to edit listing");
+	biz.updateListing(req, function(err) {
+		if (err) throw err;
+	});
+});
+
 router.post("/delete", function(req) {
 	console.log("Routing to delete listing");
 	biz.deleteBiz(req, function(err) {

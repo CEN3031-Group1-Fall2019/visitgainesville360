@@ -12,6 +12,7 @@ import AdminMenu from './components/admin/AdminMenu';
 import CreateListing from './components/listing/CreateListing';
 import CreateTags from './components/listing/CreateTags';
 import DeleteListing from './components/listing/DeleteListing';
+import EditListing from './components/listing/EditListing';
 import Browse from './components/listing/Browse';
 import ViewListing from './components/listing/ViewListing';
 import AdminListings from './components/admin/AdminListings';
@@ -38,6 +39,7 @@ class App extends React.Component {
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/create-listing" component={CreateListing} />
 						<Route exact path="/delete-listing" component={DeleteListing} />
+						<Route exact path="/edit-listing" component={EditListing} />
 						<Route exact path="/create-tags" component={CreateTags} />
 					</Switch>
 				</div>

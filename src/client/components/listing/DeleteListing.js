@@ -83,6 +83,7 @@ class DeleteListing extends React.Component {
 						name='bizName'
 						onChange={this.onChangeHandler}
 						value =  {this.state.bizName}>
+							<option value="">Select...</option>
 							{businessListings}
 					</Form.Control>
 				</Form.Group>
