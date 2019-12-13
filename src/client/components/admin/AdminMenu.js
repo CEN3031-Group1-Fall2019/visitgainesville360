@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 import {Nav} from 'react-bootstrap';
 import {Link} from "react-router-dom";
-import {gatherListings, foundListings} from "../../actions/listing.actions";
+import {getNotifications, newListings} from "../../actions/admin.actions";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChartPie, faUser, faBookOpen, faColumns, faTrash} from '@fortawesome/free-solid-svg-icons';
 
@@ -16,22 +16,39 @@ class AdminMenu extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.gatherListings({isApproved: false, isDenied: false})
+		this.props.getNotifications({isApproved: false, isDenied: false})
 		.then(res => {
 			this.setState({
-				browseListings: foundListings
+				newListings: newListings
 			})
 		})
 		.catch(err => {
-			console.log("Error while getting the listings");
+			console.log("Error while getting Notifications");
 			console.log(err);
 		});
 	}
 
+	componentDidUpdate(prevState) {
+		if (this.state.browseListing !== undefined
+			&& prevState.browseListings !== this.state.browseListings) {
+				this.props.getNotifications({isApproved: false, isDenied: false})
+				.then(res => {
+					this.setState({
+						newListings: newListings
+					})
+				})
+				.catch(err => {
+					console.log("Error while getting the listings");
+					console.log(err);
+				});
+		}
+	}
+
 	renderNewListingNotification = () => {
+		console.log("New listings: ", this.state.newListings)
 		if (this.state.newListings > 0) {
 			return (
-				<span className="badge admin-notification">{this.state.newListings}</span>
+				<span className="badge admin-notification">{this.state.newListings.length}</span>
 			);
 		}
 		return null;
@@ -76,7 +93,7 @@ class AdminMenu extends React.Component {
 }
 
 AdminMenu.propTypes = {
-	gatherListings: PropTypes.func.isRequired
+	getNotifications: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -85,5 +102,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{gatherListings}
+	{getNotifications}
 )(AdminMenu);

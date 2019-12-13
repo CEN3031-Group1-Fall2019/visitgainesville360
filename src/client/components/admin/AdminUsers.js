@@ -53,7 +53,12 @@ class AdminUsers extends React.Component {
 					<p className="page-header">Current Users</p>
 					<hr />
 					<ul class="list-group">
-					{users}
+					<p>{users}</p>
+					<p>
+					<button type="button" class="btn btn-primary btn-sm">Make Admin</button>
+					<button type="button" class="btn btn-info">Listings</button>
+					<button type="button" class="btn btn-danger">Ban</button>
+					</p>
 					</ul>
 				</div>
 			);

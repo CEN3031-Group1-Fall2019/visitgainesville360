@@ -18,6 +18,7 @@ import ViewListing from './components/listing/ViewListing';
 import AdminListings from './components/admin/AdminListings';
 import AdminDenied from './components/admin/AdminDenied';
 import AdminUsers from './components/admin/AdminUsers';
+import LandingPage from './components/LandingPage';
 
 class App extends React.Component {
 	render() {
@@ -28,6 +29,7 @@ class App extends React.Component {
 					<Menu />
 					<AdminMenu />
 					<Switch>
+						<Route exact path="/" component={LandingPage} />
 						<Route exact path="/samplepage" component={DashboardPlaceholder} />
 						<Route exact path="/admin-dashboard" component={AdminDashboard} />
 						<Route exact path="/listing/:listingId" component={ViewListing} />
