@@ -87,7 +87,6 @@ class ListingCard extends React.Component {
 				</Link>
 				<Card.Body>
 						<Card.Title>{this.state.currentListing.title ? this.state.currentListing.title : ''}</Card.Title>
-						<Card.Text>{this.state.currentListing.phone ? this.state.currentListing.phone : ''}</Card.Text>
 						<Card.Text>{this.state.currentListing.phone ? this.state.currentListing.phone : ''}
 							{this.renderEmail()}</Card.Text>
 						<Card.Text>{this.state.currentListing.address ? this.state.currentListing.address : ''}<br />
