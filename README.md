@@ -47,7 +47,19 @@ Within `src/server/config` include the following:
 
 ### How to update database and server connections
 
-To be determined
+The server and database information can be updated through the config file.
+
+```
+module.exports = {
+	db: {
+	  	uri: "{YOUR_URI_HERE}"
+	},
+	port: {YOUR_PORT_HERE},
+	keys: "{YOUR_KEYS_HERE}"
+};
+```
+
+Alternatively, these can be modified through `src/server/config/app.js` by modifying the server and database routing.
 
 ### Credit
 
@@ -58,4 +70,7 @@ To be determined
 * milligram
 * normalize
 * materialize
-* other??
+* redux
+* Mongoose
+* ReactJS
+* Express
