@@ -114,7 +114,7 @@ class CreateTags extends React.Component {
 					</Form.Group>
 				</Form.Row>
 					
-				<button className="button button-background">Submit</button>
+				<button className="btn btn-info">Submit</button>
 			</Form>
 			</div>
 			</div>

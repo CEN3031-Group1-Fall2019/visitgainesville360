@@ -357,7 +357,7 @@ class EditListing extends React.Component {
 							value = {this.state.listingImage} />
 					</Form.Group>
 				</Form.Row>
-				<button className="button button-background">Submit</button>
+				<button className="btn btn-info">Submit</button>
 			</Form>
 			</div>
 			</div>

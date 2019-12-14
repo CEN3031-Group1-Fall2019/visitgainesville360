@@ -121,7 +121,7 @@ class EditLogin extends React.Component {
 					<div className="row d-flex justify-content-center p-3">
 						<button
 							type="submit"
-							className="button button-background">
+							className="btn btn-info">
 							Update
 						</button>
 					</div>

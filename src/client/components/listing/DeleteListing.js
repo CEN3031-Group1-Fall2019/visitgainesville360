@@ -91,7 +91,7 @@ class DeleteListing extends React.Component {
 					</Form.Control>
 				</Form.Group>
 					
-				<button className="button button-background">Delete</button>
+				<button className="btn btn-info">>Delete</button>
 			</Form>
 			</div>
 			</div>
