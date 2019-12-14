@@ -38,7 +38,16 @@ class ListingCard extends React.Component {
 			);
 		}
 	}
-	
+
+	renderEmail = () => {
+		if (this.state.currentListing.hasOwnProperty('bizemail'))
+		{
+			var stry = "mailto:" + this.state.currentListing.bizemail;
+			return (
+				<div><a href={stry}>{this.state.currentListing.bizemail}</a></div>
+			);
+		}
+	}	
 	renderHours = (hours) => {
 		if(hours !== undefined) {
 			var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -79,6 +88,8 @@ class ListingCard extends React.Component {
 				<Card.Body>
 						<Card.Title>{this.state.currentListing.title ? this.state.currentListing.title : ''}</Card.Title>
 						<Card.Text>{this.state.currentListing.phone ? this.state.currentListing.phone : ''}</Card.Text>
+						<Card.Text>{this.state.currentListing.phone ? this.state.currentListing.phone : ''}
+							{this.renderEmail()}</Card.Text>
 						<Card.Text>{this.state.currentListing.address ? this.state.currentListing.address : ''}<br />
 						{this.state.currentListing.city ? this.state.currentListing.city+', ' : ''}
 						{this.state.currentListing.state ? this.state.currentListing.state : ''}{' '}
