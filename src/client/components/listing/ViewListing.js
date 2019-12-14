@@ -84,7 +84,9 @@ class ViewListing extends React.Component {
 		console.log("The current listing: ", this.state.currentListing);
 		if(this.state.stateSet) {
 			return (
-				<div className="d-flex flex-row justify-content-center">
+				<div className="d-flex justify-content-center">
+					<div className="page-container d-flex justify-content-center">
+						<div className="jumbotron">
 					<div className="card-view m-4">
 						<Card>
 							{this.state.currentListing.image ? this.renderImg() : ''}
@@ -103,6 +105,8 @@ class ViewListing extends React.Component {
 						</Card.Body></div>
 						</Card>
 					</div>
+				</div>
+				</div>
 				</div>
 			);
 		}

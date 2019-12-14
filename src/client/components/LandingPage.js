@@ -83,17 +83,15 @@ class LandingPage extends React.Component {
 						<div className="jumbotron">
 							<p className="display-1">Welcome to Visit Gainesville 360</p>
 							<hr className="my-4" />
+							<div className="d-flex justify-content-center mb-5 mt-3">
 							<Link to="/browse">
-							<div className="d-flex justify-content-center">
 								<button
 									type="button" 
-									className="btn btn-primary" 
-									to="/browse">
+									className="btn btn-info">
 										Browse Listings
 								</button>
-							</div>
 							</Link>
-							<p className="display-4">Featured Listings</p>
+							</div>
 							<div className="page-content d-flex flex-row justify-content-center">{businessListings}</div>
 						</div>
 					</div>
