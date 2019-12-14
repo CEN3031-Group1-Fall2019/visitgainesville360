@@ -72,8 +72,10 @@ class DeleteListing extends React.Component {
 		}
 
         return (
-			<div>
-			<p className="page-header">Delete A Listing</p>
+			<div className="d-flex justify-content-center">
+				<div className="page-container d-flex justify-content-center">
+					<div className="jumbotron">
+				<p className="display-1">Delete Listing</p>
 			<div style={{ display: 'flex', width: '100%'}}>
 			<div style={{ width: '50%', margin: 'auto' }}>
 			<Form onSubmit={this.handleSubmit}>	
@@ -91,6 +93,8 @@ class DeleteListing extends React.Component {
 					
 				<button className="button button-background">Delete</button>
 			</Form>
+			</div>
+			</div>
 			</div>
 			</div>
 			</div>);

@@ -97,10 +97,12 @@ class UsersListings extends React.Component {
 			}
 	
 			return (
-				<div className="d-flex flex-row m-5">
-					<div className="justify-content-right m-6">
+				<div className="d-flex justify-content-center">
+					<div className="page-container d-flex justify-content-center">
+						<div className="jumbotron">
 						<CardDeck>{businessListings}</CardDeck>
 					</div>
+				</div>
 				</div>
 			);
 		}

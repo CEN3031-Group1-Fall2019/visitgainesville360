@@ -54,13 +54,16 @@ class EditLogin extends React.Component {
 		}
 
 		return (
-			<div className="container">
-				<p className="page-header">Account Information</p>
+			<div className="d-flex justify-content-center">
+				<div className="page-container d-flex justify-content-center">
+					<div className="jumbotron">
+				<p className="display-1">Account Information</p>
 					<div className="row d-flex justify-content-center p-3">
 						<p>Name: {this.props.login.user.name}<br />
 						Email: {this.props.login.user.email}</p>
 					</div>
-				<p className="page-header">Edit Account Information</p>
+					<hr />
+				<p className="display-4">Edit Account Information</p>
 				<form noValidate onSubmit={this.onSubmit.bind(this)}>
 					<div className="row d-flex justify-content-center p-3">
 						<div className="column column-40">
@@ -123,6 +126,8 @@ class EditLogin extends React.Component {
 						</button>
 					</div>
 				</form>
+			</div>
+			</div>
 			</div>
 		);
 	}
