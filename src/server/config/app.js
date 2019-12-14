@@ -4,8 +4,7 @@ var express = require("express"),
 	passport = require("passport"),
 	users = require('../routes/user.router');
 	listings = require('../routes/listing.router'),
-	admin = require('../routes/admin.router'),
-	cloud = require('./cloud');
+	admin = require('../routes/admin.router');
 
 module.exports.start = function() {
 	const app = express();
@@ -22,9 +21,6 @@ module.exports.start = function() {
   
   	app.use(passport.initialize());
 	require('./passport')(passport);
-	  
-	// Configures Cloudinary
-	cloud.start();
 
 	// Configures router
 	app.use("/users", users);

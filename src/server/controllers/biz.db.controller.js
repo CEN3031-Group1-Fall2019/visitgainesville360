@@ -18,12 +18,6 @@ exports.createBiz = function(req, cb) {
 	var newListing = new Biz(req.body);
 	console.log("creating biz", newListing);
 
-	/*cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
-		if (err) throw err;
-		req.body.image = result.secure_url; 
-		req.body.imageId = result.public_id; 
-	});*/
-
 	newListing.save(function(err) {
 		if(err) return cb(err);
 	});

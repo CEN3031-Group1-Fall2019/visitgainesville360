@@ -70,7 +70,6 @@
     ]
   },
   "description": "### How To Run",
-  "main": "index.js",
   "proxy": "http://localhost:5050",
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
@@ -89,5 +88,5 @@
   "bugs": {
     "url": "https://github.com/CEN3031-Group1-Fall2019/visitgainesville360/issues"
   },
-  "homepage": "https://github.com/CEN3031-Group1-Fall2019/visitgainesville360#readme"
+  "homepage": "https://visitgville360.herokuapp.com/"
 }
