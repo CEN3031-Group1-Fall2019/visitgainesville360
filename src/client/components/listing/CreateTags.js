@@ -77,7 +77,10 @@ class CreateTags extends React.Component {
 
         return (
 			<div>
-			<p className="page-header">Add Tags</p>
+			<div className="d-flex justify-content-center">
+				<div className="page-container d-flex justify-content-center">
+					<div className="jumbotron">
+				<p className="display-1">Add Tags</p>
 			<div style={{ display: 'flex', width: '100%'}}>
 			<div style={{ width: '50%', margin: 'auto' }}>
 			<Form onSubmit={this.handleSubmit}>	
@@ -111,8 +114,11 @@ class CreateTags extends React.Component {
 					</Form.Group>
 				</Form.Row>
 					
-				<button className="button button-background">Submit</button>
+				<button className="btn btn-info">Submit</button>
 			</Form>
+			</div>
+			</div>
+			</div>
 			</div>
 			</div>
 			</div>);

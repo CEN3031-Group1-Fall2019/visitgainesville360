@@ -56,8 +56,12 @@ class Login extends React.Component {
 		this.routeUser(this.props);
 
 		return (
-			<div className="container">
-			<p className="page-header">Login</p>
+			<div className="d-flex justify-content-center">
+				<div className="page-container d-flex justify-content-center">
+					<div className="jumbotron">
+			<p className="display-3">Login</p>
+
+			<hr className="my-4" />
 				<form noValidate onSubmit={this.onSubmit.bind(this)}>
 					<div className="row d-flex justify-content-center p-3">
 						<div className="column column-40">
@@ -88,7 +92,7 @@ class Login extends React.Component {
 					<div className="row d-flex justify-content-center p-3">
 						<button
 							type="submit"
-							className="button button-background">
+							className="btn btn-info">
 							Login
 						</button>
 					</div>
@@ -99,6 +103,8 @@ class Login extends React.Component {
 					Click here to register.
 				</Link>
 			</p>
+			</div>
+			</div>
 			</div>
 		);
 	}

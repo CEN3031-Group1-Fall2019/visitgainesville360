@@ -1,6 +1,108 @@
 html, body, .App {
+	background-color: #000;
+	color: #000;
+} 
+.card {
+	color: #363637;
+}
+.page-container {
+	margin-top: 5px;
+	height: 60%;
+	width: 60%;
+	min-height: 700px;
+	background-color: #008B8B;
+	border-radius: 2px 2px 2px;
+}
+.jumbotron {
+	min-height: 700px;
+	height: 100%;
+	width: 100%;
+}
+.page-body {
+	height: 75%;
+	width: 75%;
+}
+.page-content {
+	width: 100%;
+	height: 50%;
+}
+hr {
 	background-color: #363637;
+}
+.admin-hr {
+	background-color: #ECECEC;
+}
+.display-1, .display-2, .display-3, .display-4 {
+	color: #000;
+	text-align: center;
+}
+.preview-card {
+	overflow: hidden;
+	min-height: 700px;
+	height: 700px;
+	width: 300px;
+}
+.preview-img {
+	overflow: hidden;
+	height: 250px;
+}
+.btn {
+	width: 125px;
+	border-radius: .25rem;
+	margin: 0px;
+}
+.container-color {
+	background-color: #ECECEC;
+}
+.menu-link {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	font-size: 2rem;
+	font-weight: bold;
+	color: #363637;
+}
+.menu-link:hover {
+	color: #008B8B;
+	text-decoration: none;
+}
+.navbar{
+	min-height: 50px;
+}
+.admin-menu {
+	padding-left: 5px;
+	margin: 0px;
+	background-color: #264653;
 	color: #ECECEC;
+}
+.admin-linkbar {
+	text-align: right;
+}
+.admin-link {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	font-weight: bold;
+	color: #ECECEC;
+}
+.admin-link:hover {
+	color: #008B8B;
+	text-decoration: none;
+}
+
+
+/*
+
+.btn:hover {
+	color: #264653 !important;
+	border-color: #264653 !important;
+	background-color: #CCAC5B !important;
+}
+.sub-header {
+	background-color: #264653;
+	border-radius: .25rem;
+	color: #ECECEC;
+	text-align: center;
+	font-size: 2rem;
+	font-weight: normal bold; 
 }
 .min-100, .App {
 	height: 100%;
@@ -10,6 +112,7 @@ html, body, .App {
 }
 
 /*** GENERAL ***/
+/*
 .link {
 	color: #008B8B;
 }
@@ -17,38 +120,9 @@ html, body, .App {
 	color: #CCAC5B;
 	text-decoration: none;
 }
-.button {
-	width: 125px;
-	border-radius: .25rem;
-	margin: 0px;
-	border-color: #264653;
-	background-color: #008B8B;
-	color: #ECECEC;
-}
 .button-transparent {
 	background-color: transparent;
 	color: #264653;
-}
-.button:hover {
-	border-radius: .25rem;
-	color: #264653;
-	border-color: #264653;
-	background-color: #CCAC5B;
-}
-.page-header {
-	padding-top: 5rem;
-	color: #CCAC5B;
-	text-align: center;
-	font-size: 3rem;
-	font-weight: normal bold; 
-}
-.sub-header {
-	background-color: #264653;
-	border-radius: .25rem;
-	color: #ECECEC;
-	text-align: center;
-	font-size: 2rem;
-	font-weight: normal bold; 
 }
 .listings {
 	padding-left: 25rem;
@@ -63,6 +137,7 @@ html, body, .App {
 }
 
 /*** MENU ***/
+/*
 .menu {
 	background-color: #FFF;
 	padding: 1rem;
@@ -70,19 +145,9 @@ html, body, .App {
 .menu > * {
 	flex-grow: 1;
 }
-.menu-link {
-	padding-left: 1rem;
-	padding-right: 1rem;
-	font-size: 2rem;
-	font-weight: bold;
-	color: #363637;
-}
-.menu-link:hover {
-	color: #CCAC5B;
-	text-decoration: none;
-}
 
 /*** ADMIN-MENU ***/
+/*
 .admin-menu-container {
 	width: 20rem;
     margin: 0 33% 0 0;
@@ -122,6 +187,7 @@ html, body, .App {
 }
 
 /*** ADMIN ***/
+/*
 hr {
 	display: flex;
 	justify-content: center;
@@ -163,7 +229,8 @@ input[type="text"],
 input[type="password"],
 input[type="email"]  {
 	border-radius: .25rem;
-	background-color: #ECECEC;
+	color: #000;
+	background-color: #FFF;
 }
 
 textarea:focus,
@@ -174,9 +241,14 @@ input[type="email"]:focus {
 	border-radius: .25rem;
 	border-width: .2rem;
 	border-color: #CCAC5B;
-	background-color: #ECECEC;
+	color: #000;
+	background-color: #FFF;
 }
 
 .inputError {
 	color: red;
+}
+
+label {
+	color: #000;
 }

@@ -94,14 +94,18 @@ class AdminUsers extends React.Component {
 		}
 
 		return (
-			<div className="container listings">
-				<p className="page-header">Current Users</p>
+			<div className="d-flex justify-content-center">
+				<div className="page-container d-flex justify-content-center">
+					<div className="jumbotron">
+				<p className="display-1">Current Users</p>
 				<hr />
 				<ul class="list-group">
 				<p>{users}</p>
 				<p>
 				</p>
 				</ul>
+			</div>
+			</div>
 			</div>
 		);
 	}

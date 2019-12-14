@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {CardDeck, Card} from "react-bootstrap";
+import {CardDeck} from "react-bootstrap";
 import {gatherListings, foundListings} from "../../actions/listing.actions";
 import moment from 'moment';
 import ListingCard from '../listing/ListingCard';
@@ -74,10 +74,12 @@ class Browse extends React.Component {
 		}
 
 		return (
-			<div className="d-flex flex-row m-5">
-				<div className="justify-content-right m-6">
+			<div className="d-flex justify-content-center">
+				<div className="page-container d-flex justify-content-center">
+					<div className="jumbotron">
 					<CardDeck>{businessListings}</CardDeck>
 				</div>
+			</div>
 			</div>
 		);
 	}

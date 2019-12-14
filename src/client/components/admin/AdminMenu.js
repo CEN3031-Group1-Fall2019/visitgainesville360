@@ -59,32 +59,32 @@ class AdminMenu extends React.Component {
 		
 		if (isAdmin) {
 			return  (
-				<div className="admin-menu-container">
-					<Nav className="d-flex flex-column">
-						<p className="menu-header">Admin Console</p>
-						<hr />
-						<Link to="/admin-dashboard" className="admin-menu">
+				<div className="admin-menu">
+				<div className="row">
+						<p className="h3 ml-5">Admin Console</p>
+						<hr className="admin-hr" />
+						<div className="admin-linkbar">
+						<Link to="/admin-dashboard" className="admin-link">
 							<FontAwesomeIcon className="admin-icon" icon={faColumns}/>
-							Dashboard
+							 Dashboard
 						</Link>
-						<Link to="/admin-listings" className="admin-menu">
+						| 
+						<Link to="/admin-listings" className="admin-link">
 							<FontAwesomeIcon className="admin-icon" icon={faBookOpen}/>
-							New Listings
+							 New Listings
 							{this.renderNewListingNotification()}
 						</Link>
-						<Link to="/admin-denied" className="admin-menu">
+						| 
+						<Link to="/admin-denied" className="admin-link">
 							<FontAwesomeIcon className="admin-icon" icon={faTrash}/>
-							Denied Listings
+							 Denied Listings
 						</Link>
-						<Link to="/admin-users" className="admin-menu">
+						| 
+						<Link to="/admin-users" className="admin-link">
 							<FontAwesomeIcon className="admin-icon" icon={faUser}/>
-							Users
+							 Users
 						</Link>
-						<Link to="/admin-stats" className="admin-menu">
-							<FontAwesomeIcon className="admin-icon" icon={faChartPie}/>
-							Stats
-						</Link>
-					</Nav>
+					</div></div>
 				</div>
 			);
 		}

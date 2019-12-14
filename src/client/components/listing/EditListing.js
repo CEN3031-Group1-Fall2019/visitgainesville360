@@ -157,8 +157,10 @@ class EditListing extends React.Component {
 		}
 
         return (
-			<div>
-			<p className="page-header">Edit Listing</p>
+			<div className="d-flex justify-content-center">
+				<div className="page-container d-flex justify-content-center">
+					<div className="jumbotron">
+				<p className="display-1">Edit Listing</p>
 			<div className="flex">
 
 				<div className="container">
@@ -355,8 +357,10 @@ class EditListing extends React.Component {
 							value = {this.state.listingImage} />
 					</Form.Group>
 				</Form.Row>
-				<button className="button button-background">Submit</button>
+				<button className="btn btn-info">Submit</button>
 			</Form>
+			</div>
+			</div>
 			</div>
 			</div>
 			</div>);

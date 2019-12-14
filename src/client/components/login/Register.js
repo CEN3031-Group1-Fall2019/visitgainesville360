@@ -17,13 +17,6 @@ class Register extends React.Component {
 		};
 	}
 
-	/*UNSAFE_componentWillReceiveProps(nextProps) {
-		if (nextProps.login.isLoggedIn) {
-			console.log("Sending to client's dashboard");
-			this.props.history.push("/samplepage");
-		}
-	}*/
-
 	handleChange(e) {
 		this.setState({ 
 			[e.target.id]: e.target.value 
@@ -62,11 +55,16 @@ class Register extends React.Component {
 				this.props.history.push("/samplepage");
 			}
 		}
+		//<div className="row d-flex justify-content-center p-3">
 
 		return (
-			<div className="container">
-				<p className="page-header">Register</p>
+			<div className="d-flex justify-content-center">
+				<div className="page-container d-flex justify-content-center">
+					<div className="jumbotron">
+				<p className="display-3">Register</p>
+				<hr className="my-4" />
 				<form noValidate onSubmit={this.onSubmit.bind(this)}>
+
 					<div className="row d-flex justify-content-center p-3">
 						<div className="column column-40">
 						<label htmlFor="name">Name</label>
@@ -122,7 +120,7 @@ class Register extends React.Component {
 					<div className="row d-flex justify-content-center p-3">
 						<button
 							type="submit"
-							className="button button-background">
+							className="btn btn-info">
 							Register
 						</button>
 					</div>
@@ -132,6 +130,8 @@ class Register extends React.Component {
 				Click here to login.
 			</Link>
 			</p>
+			</div>
+			</div>
 			</div>
 		);
 	}

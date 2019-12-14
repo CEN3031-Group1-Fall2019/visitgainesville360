@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {CardDeck, Card} from "react-bootstrap";
+import {CardDeck} from "react-bootstrap";
 import {gatherListings, foundListings} from "../../actions/listing.actions";
 import ListingCard from '../listing/ListingCard';
 
@@ -57,10 +57,12 @@ class AdminDenied extends React.Component {
 		}
 
 		return (
-			<div className="container listings">
-				<p className="page-header">Overview of Denied Listings</p>
+			<div className="d-flex justify-content-center">
+				<div className="page-container d-flex justify-content-center">
+					<div className="jumbotron">
+				<p className="display-1">Denied Listings</p>
 				<CardDeck className="row">{businessListings}</CardDeck>
-        	</div>
+        	</div></div></div>
 		);
 	}
 }

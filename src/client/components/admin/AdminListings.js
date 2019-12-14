@@ -58,11 +58,14 @@ class AdminListings extends React.Component {
 		}
 
 		return (
-			<div className="container listings">
-				<p className="page-header">Overview of Recent Acitity</p>
+			<div className="d-flex justify-content-center">
+				<div className="page-container d-flex justify-content-center">
+					<div className="jumbotron">
+				<p className="display-1">Overview of Recent Acitity</p>
 				<hr />
-				<p className="sub-header">Listing Requests</p>
 				<CardDeck className="row">{businessListings}</CardDeck>
+        	</div>
+        	</div>
         	</div>
 		);
 	}

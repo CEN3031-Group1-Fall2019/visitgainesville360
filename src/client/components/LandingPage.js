@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {CardDeck} from "react-bootstrap";
+import {Link} from "react-router-dom";
 import {gatherListings, foundListings} from "../actions/listing.actions";
 import moment from 'moment';
 import ListingCard from '../components/listing/ListingCard';
@@ -67,20 +67,33 @@ class LandingPage extends React.Component {
 
 	render() {
 		if(this.state.stateSet) {
+			var count = 0;
 			var businessListings = [];
 			for(let listing of Object.values(this.state.browseListings)) {
-				if(listing.isApproved && !listing.isDenied) {
-					businessListings = <ListingCard 
-						currentListing={listing} />
+				if(listing.isApproved && !listing.isDenied && count < 2) {
+					++count;
+					businessListings.push(<ListingCard 
+						currentListing={listing} />);
 				}
 			}
 	
 			return (
-				<div className="d-flex flex-row m-5">
-					<div className="justify-content-right m-6">
-						<p className="page-header">Welcome to Visit Gainesville 360</p>
-						<p className="sub-header">Featured Listing</p>
-						<CardDeck>{businessListings}</CardDeck>
+				<div className="d-flex justify-content-center">
+					<div className="page-container d-flex justify-content-center">
+						<div className="jumbotron">
+							<p className="display-1">Welcome to Visit Gainesville 360</p>
+							<hr className="my-4" />
+							<div className="d-flex justify-content-center mb-5 mt-3">
+							<Link to="/browse">
+								<button
+									type="button" 
+									className="btn btn-info">
+										Browse Listings
+								</button>
+							</Link>
+							</div>
+							<div className="page-content d-flex flex-row justify-content-center">{businessListings}</div>
+						</div>
 					</div>
 				</div>
 			);
