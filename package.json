@@ -48,10 +48,11 @@
     "validator": "^12.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "server": "nodemon src/server/server.js",
-    "client": "npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "build": "react-scripts build",
+    "server": "node src/server/server.js",
+    "client": "npm install && npm run build",
+    "start": "npm run server",
+    "heroku-postbuild": "npm run client"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,5 +1,4 @@
-var config = require('./config'), 
-	express = require("express"),
+var express = require("express"),
 	mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
 	passport = require("passport"),
@@ -15,7 +14,7 @@ module.exports.start = function() {
   	app.use(bodyParser.json());
 
   	mongoose
-	  .connect(config.db.uri, { 
+	  .connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/test', { 
 		  useNewUrlParser: true,
 		  useUnifiedTopology: true})
 	  .then(() => console.log("MongoDB successfully connected"))
@@ -32,7 +31,16 @@ module.exports.start = function() {
 	app.use("/listings", listings);
 	app.use("/admin", admin);
 	  
-  	app.listen(config.port, function() {
-    	console.log('Server is listening on port', config.port);
+	/** Heroku **/
+	var path = require("path");
+	app.use(express.static(path.join(__dirname + './../../../build')));
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname + '/../../../public/index.html'));
+	});
+	  
+	var port = process.env.PORT || 5000;
+  	app.listen(port, function() {
+    	console.log('Server is listening on port', );
   	});
 };

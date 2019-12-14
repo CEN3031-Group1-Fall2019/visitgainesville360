@@ -2,8 +2,7 @@ var express = require("express"),
 	bcrypt = require("bcryptjs"),
 	jwt = require("jsonwebtoken"),
 	router = express.Router(),
-	login = require('../controllers/login.controller'),
-	config = require('../config/config');
+	login = require('../controllers/login.controller');
 
 /*
 router.post("/edit", function(req) {
@@ -42,7 +41,7 @@ router.post("/edit", function(req, res) {
 					
 					jwt.sign(
 						payload,
-						config.keys,
+						process.env.PROD_KEYS,
 						{expiresIn: 10 * 60 * 60},
 						(err, token) => {res.json({success: true, token: "Bearer " + token});}
 					);
@@ -85,7 +84,7 @@ router.post("/register", function(req, res) {
 					
 					jwt.sign(
 						payload,
-						config.keys,
+						process.env.PROD_KEYS,
 						{expiresIn: 10 * 60 * 60},
 						(err, token) => {res.json({success: true, token: "Bearer " + token});}
 					);
@@ -120,7 +119,7 @@ router.post("/login", function(req, res) {
 				
 				jwt.sign(
 					payload,
-					config.keys,
+					process.env.PROD_KEYS,
 					{expiresIn: 10 * 60 * 60},
 					(err, token) => {res.json({success: true, token: "Bearer " + token});}
 				);
