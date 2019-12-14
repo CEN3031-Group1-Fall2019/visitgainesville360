@@ -1,9 +1,9 @@
 # Visit Gainesville 360
 
-### Deployment
+## Deployment
 [visitgainesville360.herokuapp.com/](visitgainesville360.herokuapp.com/)
 
-### Project Features
+## Project Features
 * Login
 * Register
 * Create new listings
@@ -11,9 +11,58 @@
 * Browse listings
 * View individual listing
 * Admin console
-* Admin approve and deny new listings
+    * Approve or deny listings
+    * Make users admin
+    * View a users listings
 
-### Get Started
+### Screenshots
+
+#### Landing Page
+![Landing](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/LandingPage.png)
+
+#### Browse listings
+![Browse](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/Browse.png)
+
+#### View a listing
+![view](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/Screen%20Shot%202019-12-13%20at%209.03.31%20PM.png)
+
+#### Login
+![Login](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/Login.png)
+
+#### Register
+![Register](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/Register.png)
+
+#### Edit account
+![Acct](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/EditAccount.png)
+
+#### Create new listings
+![Create](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/CreateListing.png)
+
+#### Edit a listing
+![Edit](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/EditListings.png)
+
+#### Tag listings
+![Tags](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/AddTags.png)
+
+#### Delete a listing
+![Delete](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/DeleteListings.png)
+
+#### Admin console landing page
+![Admin](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/Screen%20Shot%202019-12-13%20at%209.00.52%20PM.png)
+
+#### Admin approve or deny new listings
+![new listings](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/Screen%20Shot%202019-12-13%20at%209.01.26%20PM.png)
+
+#### Look at denied listings (admin)
+![denied](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/Screen%20Shot%202019-12-13%20at%209.01.53%20PM.png)
+
+#### Admin users
+![users](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/Screen%20Shot%202019-12-13%20at%209.02.17%20PM.png)
+
+#### View a users listings
+![view user listings](https://raw.githubusercontent.com/CEN3031-Group1-Fall2019/visitgainesville360/master/Screenshots/ViewUsersListings.png)
+
+## Get Started
 
 * Clone the repo then run 'npm install' for the dependencies
 
