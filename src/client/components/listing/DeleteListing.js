@@ -76,6 +76,7 @@ class DeleteListing extends React.Component {
 				<div className="page-container d-flex justify-content-center">
 					<div className="jumbotron">
 				<p className="display-1">Delete Listing</p>
+				<hr />
 			<div style={{ display: 'flex', width: '100%'}}>
 			<div style={{ width: '50%', margin: 'auto' }}>
 			<Form onSubmit={this.handleSubmit}>	

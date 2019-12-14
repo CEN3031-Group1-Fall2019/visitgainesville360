@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from 'react-redux';
-import {Nav} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import {getNotifications, newListings} from "../../actions/admin.actions";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faChartPie, faUser, faBookOpen, faColumns, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faUser, faBookOpen, faColumns, faTrash} from '@fortawesome/free-solid-svg-icons';
 
 class AdminMenu extends React.Component {
 	constructor(props) {

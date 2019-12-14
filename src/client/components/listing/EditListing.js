@@ -161,6 +161,7 @@ class EditListing extends React.Component {
 				<div className="page-container d-flex justify-content-center">
 					<div className="jumbotron">
 				<p className="display-1">Edit Listing</p>
+				<hr />
 			<div className="flex">
 
 				<div className="container">

@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import AdminControls from '../admin/AdminControls';
-import InfoControl from '../listing/InfoControl';
 import moment from 'moment';
 
 class ListingCard extends React.Component {
